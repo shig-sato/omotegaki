@@ -1,0 +1,342 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JapaneseTextAlignment</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.Utility">
+             <summary>
+             文字列を指定された情報に基づいて整列するためのユーティリティクラス。 
+             </summary>
+             <example>
+               下記のコードは、文字列を5種類の異なるレイアウトで整列します。
+               <code source = "../../ExampleWinForm_CS/Program.cs" lang = "cs"></code>
+             <code source = "../../ExampleWinForm_VB/FormDemo.vb" lang = "vbnet"></code>
+             <code source = "../../ExampleWinForm_CPP/ExampleWinForm_CPP.cpp" lang = "cpp"></code>
+            <p>フォームが表示されると、以下のようになります:</p> 
+             <p><img src="../Image/Result.jpg"/></p>
+             </example>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.Utility.DrawJapaneseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Color,System.Drawing.Rectangle,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo,Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider)">
+          <!--Fix Bug 3725-->  
+            <summary>
+            与えられたテキストを 指定されたスタイルで描画します。
+            </summary>
+            <remarks>
+            <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> と <see cref="M:Microsoft.International.JapaneseTextAlignment.Utility.DrawJapaneseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Color,System.Drawing.Rectangle,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo,Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider)"/>の使用例は<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。 
+            </remarks>
+            <param name="g">文字列を出力するグラフィックスオブジェクト。</param>
+            <param name="text">整列する文字列。 </param>
+            <param name="font">文字列を描画するフォント。</param>
+            <param name="color">文字列を描画するブラシ。 </param>
+            <param name="rectangle">文字列を割付ける四角形。 </param>
+            <param name="alignmentStyleInfo">ススタイルと左右余白を格納する構造体。</param>
+            <param name="alignmentUnitInfoProvider">文字列の割付け方法を決定するAlignmentUnitInfoProvider。</param>
+            <exception cref="T:System.ArgumentNullException">
+            g、text、およびfontがnull参照です。
+            </exception>
+        </member>
+      <member name="M:Microsoft.International.JapaneseTextAlignment.Utility.DrawJapaneseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Color,System.Drawing.Rectangle,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo)">
+        <!--Fix Bug 3725-->
+        <summary>
+          与えられたテキストを <see cref="T:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider"/> で指定された割り付け方法で描画します。
+      </summary>
+        <remarks>
+          <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> と <see cref="M:Microsoft.International.JapaneseTextAlignment.Utility.DrawJapaneseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Color,System.Drawing.Rectangle,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo)"/>の使用例は<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+        </remarks>
+        <param name="g">文字列を出力するグラフィックスオブジェクト。</param>
+        <param name="text">整列する文字列。 </param>
+        <param name="font">文字列を描画するフォント。</param>
+        <param name="color">文字列を描画するブラシ。 </param>
+        <param name="rectangle">文字列を割付ける四角形。 </param>
+        <param name="alignmentStyleInfo">ススタイルと左右余白を格納する構造体。</param>
+        <exception cref="T:System.ArgumentNullException">
+          g、text、およびfontがnull参照です。
+        </exception>
+      </member>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle">
+            <summary>
+            文字列の整列スタイル。 
+            </summary>
+        </member>
+        <member name="F:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle.Left">
+            <summary>
+              文字列を左に揃える。
+            </summary>
+        </member>
+        <member name="F:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle.Center">
+            <summary>
+            文字列を中心に揃える。 
+            </summary>
+        </member>
+        <member name="F:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle.Right">
+            <summary>
+            文字列を右に揃える。 
+            </summary>
+        </member>
+        <member name="F:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle.Justify">
+            <summary>
+            文字列の行の幅揃える。 
+            </summary>
+        </member>
+        <member name="F:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyle.FullJustify">
+            <summary>
+            文字列を均等に割付ける。 
+            </summary>
+        </member>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider">
+            <summary>
+             割付け情報を提供するインタフェース。 
+            </summary>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider.Initialize(System.String)">
+            <summary>
+            割付け単位に分割する文字列の最初の文字により、<see cref="T:Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider"/> のインスタンスを初期化します。
+            </summary>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+            <param name="s">割付け単位に分割する文字列の最初の文字。</param>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.IAlignmentUnitInfoProvider.IsNewAlignmentUnit(System.String)">
+            <summary>
+			文字が新しい割付け単位となるかを判断します。 
+            </summary>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+            <param name="s">現在の文字。</param>
+            <returns>
+              新しい割付け単位となる場合は、True。それ以外の場合は、False。
+            </returns>
+        </member>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo">
+            <summary>
+            整列スタイル情報の構造体。
+            </summary>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.Equals(System.Object)">
+            <summary>
+            指定されたオブジェクトがこのオブジェクトと同じかどうかを判断する。 
+            </summary>
+            <param name="obj">指定されたオブジェクト。</param>
+            <returns>
+              指定されたオブジェクトがこのオブジェクトと同じ場合は、True。指定されたオブジェクトがこのオブジェクトと同じでない場合には、False。
+            </returns>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.op_Equality(Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo)">
+            <summary>
+             ２つの指定されたオブジェクトが同じかどうかを判断する。
+            </summary>
+            <param name="info1">1番目に指定されたオブジェクト。</param>
+            <param name="info2">2番目に指定されたオブジェクト。</param>
+            <returns>
+              ２つのオブジェクトが同じ場合には、True。 ２つのオブジェクトが同じでない場合には、False。
+            </returns>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/>を参照してください。
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.op_Inequality(Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo,Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo)">
+            <summary>
+             ２つの指定されたオブジェクトが同じでないかどうかを判断する。 
+            </summary>
+            <param name="info1">1番目の指定されたオブジェクト。</param>
+            <param name="info2">2番目の指定されたオブジェクト。</param>
+            <returns>
+              ２つのオブジェクトが同じでない場合には、True。２つのオブジェクトが同じ場合には、 False。
+            </returns>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.GetHashCode">
+            <summary>
+            特定なタイプのためのハッシュ関数を提供します。
+            </summary>
+            <returns>オブジェクトのハッシュコード</returns>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.Style">
+          <!--Fix Bug 3765-->
+            <summary>
+            整列スタイル。
+            </summary>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.LeftMargin">
+            <summary>
+              左の余白。値は0以上でなければなりません。負の値の場合、例外をスローします。
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            セット関数に指定された値が負の値です。
+            </exception>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.TextAlignmentStyleInfo.RightMargin">
+            <summary>
+              右の余白。 値は0以上でなければなりません。負の値の場合、例外をスローします。
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            セット関数に指定された値が負の値です。 
+            </exception>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+        </member>
+      <member name="T:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider">
+        <summary>
+          最も一般的に利用される割付け方を行うためのIAlignmentUnitInfoProviderの実装を提供します。
+        </summary>
+        <remarks>
+          <p>このクラスはIAlignmentUnitProviderインタフェースを実装して、最も一般的な割付け方法を提供します。</p>
+          <p>IsNewAlignmentメソッド常に「True」が戻ります。</p>
+          
+          <p>
+            <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/>を<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/>の一つの使用例として参照してください。
+          </p>
+        </remarks>
+      </member>
+      <member name="M:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider.#ctor">
+        <summary>
+          SimpleAlignmentUnitInfoProviderクラスの新しいインスタンスを初期化します。
+        </summary>
+      </member>
+      <member name="M:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider.Initialize(System.String)">
+        <summary>
+          割付け単位に分割する文字列の最初の文字により、 <see cref="T:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider"/> のインスタンスを初期化します。
+        </summary>
+        <param name="s">割付け単位に分割する文字列の最初の文字。</param>
+        <remarks>
+          ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          Sがnull参照です。
+        </exception>
+        <exception cref="T:System.ArgumentException">
+          Sが空の文字列 ("")です。
+        </exception>
+      </member>
+      <member name="M:Microsoft.International.JapaneseTextAlignment.SimpleAlignmentUnitInfoProvider.IsNewAlignmentUnit(System.String)">
+        <summary>
+          文字が新しい割付け単位となるかを判断します。
+        </summary>
+        <param name="s">現在の文字。</param>
+        <returns>
+          該当メソッド常に「True」が戻ります。
+        </returns>
+        <remarks>
+          ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          Sがnull参照です。
+        </exception>
+        <exception cref="T:System.ArgumentException">
+          Sが空の文字列 ("")です。
+        </exception>
+      </member>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.SmartAlignmentUnitInfoProvider">
+            <summary>
+              最も一般的に利用される割付け方を行うためのIAlignmentUnitInfoProviderの実装を提供します。
+            </summary>
+            <remarks>
+            <p>このクラスはIAlignmentUnitProviderインタフェースを実装して、最も一般的な割付け方法を提供します。</p>
+            <p>以下に示すいずれかの条件を満たした場合には、IsNewAlignmentMethodはTrueを返し、それ以外の場合にはfalseを返す</p>
+            <list type="bullet">
+            <item>
+              前の文字がCJK統合漢字。
+            </item>
+            <item>
+              前の文字が '(' (U+0028)でなく、現在の文字が '('。
+            </item>
+            <item>
+              前の文字が ')' (U+0029)で、現在のキャラクタが ')'ではない。
+            </item>
+            <item>
+              前の文字がアルファベット (a-z and A-Z), 数字 (0-9) および '('で、現在の文字が アルファベット, 数字および ')'ではない。
+            </item>
+            </list>
+            <p><see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/>を<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/>の一つの使用例として参照してください。</p>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.SmartAlignmentUnitInfoProvider.#ctor">
+        <summary>
+          SmartAlignmentUnitInfoProviderクラスの新しいインスタンスを初期化します。
+        </summary>
+      </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.SmartAlignmentUnitInfoProvider.Initialize(System.String)">
+            <summary>
+            割付け単位に分割する文字列の最初の文字により、 <see cref="T:Microsoft.International.JapaneseTextAlignment.SmartAlignmentUnitInfoProvider"/> のインスタンスを初期化します。 
+            </summary>
+            <param name="s">割付け単位に分割する文字列の最初の文字。</param>
+            <remarks>
+            ユーティリティの一つの使用例として、 <see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+              Sがnull参照です。
+            </exception>
+            <exception cref="T:System.ArgumentException">
+              Sが空の文字列 ("")です。
+            </exception>
+        </member>
+        <member name="M:Microsoft.International.JapaneseTextAlignment.SmartAlignmentUnitInfoProvider.IsNewAlignmentUnit(System.String)">
+            <summary>
+            文字が新しい割付け単位となるかを判断します。 
+            </summary>
+            <param name="s">現在の文字。</param>
+            <returns>
+              新しい割付け単位となる場合は、True。それ例外の場合には、False。
+            </returns>
+            <remarks>
+            ユーティリティの一つの使用例として、<see cref="T:Microsoft.International.JapaneseTextAlignment.Utility"/> を参照してください。
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+              Sがnull参照です。
+            </exception>
+            <exception cref="T:System.ArgumentException">
+              Sが空の文字列 ("")です。
+            </exception>
+        </member>
+        <member name="T:Microsoft.International.JapaneseTextAlignment.AssemblyResource">
+            <summary>
+               厳密型リソースクラス, ローカライズなストリングを捜します。
+            </summary>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.AssemblyResource.ResourceManager">
+            <summary>
+              このクラスが使用したキャッシュされたResourceManagerインスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.AssemblyResource.Culture">
+            <summary>
+              この厳密型リソースクラスを利用して、すべてのリソースを検索するため、現スレッドのCurrentUICultureプロパティをオーバーライドします。
+            </summary>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.AssemblyResource.INVALID_PARAMETER_ZEOR_LENGTH_CHARACTER">
+            <summary>
+			  「正しくないパラメータ-長さがゼロのキャラクター」と似ているローカライズなストリングを調べます。
+            </summary>
+        </member>
+        <member name="P:Microsoft.International.JapaneseTextAlignment.AssemblyResource.MARGIN_MUST_NOT_BE_NEGATIVE_VALUE">
+            <summary>
+              Looks up a localized string similar to
+              「テキストマージンは負数ではなくて、正数を使ってください」と似ているローカライズなストリングを調べます。
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,4 @@
+﻿以下のファイルは Japanese Text Alignment Library の使用許諾条件に従って、再頒布できます。
+ 
+JapaneseTextAlignment.dll
+ja\JapaneseTextAlignment.resources.dll

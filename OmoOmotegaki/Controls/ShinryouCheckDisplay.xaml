@@ -1,0 +1,152 @@
+﻿<UserControl
+    x:Class="OmoOmotegaki.Controls.ShinryouCheckDisplay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:swf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    FontSize="14"
+    TextOptions.TextFormattingMode="Display"
+    TextOptions.TextRenderingMode="ClearType"
+    UseLayoutRounding="true"
+    mc:Ignorable="d">
+    <DockPanel>
+        <StackPanel
+            Margin="4,2"
+            DockPanel.Dock="Top"
+            Orientation="Horizontal">
+            <TextBlock Text="期間： " />
+            <TextBlock Text="{Binding DateRangeDisplay}" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom">
+            <GroupBox Header="クイックチェック">
+                <Grid Cursor="IBeam">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Opacity="0.75"
+                        Text="処置ID（複数指定可） Enterキーで開始"
+                        TextAlignment="Center" />
+                    <TextBox
+                        FontSize="16"
+                        PreviewKeyDown="InputQuickCheckTextBox_PreviewKeyDown"
+                        Text="{Binding InputQuickCheckText, UpdateSourceTrigger=Explicit}"
+                        ToolTip="処置ID（スペース等で区切って複数指定可） Enterキーで開始">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="White" />
+                                <Style.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsKeyboardFocusWithin" Value="False" />
+                                            <Condition Property="Text" Value="" />
+                                        </MultiTrigger.Conditions>
+
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </MultiTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+
+            <Expander Margin="6,0,0,0">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="クイックチェック設定" />
+                        <TextBlock
+                            Margin="16,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Opacity="0.6"
+                            Text="「処置ID」は設定しても無視されます" />
+                    </StackPanel>
+                </Expander.Header>
+                <WindowsFormsHost Height="200">
+                    <swf:PropertyGrid x:Name="_propertyGrid" x:FieldModifier="private" />
+                </WindowsFormsHost>
+            </Expander>
+        </StackPanel>
+
+        <ListView
+            Padding="4"
+            Background="WhiteSmoke"
+            ItemsSource="{Binding ShinryouCheckResults}"
+            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+            <ListView.Resources>
+                <ControlTemplate x:Key="ExTextBox" TargetType="TextBox">
+                    <TextBox
+                        Cursor="IBeam"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        GotFocus="TextBox_GotFocus"
+                        LostFocus="TextBox_LostFocus"
+                        Text="{TemplateBinding Text}">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </ControlTemplate>
+            </ListView.Resources>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label
+                            Padding="2,1"
+                            BorderBrush="DarkRed"
+                            BorderThickness="4,1"
+                            Content="{Binding Title}"
+                            FontWeight="Bold" />
+                        <ItemsControl ItemsSource="{Binding SingleContentItems}">
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Margin" Value="16,2,2,2" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox
+                                            FontWeight="Bold"
+                                            Template="{StaticResource ExTextBox}"
+                                            Text="{Binding Title, Mode=OneWay}" />
+                                        <TextBlock Margin="0,0,4,0" Text="：" />
+                                        <TextBox Template="{StaticResource ExTextBox}" Text="{Binding Content, Mode=OneWay}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding MultiContentsItems}">
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Margin" Value="16,2,2,2" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Header="{Binding Title}">
+                                        <ItemsControl ItemsSource="{Binding Contents}" />
+                                    </Expander>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </DockPanel>
+</UserControl>

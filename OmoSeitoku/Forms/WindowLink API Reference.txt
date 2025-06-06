@@ -1,0 +1,105 @@
+﻿WindowLink API Reference
+
+基本仕様:
+	・wParam が10000以上のものはユーザーが自由に使用可能。
+
+共通定数:
+	WNDLINK_OK = 1
+	WNDLINK_ERROR = 2
+
+共通メッセージ:
+
+	[Message ID]
+		WM_USER_WNDLINK
+			(example)
+				hMsg = RegisterWindowMessage("WM_USER_WNDLINK");
+
+	[wParam]
+		WNDLINK_WPARAM_POLLING = 100
+			リンク可能か調べる。
+			
+			[lParam]
+				caller window handle
+
+			[return]
+				WNDLINK_POLLING_IGNORE = 0
+					応答しない。
+				WNDLINK_POLLING_READY = 1
+					リンクの準備ができていることを返答する。
+				WNDLINK_POLLING_UNREADY = 2
+					リンクの準備ができていないことを返答する。
+
+		WNDLINK_WPARAM_NEWWINDOW = 150
+			新しいウィンドウを要求する。
+
+			[lParam]
+				-
+
+			[return]
+				WNDLINK_OK | WNDLINK_ERROR
+
+		WNDLINK_WPARAM_LINK = 200
+			リンクを要求する。
+
+			[lParam]
+				caller window handle
+
+			[return]
+				WNDLINK_LINK_DECLINE = 0
+				WNDLINK_LINK_ACCEPT = 1
+
+		WNDLINK_WPARAM_UNLINK = 201
+			リンクが切断されたことを通知する。
+
+			[lParam]
+				caller window handle
+
+リンク確立後メッセージ:
+
+	[Message ID]
+		WM_USER_{callerHWnd}
+			callerHWnd: リンク元のウィンドウハンドル.
+			(example)
+				hMsg = RegisterWindowMessage("WM_USER_" + callerHWnd.ToString());
+
+	[wParam]
+		WNDLINK_WPARAM_SENDVALUE = 300
+			同期で値を渡し、返答を待つ。
+
+			[lParam]
+				value
+
+			[return]
+				result
+
+		WNDLINK_WPARAM_SENDCHAR = 310
+			同期で文字を渡し、返答を待つ。
+
+			[lParam]
+				Char code
+
+			[return]
+				WNDLINK_OK = 1
+				WNDLINK_ERROR = 2
+
+		WNDLINK_WPARAM_SENDTEXT = 320
+			同期で文字列を渡し、返答を待つ。
+
+			[lParam]
+				文字列へのポインタ
+
+			[return]
+				WNDLINK_OK = 1
+				WNDLINK_ERROR = 2
+
+		WNDLINK_WPARAM_POSTVALUE = 400
+			非同期で値を渡す。
+
+			[lParam]
+				value
+
+		WNDLINK_WPARAM_CLOSEAPP = 500
+			アプリケーションの終了を要求する。
+
+		WNDLINK_WPARAM_TITLE_CHANGED = 1000
+			ウィンドウのタイトルが変更されたことを知らせる。

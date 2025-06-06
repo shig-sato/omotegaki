@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="OmoSeitoku.Controls.InputDialogControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OmoSeitoku.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="80" d:DesignWidth="300">
+    <DockPanel DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}">
+        <TextBlock Text="{Binding Message, Mode=OneWay}" DockPanel.Dock="Top"/>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="OK" IsDefault="True" Click="OK_Button_Click"/>
+            <Button Content="Cancel" IsCancel="True" Click="CANCEL_Button_Click"/>
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="8 0 0 0"/>
+                    <Setter Property="Padding" Value="16 4"/>
+                    <Setter Property="MinWidth" Value="120"/>
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+        <TextBox Text="{Binding Text, Mode=TwoWay}" Margin="0 8" MinHeight="24" MinWidth="150"
+                 x:Name="_textBox" x:FieldModifier="private"/>
+    </DockPanel>
+</UserControl>

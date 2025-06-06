@@ -1,0 +1,6 @@
+﻿
+インストールが必要な追加パック
+
+	・Microsoft Visual Studio International Pack 1.0 SR1
+		（JPNTextAlign.msi のみ）
+

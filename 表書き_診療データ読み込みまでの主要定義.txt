@@ -1,0 +1,96 @@
+
+# アプリケーション
+
+/OmoOmotegaki/Program.cs
+
+|  メソッド: Main
+|      - 起動オプションチェック
+|      - 多重起動チェック
+|
+|  メソッド: RunApplication
+|      - イベント登録「データフォルダーの変更を検知」
+|      - 一時フォルダー作成
+|      - メインフォームを開く
+
+---
+
+# メインフォーム
+
+/OmoOmotegaki/MyApplicationContext.cs
+
+|  アプリケーション・コンテキスト
+|
+|  コンストラクター: MyApplicationContext
+|      - メインフォームを開く
+
+/OmoOmotegaki/Forms/OmotegakiForm.cs
+
+|  メインフォーム
+|
+|  コンストラクター: OmotegakiForm
+|      - メインフォームVM生成
+
+/OmoOmotegaki/ViewModels/OmotegakiFormViewModel.cs
+
+|  メインフォームVM
+|
+|  メソッド: InternalLoadData
+|      - カルテデータ読込（患者情報・診療データ）
+
+---
+
+# 患者情報
+
+/OmoOmotegaki/Models/KarteRepository.cs
+
+|  診療録ソフトのカルテデータを変換して読み込む
+|
+|  メソッド: GetKarteData
+|      - 患者情報DBファイルから読み込む。
+|          - 本院: kanrc_2n.hon
+|          - 分院: kanrc_2n.bun
+|          - 試験: kanrc_2n.tes
+|      - 引数: カルテID
+|      - 戻り値: 患者情報（名前, 生年月日, ...）
+|
+|  メソッド: GetShinryouDataLoader
+|      - 診療データDBファイルから、診療データローダーを生成。
+|          - 本院: RANDAHON.900
+|          - 分院: RANDABUN.900
+|          - 試験: RANDATES.900
+|      - 引数: カルテID
+|      - 戻り値: 診療データローダー
+
+---
+
+# カルテID
+
+/OmoSeitokuEreceipt/SER/KarteId.cs
+
+|  - プロパティ: 診療所ID
+|  - プロパティ: カルテ番号
+
+---
+
+# 診療所ID
+
+/OmoSeitokuEreceipt/SER/Shinryoujo.cs
+
+|  - プロパティ: 診療所Key
+|      - 本院: "Hon"
+|      - 分院: "Bun"
+|      - 試験: "Tes"
+
+---
+
+# 診療データローダー
+
+/OmoSeitokuEreceipt/SER/SinryouData.cs
+
+|  - クラス: SinryouDataLoader
+|       診療データ（処置データ）をVB6バイナリデータから読み込む。
+|
+|      - コンストラクター
+|          - 引数: カルテID
+|          - 引数: 診療データDBファイル・ストリーム
+|          - 引数: 診療データDBファイル・バイナリリーダー

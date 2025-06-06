@@ -1,22 +1,22 @@
 # フォルダー役割
 
-## /OmoOmotegaki
+## [OmoOmotegaki](https://github.com/shig-sato/omotegaki/tree/690aeb8c9075ac974ecc3f4679491e96931430cd/OmoOmotegaki)
 
 表書きソフト本体
 
-## /OmoSeitoku
+## [OmoSeitoku](https://github.com/shig-sato/omotegaki/tree/690aeb8c9075ac974ecc3f4679491e96931430cd/OmoSeitoku)
 
 歯科に無関係のライブラリ
 
-## /OmoSeitokuEreceipt
+## [OmoSeitokuEreceipt](https://github.com/shig-sato/omotegaki/tree/690aeb8c9075ac974ecc3f4679491e96931430cd/OmoSeitokuEreceipt)
 
 歯科関係のライブラリ
 
-### /OmoSeitokuEreceipt/ER
+### [OmoSeitokuEreceipt/ER](https://github.com/shig-sato/omotegaki/tree/690aeb8c9075ac974ecc3f4679491e96931430cd/OmoSeitokuEreceipt/ER)
 
 「電子レセプト作成の手引き、記録条件仕様及び標準仕様等」に準拠した定義
 
-### /OmoSeitokuEreceipt/SER
+### [OmoSeitokuEreceipt/SER](https://github.com/shig-sato/omotegaki/tree/690aeb8c9075ac974ecc3f4679491e96931430cd/OmoSeitokuEreceipt/SER)
 
 表書きソフト専用定義
 

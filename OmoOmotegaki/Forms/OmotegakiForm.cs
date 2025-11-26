@@ -1481,7 +1481,7 @@ namespace OmoOmotegaki.Forms
                 using (FileStream karteFS = KarteRepository.OpenKarteDataFile(shinryoujo))
                 using (var karteBR = new BinaryReader(karteFS))
                 using (FileStream fs = File.Open(randaPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var br = new BinaryReader(fs))//, Encoding.GetEncoding("Shift_JIS")))
+                using (var br = new BinaryReader(fs, Encoding.GetEncoding("Shift_JIS")))
                 {
                     var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
 

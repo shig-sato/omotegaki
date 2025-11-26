@@ -1,4 +1,6 @@
-﻿using OmoOmotegaki.Threading;
+﻿using OmoOmotegaki.Models;
+using OmoOmotegaki.Threading;
+using OmoSeitokuEreceipt.SER;
 using System;
 using System.IO;
 using System.Text;

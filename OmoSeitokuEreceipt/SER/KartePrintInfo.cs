@@ -8,7 +8,7 @@ namespace OmoSeitokuEreceipt.SER
     /// <summary>
     /// 診療録ソフト　カルテ編集日データ
     ///
-    /// (RgsKrDy.***) カルテ番号と編集日編集日の昇順で記録されているVBバイナリファイル
+    /// (RgsKrDy.***) カルテ番号と編集日の昇順で記録されているVBバイナリファイル
     /// </summary>
     public sealed class KartePrintInfo
     {

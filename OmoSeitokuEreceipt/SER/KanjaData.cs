@@ -219,7 +219,7 @@ namespace OmoSeitokuEreceipt.SER
 
                 default:
                     hoken = null;
-                    Debug.WriteLine($"[error: 1869cfe0] 未対応の {nameof(SER_保険種別2)}: " + hoken2AndSex[0]);
+                    //Debug.WriteLine($"[error: 1869cfe0] 未対応の {nameof(SER_保険種別2)}: " + hoken2AndSex[0]);
                     break;
             }
 

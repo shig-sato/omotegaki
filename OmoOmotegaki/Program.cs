@@ -44,8 +44,6 @@ namespace OmoOmotegaki
 
         public static int FormCount => _appContext.FormCount;
 
-
-
         [STAThread]
         static void Main(string[] args)
         {

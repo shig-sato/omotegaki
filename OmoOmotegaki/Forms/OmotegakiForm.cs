@@ -1356,7 +1356,7 @@ namespace OmoOmotegaki.Forms
             }
 
             // 患者負担率
-            if (!GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, _vm.CurrentKarteData, true))
+            if (!KarteRepository.GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, _vm.CurrentKarteData, true))
             {
                 ShowMessage(hutanErrMsg, true, true);
                 return;
@@ -1511,7 +1511,7 @@ namespace OmoOmotegaki.Forms
                             KarteData karteData = new KarteData(karteBR);
 
                             // 患者負担率
-                            if (!GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, karteData, false))
+                            if (!KarteRepository.GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, karteData, false))
                             {
                                 ShowMessage(hutanErrMsg, true, true);
 
@@ -2661,95 +2661,6 @@ namespace OmoOmotegaki.Forms
 
         #endregion
 
-        /// <summary>
-        /// 現在のカルテの患者負担率を0以上1以下の範囲の値で取得する。
-        /// </summary>
-        /// <param name="hutanRitu">成功時は負担率が設定される。</param>
-        /// <param name="error">エラーの場合、メッセージが設定される。</param>
-        /// <param name="karte">カルテデータ</param>
-        /// <param name="showInputBox">カルテに患者負担率が設定されていない場合に入力ボックスを出すかどうか。</param>
-        /// <returns>成功した場合は true</returns>
-        private static bool GetKanjaHutanritu(out double hutanRitu, out string error, KarteData karte, bool showInputBox)
-        {
-            if (karte.患者負担率.HasValue)
-            {
-                hutanRitu = karte.患者負担率.Value * 0.01;
-                error = null;
-
-                return true;
-            }
-            else
-            {
-                error = "患者負担率が設定されていません。";
-
-                if (showInputBox)
-                {
-                    error = ShowKanjaHutanrituPrompt(out hutanRitu, 0.03);
-
-                    return error is null;
-                }
-                else
-                {
-                    hutanRitu = 0;
-
-                    return false;
-                }
-            }
-        }
-        /// <summary>
-        /// 現在のカルテの患者負担率を0以上1以下の範囲の値で取得する。
-        /// </summary>
-        /// <param name="hutanRitu">成功時は負担率が設定される。</param>
-        /// <param name="defaultHutanRitu">プロンプトで表示する患者負担率の初期値。キャンセル時に患者負担率に設定する。</param>
-        /// <returns>成功した場合は null, エラー時はエラーメッセージ文字列。</returns>
-        private static string ShowKanjaHutanrituPrompt(out double hutanRitu, double defaultHutanRitu)
-        {
-            string prompt = new StringBuilder()
-                                .AppendLine("患者負担率が設定されていません。")
-                                .AppendLine("負担率を百分率で入力してください。（パーセント(%)は不要です）")
-                                .ToString();
-
-            string input = Microsoft.VisualBasic.Interaction.InputBox(
-                                        prompt,
-                                        "カルテ印刷 - 患者負担率入力",
-                                        Math.Round(defaultHutanRitu * 100).ToString()
-                                        );
-
-            string error;
-
-            if (string.IsNullOrEmpty(input))
-            {
-                // キャンセル
-                error = "患者負担率の設定がキャンセルされました。";
-            }
-            else
-            {
-                try
-                {
-                    hutanRitu = int.Parse(Microsoft.VisualBasic.Strings.StrConv(
-                                        input, Microsoft.VisualBasic.VbStrConv.Narrow)) * 0.01;
-
-                    // 成功
-                    return null;
-                }
-                catch (Exception ex)
-                {
-                    error = new StringBuilder().
-                                    AppendLine("患者負担率が設定されていません。").
-                                    AppendLine(ex.Message).
-                                    ToString();
-                }
-            }
-
-            // エラー
-
-            hutanRitu = defaultHutanRitu;
-
-            return error;
-
-        }
-
-
         #region WindowLink
 
         bool WindowLink.IWindow.OnPollingMessageReceived(IntPtr callerHandle, string callerTitle)
@@ -3034,6 +2945,45 @@ namespace OmoOmotegaki.Forms
         private void _btnToggleFilterControlPanel_Click(object sender, EventArgs e)
         {
             _filterControlPanel.Visible = !_filterControlPanel.Visible;
+        }
+
+        private void データ変換ヤハラToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // バッチ設定
+            var batchSettings = new KarteBatchSettings
+            {
+                DateRange = new KarteDateRange(
+                    range: DateRange2.Infinite,
+                    expandToSyosinbi: true,
+                    expandToLastDate: true
+                ),
+                PreviewLimit = 5
+            };
+
+            // 診療所
+            Shinryoujo shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
+
+            var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
+
+            List<string> errors;
+
+            try
+            {
+                Models.Converters.YaharaConverter.Convert(
+                    shinryoujo, batchSettings, sinryouTougou, out errors);
+            }
+            catch (Exception ex)
+            {
+                errors = new List<string>
+                {
+                    ex.Message
+                };
+            }
+
+            if (errors != null && errors.Count > 0)
+            {
+                ShowMessage(string.Join(Environment.NewLine, errors), true, false);
+            }
         }
     }
 }

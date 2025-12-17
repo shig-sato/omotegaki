@@ -56,6 +56,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.アプリの設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.データフォルダ共通設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.データフォルダーToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ウィンドウToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新規ウィンドウToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,8 +151,7 @@
             this._filterControlPanel = new System.Windows.Forms.Panel();
             this._shinryouCheckDisplayElementHost = new System.Windows.Forms.Integration.ElementHost();
             this._shinryouCheckDisplay = new OmoOmotegaki.Controls.ShinryouCheckDisplay();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.データ変換ヤハラToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.データ変換ヤハラtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -240,11 +240,12 @@
             this.ウィンドウToolStripMenuItem,
             this.表書きToolStripMenuItem,
             this.カルテToolStripMenuItem,
-            this.ヘルプToolStripMenuItem});
+            this.ヘルプToolStripMenuItem,
+            this.データ変換ヤハラtoolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(2666, 46);
+            this.menuStrip1.Size = new System.Drawing.Size(2666, 44);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -388,10 +389,9 @@
             this.toolStripMenuItem2,
             this.アプリの設定ToolStripMenuItem,
             this.データフォルダ共通設定ToolStripMenuItem,
-            this.toolStripMenuItem8,
-            this.データ変換ヤハラToolStripMenuItem});
+            this.toolStripMenuItem8});
             this.ツールToolStripMenuItem.Name = "ツールToolStripMenuItem";
-            this.ツールToolStripMenuItem.Size = new System.Drawing.Size(114, 38);
+            this.ツールToolStripMenuItem.Size = new System.Drawing.Size(114, 36);
             this.ツールToolStripMenuItem.Text = "ツール(&T)";
             // 
             // 診療録作成ソフトのリンクを解除ToolStripMenuItem
@@ -421,6 +421,11 @@
             this.データフォルダ共通設定ToolStripMenuItem.Size = new System.Drawing.Size(569, 44);
             this.データフォルダ共通設定ToolStripMenuItem.Text = "データフォルダ共通設定(D)...";
             this.データフォルダ共通設定ToolStripMenuItem.Click += new System.EventHandler(this.データフォルダ共通設定ToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(566, 6);
             // 
             // データフォルダーToolStripMenuItem
             // 
@@ -567,10 +572,10 @@
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.picPanelBottomDark);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Location = new System.Drawing.Point(0, 48);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 1266);
+            this.panel1.Size = new System.Drawing.Size(500, 1268);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -578,7 +583,7 @@
             this.splitContainer1.BackColor = System.Drawing.Color.SlateGray;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -595,8 +600,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.Controls.Add(this.tabInfo);
-            this.splitContainer1.Size = new System.Drawing.Size(500, 1262);
-            this.splitContainer1.SplitterDistance = 901;
+            this.splitContainer1.Size = new System.Drawing.Size(500, 1264);
+            this.splitContainer1.SplitterDistance = 902;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -606,10 +611,10 @@
             this.tabKikan.Controls.Add(this.tabPage期間指定);
             this.tabKikan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabKikan.Location = new System.Drawing.Point(0, 76);
-            this.tabKikan.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabKikan.Margin = new System.Windows.Forms.Padding(6);
             this.tabKikan.Name = "tabKikan";
             this.tabKikan.SelectedIndex = 0;
-            this.tabKikan.Size = new System.Drawing.Size(496, 825);
+            this.tabKikan.Size = new System.Drawing.Size(496, 826);
             this.tabKikan.TabIndex = 0;
             // 
             // tabPage初診リスト
@@ -617,10 +622,10 @@
             this.tabPage初診リスト.Controls.Add(this.splitContainer3);
             this.tabPage初診リスト.ForeColor = System.Drawing.Color.Black;
             this.tabPage初診リスト.Location = new System.Drawing.Point(8, 39);
-            this.tabPage初診リスト.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage初診リスト.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage初診リスト.Name = "tabPage初診リスト";
-            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabPage初診リスト.Size = new System.Drawing.Size(480, 778);
+            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage初診リスト.Size = new System.Drawing.Size(480, 779);
             this.tabPage初診リスト.TabIndex = 0;
             this.tabPage初診リスト.Text = "初診リスト";
             this.tabPage初診リスト.UseVisualStyleBackColor = true;
@@ -630,7 +635,7 @@
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer3.Location = new System.Drawing.Point(6, 6);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -642,7 +647,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this._shoshinKikanListElementHost);
-            this.splitContainer3.Size = new System.Drawing.Size(468, 766);
+            this.splitContainer3.Size = new System.Drawing.Size(468, 767);
             this.splitContainer3.SplitterDistance = 28;
             this.splitContainer3.SplitterWidth = 8;
             this.splitContainer3.TabIndex = 3;
@@ -659,7 +664,7 @@
             this.tableLayoutPanel1.Controls.Add(this._btnすべての初診リストにチェック, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -676,7 +681,7 @@
             this._btnすべての初診リストのチェックを外す.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストのチェックを外す.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._btnすべての初診リストのチェックを外す.Location = new System.Drawing.Point(161, 4);
-            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(4);
             this._btnすべての初診リストのチェックを外す.Name = "_btnすべての初診リストのチェックを外す";
             this._btnすべての初診リストのチェックを外す.Size = new System.Drawing.Size(68, 20);
             this._btnすべての初診リストのチェックを外す.TabIndex = 17;
@@ -707,7 +712,7 @@
             this._btnすべての初診リストにチェック.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストにチェック.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._btnすべての初診リストにチェック.Location = new System.Drawing.Point(85, 4);
-            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(4);
             this._btnすべての初診リストにチェック.Name = "_btnすべての初診リストにチェック";
             this._btnすべての初診リストにチェック.Size = new System.Drawing.Size(68, 20);
             this._btnすべての初診リストにチェック.TabIndex = 17;
@@ -721,7 +726,7 @@
             this._chk最新の期間のみチェック.AutoSize = true;
             this._chk最新の期間のみチェック.Dock = System.Windows.Forms.DockStyle.Right;
             this._chk最新の期間のみチェック.Location = new System.Drawing.Point(273, 0);
-            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(4);
             this._chk最新の期間のみチェック.Name = "_chk最新の期間のみチェック";
             this._chk最新の期間のみチェック.Size = new System.Drawing.Size(195, 28);
             this._chk最新の期間のみチェック.TabIndex = 18;
@@ -734,9 +739,9 @@
             this._shoshinKikanListElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shoshinKikanListElementHost.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this._shoshinKikanListElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shoshinKikanListElementHost.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._shoshinKikanListElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shoshinKikanListElementHost.Name = "_shoshinKikanListElementHost";
-            this._shoshinKikanListElementHost.Size = new System.Drawing.Size(468, 730);
+            this._shoshinKikanListElementHost.Size = new System.Drawing.Size(468, 731);
             this._shoshinKikanListElementHost.TabIndex = 0;
             this._shoshinKikanListElementHost.Text = "_shoshinKikanList";
             this._shoshinKikanListElementHost.Child = this._shoshinKikanList;
@@ -745,10 +750,10 @@
             // 
             this.tabPage期間指定.Controls.Add(this.panel2);
             this.tabPage期間指定.Location = new System.Drawing.Point(8, 39);
-            this.tabPage期間指定.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage期間指定.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage期間指定.Name = "tabPage期間指定";
-            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabPage期間指定.Size = new System.Drawing.Size(480, 777);
+            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage期間指定.Size = new System.Drawing.Size(480, 778);
             this.tabPage期間指定.TabIndex = 1;
             this.tabPage期間指定.Text = "期間指定";
             this.tabPage期間指定.UseVisualStyleBackColor = true;
@@ -763,7 +768,7 @@
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 765);
+            this.panel2.Size = new System.Drawing.Size(468, 766);
             this.panel2.TabIndex = 0;
             // 
             // panel8
@@ -776,7 +781,7 @@
             this.panel8.Controls.Add(this._btnKikanMonth);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 110);
-            this.panel8.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel8.Margin = new System.Windows.Forms.Padding(6);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(468, 150);
             this.panel8.TabIndex = 14;
@@ -797,7 +802,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dateKikanEnd.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this._dateKikanEnd.Location = new System.Drawing.Point(56, 40);
-            this._dateKikanEnd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._dateKikanEnd.Margin = new System.Windows.Forms.Padding(6);
             this._dateKikanEnd.Name = "_dateKikanEnd";
             this._dateKikanEnd.Size = new System.Drawing.Size(408, 39);
             this._dateKikanEnd.TabIndex = 8;
@@ -806,7 +811,7 @@
             // 
             this.chkKikanEnd.AutoSize = true;
             this.chkKikanEnd.Location = new System.Drawing.Point(12, 48);
-            this.chkKikanEnd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chkKikanEnd.Margin = new System.Windows.Forms.Padding(6);
             this.chkKikanEnd.Name = "chkKikanEnd";
             this.chkKikanEnd.Size = new System.Drawing.Size(28, 27);
             this.chkKikanEnd.TabIndex = 7;
@@ -817,7 +822,7 @@
             // 
             this._btnKikanYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnKikanYear.Location = new System.Drawing.Point(314, 98);
-            this._btnKikanYear.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._btnKikanYear.Margin = new System.Windows.Forms.Padding(6);
             this._btnKikanYear.Name = "_btnKikanYear";
             this._btnKikanYear.Size = new System.Drawing.Size(138, 46);
             this._btnKikanYear.TabIndex = 11;
@@ -828,7 +833,7 @@
             // 
             this._btnKikanDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnKikanDay.Location = new System.Drawing.Point(54, 98);
-            this._btnKikanDay.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._btnKikanDay.Margin = new System.Windows.Forms.Padding(6);
             this._btnKikanDay.Name = "_btnKikanDay";
             this._btnKikanDay.Size = new System.Drawing.Size(102, 46);
             this._btnKikanDay.TabIndex = 9;
@@ -839,7 +844,7 @@
             // 
             this._btnKikanMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnKikanMonth.Location = new System.Drawing.Point(166, 98);
-            this._btnKikanMonth.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._btnKikanMonth.Margin = new System.Windows.Forms.Padding(6);
             this._btnKikanMonth.Name = "_btnKikanMonth";
             this._btnKikanMonth.Size = new System.Drawing.Size(138, 46);
             this._btnKikanMonth.TabIndex = 10;
@@ -853,7 +858,7 @@
             this.panel3.Controls.Add(this.chkKikanStart);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(468, 110);
             this.panel3.TabIndex = 13;
@@ -874,7 +879,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dateKikanStart.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this._dateKikanStart.Location = new System.Drawing.Point(56, 40);
-            this._dateKikanStart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._dateKikanStart.Margin = new System.Windows.Forms.Padding(6);
             this._dateKikanStart.Name = "_dateKikanStart";
             this._dateKikanStart.Size = new System.Drawing.Size(408, 39);
             this._dateKikanStart.TabIndex = 1;
@@ -883,7 +888,7 @@
             // 
             this.chkKikanStart.AutoSize = true;
             this.chkKikanStart.Location = new System.Drawing.Point(12, 48);
-            this.chkKikanStart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chkKikanStart.Margin = new System.Windows.Forms.Padding(6);
             this.chkKikanStart.Name = "chkKikanStart";
             this.chkKikanStart.Size = new System.Drawing.Size(28, 27);
             this.chkKikanStart.TabIndex = 0;
@@ -895,7 +900,7 @@
             this._btnCalendarTekiyou.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCalendarTekiyou.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this._btnCalendarTekiyou.Location = new System.Drawing.Point(146, 326);
-            this._btnCalendarTekiyou.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._btnCalendarTekiyou.Margin = new System.Windows.Forms.Padding(6);
             this._btnCalendarTekiyou.Name = "_btnCalendarTekiyou";
             this._btnCalendarTekiyou.Size = new System.Drawing.Size(178, 70);
             this._btnCalendarTekiyou.TabIndex = 12;
@@ -908,7 +913,7 @@
             this._pnlKarteLoaderWrap.Controls.Add(this._pnlKarteLoader);
             this._pnlKarteLoaderWrap.Dock = System.Windows.Forms.DockStyle.Top;
             this._pnlKarteLoaderWrap.Location = new System.Drawing.Point(0, 0);
-            this._pnlKarteLoaderWrap.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._pnlKarteLoaderWrap.Margin = new System.Windows.Forms.Padding(6);
             this._pnlKarteLoaderWrap.Name = "_pnlKarteLoaderWrap";
             this._pnlKarteLoaderWrap.Size = new System.Drawing.Size(496, 76);
             this._pnlKarteLoaderWrap.TabIndex = 20;
@@ -920,7 +925,7 @@
             this._pnlKarteLoader.Controls.Add(this.btnClear);
             this._pnlKarteLoader.Dock = System.Windows.Forms.DockStyle.Fill;
             this._pnlKarteLoader.Location = new System.Drawing.Point(0, 0);
-            this._pnlKarteLoader.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._pnlKarteLoader.Margin = new System.Windows.Forms.Padding(6);
             this._pnlKarteLoader.Name = "_pnlKarteLoader";
             this._pnlKarteLoader.Size = new System.Drawing.Size(496, 76);
             this._pnlKarteLoader.TabIndex = 14;
@@ -1011,8 +1016,8 @@
             this.panel4.AutoSize = true;
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 901);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel4.Location = new System.Drawing.Point(0, 902);
+            this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(496, 0);
             this.panel4.TabIndex = 19;
@@ -1022,9 +1027,9 @@
             this.picPanelRightDark1.BackColor = System.Drawing.Color.DarkGray;
             this.picPanelRightDark1.Dock = System.Windows.Forms.DockStyle.Right;
             this.picPanelRightDark1.Location = new System.Drawing.Point(496, 0);
-            this.picPanelRightDark1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.picPanelRightDark1.Margin = new System.Windows.Forms.Padding(6);
             this.picPanelRightDark1.Name = "picPanelRightDark1";
-            this.picPanelRightDark1.Size = new System.Drawing.Size(4, 901);
+            this.picPanelRightDark1.Size = new System.Drawing.Size(4, 902);
             this.picPanelRightDark1.TabIndex = 10;
             this.picPanelRightDark1.TabStop = false;
             // 
@@ -1033,11 +1038,11 @@
             this.tabInfo.Controls.Add(this.tabPage患者情報);
             this.tabInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabInfo.Location = new System.Drawing.Point(0, 0);
-            this.tabInfo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabInfo.Margin = new System.Windows.Forms.Padding(6);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Drawing.Point(0, 0);
             this.tabInfo.SelectedIndex = 0;
-            this.tabInfo.Size = new System.Drawing.Size(500, 353);
+            this.tabInfo.Size = new System.Drawing.Size(500, 354);
             this.tabInfo.TabIndex = 1;
             this.tabInfo.TabStop = false;
             // 
@@ -1046,10 +1051,10 @@
             this.tabPage患者情報.AutoScroll = true;
             this.tabPage患者情報.Controls.Add(this.karteDataDisp1);
             this.tabPage患者情報.Location = new System.Drawing.Point(8, 43);
-            this.tabPage患者情報.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage患者情報.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage患者情報.Name = "tabPage患者情報";
-            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabPage患者情報.Size = new System.Drawing.Size(484, 302);
+            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage患者情報.Size = new System.Drawing.Size(484, 303);
             this.tabPage患者情報.TabIndex = 0;
             this.tabPage患者情報.Text = "患者情報";
             this.tabPage患者情報.UseVisualStyleBackColor = true;
@@ -1069,8 +1074,8 @@
             // 
             this.picPanelBottomDark.BackColor = System.Drawing.Color.DarkGray;
             this.picPanelBottomDark.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.picPanelBottomDark.Location = new System.Drawing.Point(0, 1262);
-            this.picPanelBottomDark.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.picPanelBottomDark.Location = new System.Drawing.Point(0, 1264);
+            this.picPanelBottomDark.Margin = new System.Windows.Forms.Padding(6);
             this.picPanelBottomDark.Name = "picPanelBottomDark";
             this.picPanelBottomDark.Size = new System.Drawing.Size(500, 4);
             this.picPanelBottomDark.TabIndex = 15;
@@ -1081,7 +1086,7 @@
             this._splitContainer上部.BackColor = System.Drawing.Color.MediumTurquoise;
             this._splitContainer上部.Dock = System.Windows.Forms.DockStyle.Fill;
             this._splitContainer上部.Location = new System.Drawing.Point(0, 0);
-            this._splitContainer上部.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._splitContainer上部.Margin = new System.Windows.Forms.Padding(6);
             this._splitContainer上部.Name = "_splitContainer上部";
             // 
             // _splitContainer上部.Panel1
@@ -1104,7 +1109,7 @@
             this._chkSisyuKanzen.AutoSize = true;
             this._chkSisyuKanzen.BackColor = System.Drawing.Color.PowderBlue;
             this._chkSisyuKanzen.Location = new System.Drawing.Point(10, 6);
-            this._chkSisyuKanzen.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._chkSisyuKanzen.Margin = new System.Windows.Forms.Padding(6);
             this._chkSisyuKanzen.Name = "_chkSisyuKanzen";
             this._chkSisyuKanzen.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this._chkSisyuKanzen.Size = new System.Drawing.Size(146, 28);
@@ -1130,7 +1135,7 @@
             this._shinryouDateSelectorElementHost.BackColor = System.Drawing.Color.LightSteelBlue;
             this._shinryouDateSelectorElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shinryouDateSelectorElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shinryouDateSelectorElementHost.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._shinryouDateSelectorElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouDateSelectorElementHost.Name = "_shinryouDateSelectorElementHost";
             this._shinryouDateSelectorElementHost.Size = new System.Drawing.Size(442, 284);
             this._shinryouDateSelectorElementHost.TabIndex = 8;
@@ -1149,7 +1154,7 @@
             this._pnlRirekiTableControlBox.Controls.Add(this.panel7);
             this._pnlRirekiTableControlBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._pnlRirekiTableControlBox.Location = new System.Drawing.Point(0, 286);
-            this._pnlRirekiTableControlBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._pnlRirekiTableControlBox.Margin = new System.Windows.Forms.Padding(6);
             this._pnlRirekiTableControlBox.Name = "_pnlRirekiTableControlBox";
             this._pnlRirekiTableControlBox.Size = new System.Drawing.Size(1526, 50);
             this._pnlRirekiTableControlBox.TabIndex = 3;
@@ -1362,9 +1367,9 @@
             // 
             this._syoRirekiListWrap.Dock = System.Windows.Forms.DockStyle.Fill;
             this._syoRirekiListWrap.Location = new System.Drawing.Point(4, 102);
-            this._syoRirekiListWrap.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._syoRirekiListWrap.Margin = new System.Windows.Forms.Padding(6);
             this._syoRirekiListWrap.Name = "_syoRirekiListWrap";
-            this._syoRirekiListWrap.Size = new System.Drawing.Size(1522, 810);
+            this._syoRirekiListWrap.Size = new System.Drawing.Size(1522, 812);
             this._syoRirekiListWrap.TabIndex = 0;
             this._syoRirekiListWrap.Text = "elementHost1";
             this._syoRirekiListWrap.Child = null;
@@ -1375,7 +1380,7 @@
             this._shinryouListControlPanel.Controls.Add(this._pnlBtnフィルター追加Wrap);
             this._shinryouListControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._shinryouListControlPanel.Location = new System.Drawing.Point(4, 0);
-            this._shinryouListControlPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._shinryouListControlPanel.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouListControlPanel.Name = "_shinryouListControlPanel";
             this._shinryouListControlPanel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this._shinryouListControlPanel.Size = new System.Drawing.Size(1522, 102);
@@ -1389,7 +1394,7 @@
             this._pnlBtnフィルター追加Wrap.Controls.Add(this._btnフィルター追加);
             this._pnlBtnフィルター追加Wrap.Dock = System.Windows.Forms.DockStyle.Left;
             this._pnlBtnフィルター追加Wrap.Location = new System.Drawing.Point(0, 8);
-            this._pnlBtnフィルター追加Wrap.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._pnlBtnフィルター追加Wrap.Margin = new System.Windows.Forms.Padding(6);
             this._pnlBtnフィルター追加Wrap.Name = "_pnlBtnフィルター追加Wrap";
             this._pnlBtnフィルター追加Wrap.Padding = new System.Windows.Forms.Padding(4, 0, 8, 4);
             this._pnlBtnフィルター追加Wrap.Size = new System.Drawing.Size(182, 94);
@@ -1404,7 +1409,7 @@
             this._btnフィルター追加.FlatAppearance.BorderSize = 0;
             this._btnフィルター追加.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnフィルター追加.Location = new System.Drawing.Point(4, 0);
-            this._btnフィルター追加.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._btnフィルター追加.Margin = new System.Windows.Forms.Padding(6);
             this._btnフィルター追加.Name = "_btnフィルター追加";
             this._btnフィルター追加.Size = new System.Drawing.Size(170, 90);
             this._btnフィルター追加.TabIndex = 0;
@@ -1417,8 +1422,8 @@
             // 
             this.picMenuDark.BackColor = System.Drawing.Color.DarkGray;
             this.picMenuDark.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picMenuDark.Location = new System.Drawing.Point(0, 46);
-            this.picMenuDark.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.picMenuDark.Location = new System.Drawing.Point(0, 44);
+            this.picMenuDark.Margin = new System.Windows.Forms.Padding(6);
             this.picMenuDark.Name = "picMenuDark";
             this.picMenuDark.Size = new System.Drawing.Size(2666, 4);
             this.picMenuDark.TabIndex = 9;
@@ -1444,8 +1449,8 @@
             // 
             this.splitContainerRight.BackColor = System.Drawing.Color.MediumTurquoise;
             this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerRight.Location = new System.Drawing.Point(500, 50);
-            this.splitContainerRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerRight.Location = new System.Drawing.Point(500, 48);
+            this.splitContainerRight.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerRight.Name = "splitContainerRight";
             // 
             // splitContainerRight.Panel1
@@ -1458,7 +1463,7 @@
             // splitContainerRight.Panel2
             // 
             this.splitContainerRight.Panel2.Controls.Add(this._shinryouCheckDisplayElementHost);
-            this.splitContainerRight.Size = new System.Drawing.Size(2166, 1266);
+            this.splitContainerRight.Size = new System.Drawing.Size(2166, 1268);
             this.splitContainerRight.SplitterDistance = 1526;
             this.splitContainerRight.SplitterWidth = 8;
             this.splitContainerRight.TabIndex = 11;
@@ -1470,10 +1475,10 @@
             this._shinryouListPanel.Controls.Add(this._shinryouListControlPanel);
             this._shinryouListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shinryouListPanel.Location = new System.Drawing.Point(0, 350);
-            this._shinryouListPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._shinryouListPanel.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouListPanel.Name = "_shinryouListPanel";
             this._shinryouListPanel.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            this._shinryouListPanel.Size = new System.Drawing.Size(1526, 916);
+            this._shinryouListPanel.Size = new System.Drawing.Size(1526, 918);
             this._shinryouListPanel.TabIndex = 11;
             // 
             // _filterControlPanel
@@ -1482,7 +1487,7 @@
             this._filterControlPanel.Controls.Add(this._pnlRirekiTableControlBox);
             this._filterControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._filterControlPanel.Location = new System.Drawing.Point(0, 0);
-            this._filterControlPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._filterControlPanel.Margin = new System.Windows.Forms.Padding(6);
             this._filterControlPanel.Name = "_filterControlPanel";
             this._filterControlPanel.Size = new System.Drawing.Size(1526, 336);
             this._filterControlPanel.TabIndex = 12;
@@ -1492,24 +1497,20 @@
             this._shinryouCheckDisplayElementHost.BackColor = System.Drawing.Color.GhostWhite;
             this._shinryouCheckDisplayElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shinryouCheckDisplayElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shinryouCheckDisplayElementHost.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._shinryouCheckDisplayElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouCheckDisplayElementHost.Name = "_shinryouCheckDisplayElementHost";
-            this._shinryouCheckDisplayElementHost.Size = new System.Drawing.Size(632, 1266);
+            this._shinryouCheckDisplayElementHost.Size = new System.Drawing.Size(632, 1268);
             this._shinryouCheckDisplayElementHost.TabIndex = 0;
             this._shinryouCheckDisplayElementHost.Text = "_shinryouCheckDisplay";
             this._shinryouCheckDisplayElementHost.Child = this._shinryouCheckDisplay;
             // 
-            // toolStripMenuItem8
+            // データ変換ヤハラtoolStripMenuItem
             // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(566, 6);
-            // 
-            // データ変換ヤハラToolStripMenuItem
-            // 
-            this.データ変換ヤハラToolStripMenuItem.Name = "データ変換ヤハラToolStripMenuItem";
-            this.データ変換ヤハラToolStripMenuItem.Size = new System.Drawing.Size(569, 44);
-            this.データ変換ヤハラToolStripMenuItem.Text = "データ変換_ヤハラ";
-            this.データ変換ヤハラToolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click);
+            this.データ変換ヤハラtoolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.データ変換ヤハラtoolStripMenuItem.Name = "データ変換ヤハラtoolStripMenuItem";
+            this.データ変換ヤハラtoolStripMenuItem.Size = new System.Drawing.Size(197, 36);
+            this.データ変換ヤハラtoolStripMenuItem.Text = "データ変換 ヤハラ";
+            this.データ変換ヤハラtoolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click);
             // 
             // OmotegakiForm
             // 
@@ -1524,7 +1525,7 @@
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(2044, 1345);
             this.Name = "OmotegakiForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1716,7 +1717,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem データフォルダ共通設定ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
-        private System.Windows.Forms.ToolStripMenuItem データ変換ヤハラToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem データ変換ヤハラtoolStripMenuItem;
     }
 }
 

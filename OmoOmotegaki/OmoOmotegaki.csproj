@@ -157,6 +157,7 @@
     <Compile Include="Data\ClientShareSettings.cs" />
     <Compile Include="Data\TermConverter.cs" />
     <Compile Include="DescriptiveCollectionEditor.cs" />
+    <Compile Include="Yahara\Converters\YaharaConverter.cs" />
     <Compile Include="Models\IShinryouDataCollectionSource.cs" />
     <Compile Include="Models\ShinryouCheckActions\ShinryouCheckAction算定可能回数検査.cs" />
     <Compile Include="Models\ShinryouCheckActions\ShinryouCheckAction算定可能回数.cs" />

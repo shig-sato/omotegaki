@@ -2949,6 +2949,9 @@ namespace OmoOmotegaki.Forms
 
         private void データ変換ヤハラToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string dialogResult = InputDialog.Show("変換数を入力 (0で最大数)");
+            if (!int.TryParse(dialogResult, out int limit)) return; 
+
             // バッチ設定
             var batchSettings = new KarteBatchSettings
             {
@@ -2957,7 +2960,7 @@ namespace OmoOmotegaki.Forms
                     expandToSyosinbi: true,
                     expandToLastDate: true
                 ),
-                PreviewLimit = 5
+                PreviewLimit = limit
             };
 
             // 診療所

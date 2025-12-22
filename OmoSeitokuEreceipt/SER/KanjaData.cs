@@ -231,7 +231,7 @@ namespace OmoSeitokuEreceipt.SER
             else
             {
                 sex = null;
-                Debug.WriteLine($"[error: ff356187] 未対応の {nameof(ER_男女区分)}: " + hoken2AndSex[1]);
+                //Debug.WriteLine($"[error: ff356187] 未対応の {nameof(ER_男女区分)}: " + hoken2AndSex[1]);
             }
 
             return (hoken, sex);

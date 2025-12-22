@@ -64,6 +64,12 @@ namespace OmoSeitoku.VB
         {
             int data = bin.ReadInt32();
             if (data == 0) return null;
+
+            var span = new TimeSpan(data, 0, 0, 0);
+            long resultTicks = BASE_DATETIME.Ticks + span.Ticks;
+            if (resultTicks < DateTime.MinValue.Ticks || resultTicks > DateTime.MaxValue.Ticks)
+                return null;
+
             return BASE_DATETIME + new TimeSpan(data, 0, 0, 0);
         }
 

@@ -279,6 +279,8 @@ namespace OmoSeitokuEreceipt.SER
             /// </summary>
             private const int HASEKI_SPLIT_SIKIBETU = 10000;
 
+            private static readonly DateTime MIN_DAYBAN = new DateTime(1992, 4, 1); // TODO ハードコード 処置点数 最小有効期間
+
             public int GKrBan;
             public int GGyoBan;
             public long GZenBan;
@@ -316,7 +318,7 @@ namespace OmoSeitokuEreceipt.SER
             /// バイナリから行データを取得する。
             /// </summary>
             /// <param name="input"></param>
-            public void Read(BinaryReader input)
+            public bool Read(BinaryReader input)
             {
                 this.GKrBan = VBRandomFile.ReadInt(input);
                 this.GGyoBan = VBRandomFile.ReadInt(input);
@@ -339,7 +341,14 @@ namespace OmoSeitokuEreceipt.SER
                     bs[i] = VBRandomFile.ReadLong(input);
                 }
 
+                if (this.GDayBan < MIN_DAYBAN)
+                {
+                    return false;
+                }
+
                 this.ParseHaByoSyo();
+
+                return true;
             }
 
             /// <summary>
@@ -622,9 +631,7 @@ namespace OmoSeitokuEreceipt.SER
                 fs.Seek((atoBan - 1) * SIZE, SeekOrigin.Begin);
 
                 gyoData = new Gyokiro();
-                gyoData.Read(br);
-
-                list.Add(gyoData);
+                if (gyoData.Read(br)) list.Add(gyoData);
             }
 
 
@@ -797,9 +804,11 @@ namespace OmoSeitokuEreceipt.SER
             switch (shinryouTougou)
             {
                 case 診療統合種別.統合なし:
-                    collection = from shinryou in _shinryouList
-                                 where kikan.Contains(shinryou.診療日)
-                                 select shinryou;
+                    collection = (kikan.IsFullMin && kikan.IsFullMax)
+                        ? _shinryouList
+                        : from shinryou in _shinryouList
+                          where kikan.Contains(shinryou.診療日)
+                          select shinryou;
                     break;
 
                 case 診療統合種別.初診期間別:

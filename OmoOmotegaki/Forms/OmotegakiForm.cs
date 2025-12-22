@@ -2947,46 +2947,67 @@ namespace OmoOmotegaki.Forms
             _filterControlPanel.Visible = !_filterControlPanel.Visible;
         }
 
-        private void データ変換ヤハラToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void データ変換ヤハラToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string dialogResult = InputDialog.Show("変換数を入力 (0で最大数)");
-            if (!int.TryParse(dialogResult, out int limit)) return; 
+            string dialogResult = InputDialog.Show("変換数を入力 (0で最大数) または k数値 でカルテ番号を1件入力。");
+            if (string.IsNullOrWhiteSpace(dialogResult)) return;
 
-            // バッチ設定
-            var batchSettings = new KarteBatchSettings
+            int? karteNumber = null;
+            int limit = 0;
+
+            if (dialogResult[0] == 'k')
             {
-                DateRange = new KarteDateRange(
-                    range: DateRange2.Infinite,
-                    expandToSyosinbi: true,
-                    expandToLastDate: true
-                ),
-                PreviewLimit = limit
-            };
+                if (!int.TryParse(dialogResult.Substring(1), out int res))
+                {
+                    MessageBox.Show("有効なカルテ番号ではありません。");
+                    return;
+                }
+                karteNumber = res;
+            }
+            else
+            {
+                if (!int.TryParse(dialogResult, out int res))
+                {
+                    MessageBox.Show("有効な数値ではありません。");
+                    return;
+                }
+                limit = res;
+            }
 
             // 診療所
             Shinryoujo shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
 
-            var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
-
-            List<string> errors;
-
             try
             {
-                Models.Converters.YaharaConverter.Convert(
-                    shinryoujo, batchSettings, sinryouTougou, out errors);
-            }
-            catch (Exception ex)
-            {
-                errors = new List<string>
+                this.Cursor = Cursors.WaitCursor;
+
+                List<string> errors;
+                try
                 {
-                    ex.Message
-                };
+                    errors = await Task.Run(() =>
+                    {
+                        Models.Converters.YaharaConverter.Convert(
+                            shinryoujo, karteNumber, out List<string> errors, limit);
+
+                        return errors;
+                    });
+                }
+                catch (Exception ex)
+                {
+                    errors = new List<string> { ex.Message };
+                }
+
+                if (errors != null && errors.Count > 0)
+                {
+                    ShowMessage(string.Join(Environment.NewLine, errors), true, false);
+                }
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show("Complete");
             }
 
-            if (errors != null && errors.Count > 0)
-            {
-                ShowMessage(string.Join(Environment.NewLine, errors), true, false);
-            }
         }
     }
 }

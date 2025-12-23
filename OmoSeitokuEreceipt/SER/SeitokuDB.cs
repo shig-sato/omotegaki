@@ -47,11 +47,8 @@ namespace OmoSeitokuEreceipt
                 // DB定義の読み込み
                 try
                 {
-                    int colCount;
-                    int rowCount;
-
                     // 列数、行数を取得する。
-                    if (GetColRowCount(out colCount, out rowCount, reader))
+                    if (GetColRowCount(out int colCount, out int rowCount, reader))
                     {
                         // 列定義
                         this.Columns = GetColumnDefinition(reader, colCount);

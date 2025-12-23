@@ -117,6 +117,7 @@
     <Compile Include="SER\KarteId.cs" />
     <Compile Include="SER\Shinryoujo.cs" />
     <Compile Include="SER\ShinryouOrderType.cs" />
+    <Compile Include="SER\SyochiKikanDb.cs" />
     <Compile Include="SER\SinryouData.cs" />
     <Compile Include="SER\ShinryouDataCollection.cs" />
     <Compile Include="SER\SinryouFilter.cs" />

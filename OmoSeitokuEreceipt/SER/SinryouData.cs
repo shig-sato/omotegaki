@@ -893,106 +893,33 @@ namespace OmoSeitokuEreceipt.SER
             return result;
         }
 
-        private static StringBuilder _Get病名_sb = new StringBuilder(256);
+        private static readonly StringBuilder _Get病名_sb = new StringBuilder(256);
 
-
-        private struct LastSyochiDb
-        {
-            public DateTime startDate;
-            public DateTime endDate;
-            public SeitokuDB syochiDb;
-            public string path;
-
-            public bool IsIn(DateTime dt)
-            {
-                return (syochiDb != null) && (startDate <= dt) && (dt <= endDate);
-            }
-        }
-
-        private static LastSyochiDb _lastSyochiDb = new LastSyochiDb();
-        private static SeitokuDB _syoKikanDb;
+        private static readonly SyochiKikanDb _syochiKikanDb = new SyochiKikanDb();
 
         /// <exception cref="System.IndexOutOfRangeException">列が範囲外の場合に発生する。</exception>
         public static string GetSyochiValue(int syochiNumber, DateTime sinryoubi, int column)
         {
-            const int COL_開始期日 = 1;
-            const int COL_失効期日 = 2;
-            const int COL_ファイルパス = 3;
-
-
             //点数有効期間DBから対象の点数ファイルを取得する。
-
-
-            SeitokuDB syoDB;
-
-            if (_lastSyochiDb.IsIn(sinryoubi))
+            if (!_syochiKikanDb.TryFind(sinryoubi, out SyochiDb syochiDb))
             {
-                syoDB = _lastSyochiDb.syochiDb;
+                // throw
+                throw new Exception($"点数ファイルを取得できません。" +
+                                    $" 処置番号({syochiNumber})" +
+                                    $" 診療日({sinryoubi})");
             }
-            else
-            {
-                if (_syoKikanDb == null)
-                {
-                    //UNDONE debug 処置DBリスト読み込 ハードコード
-                    _syoKikanDb = new SeitokuDB(Path.Combine(
-                        global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, "S9X0401X.XXX"));
-                }
-
-                string[,] rows = _syoKikanDb.Rows;
-                string path = null;
-
-                for (int row = 0, len = rows.GetLength(0); row < len; ++row)
-                {
-                    string startDateStr = rows[row, COL_開始期日];
-                    string endDateStr = rows[row, COL_失効期日];
-
-                    DateTime startDate;
-                    DateTime endDate;
-
-                    if (DateTime.TryParse(startDateStr, out startDate) &&
-                        DateTime.TryParse(endDateStr, out endDate))
-                    {
-                        if (startDate <= sinryoubi && sinryoubi <= endDate)
-                        {
-                            path = rows[row, COL_ファイルパス];
-
-                            _lastSyochiDb.startDate = startDate;
-                            _lastSyochiDb.endDate = endDate;
-
-                            break;
-                        }
-                    }
-                }
-
-                if (string.IsNullOrEmpty(path))
-                {
-                    // throw
-                    throw new Exception($"点数ファイルを取得できません。" +
-                                        $" 処置番号({syochiNumber})" +
-                                        $" 診療日({sinryoubi})");
-                }
-
-                path = Path.Combine(global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, $"{Path.GetFileName(path)}t");
-
-                syoDB = new SeitokuDB(path);
-
-                _lastSyochiDb.path = path;
-                _lastSyochiDb.syochiDb = syoDB;
-            }
-
 
             // 処置DBから指定した列のデータを取得
 
             const int COL_処置番号 = 0; //ハードコード
 
-            string[,] syoRows = syoDB.Rows;
+            string[,] syoRows = syochiDb.Db.Rows;
 
             for (int row = 0, len = syoRows.GetLength(0); row < len; ++row)
             {
                 string numb = syoRows[row, COL_処置番号];
 
-                int number;
-                if (int.TryParse(numb, out number) && syochiNumber == number)
+                if (int.TryParse(numb, out int number) && syochiNumber == number)
                 {
                     string result = syoRows[row, column];
 
@@ -1005,7 +932,7 @@ namespace OmoSeitokuEreceipt.SER
             // throw
             throw new Exception($"処置を取得できません。" +
                                 $" 処置番号({syochiNumber})" +
-                                $" 処置DB({_lastSyochiDb.path})");
+                                $" 処置DB({syochiDb.Db.FilePath})");
         }
 
         // 処置DBから名前を取得

@@ -102,6 +102,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SER\KanjaData.cs" />
+    <Compile Include="SER\KarteFileStream.cs" />
     <Compile Include="SER\SeitokuDB.cs" />
     <Compile Include="SER\CheckPrint.cs" />
     <Compile Include="SER\KartePrintInfo.cs" />
@@ -115,6 +116,7 @@
     </Compile>
     <Compile Include="SER\KarteData.cs" />
     <Compile Include="SER\KarteId.cs" />
+    <Compile Include="SER\ShinryouFileStream.cs" />
     <Compile Include="SER\Shinryoujo.cs" />
     <Compile Include="SER\ShinryouOrderType.cs" />
     <Compile Include="SER\SyochiKikanDb.cs" />

@@ -210,7 +210,8 @@ namespace OmoOmotegaki.ViewModels
             KarteData karteData;
             try
             {
-                karteData = KarteRepository.GetKarteData(karteId);
+                using var karteFs = new KarteFileStream(karteId.Shinryoujo);
+                karteData = karteFs.GetKarteData(karteId.KarteNumber);
             }
             catch (Exception ex)
             {
@@ -235,7 +236,8 @@ namespace OmoOmotegaki.ViewModels
 
                 try
                 {
-                    _shinryouDataLoader = KarteRepository.GetShinryouDataLoader(karteId);
+                    using var shinryouFs = new ShinryouFileStream(karteId.Shinryoujo);
+                    _shinryouDataLoader = shinryouFs.GetSinryouDataLoader(karteId);
                 }
                 catch (Exception ex)
                 {

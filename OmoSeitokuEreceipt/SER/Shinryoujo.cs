@@ -13,6 +13,8 @@ namespace OmoSeitokuEreceipt.SER
         }
 
         public string Key { get; }
+        public bool Is本院 { get { return Key == "Hon"; } }
+        public bool Is分院 { get { return Key == "Bun"; } }
 
         #region IEquatable
 

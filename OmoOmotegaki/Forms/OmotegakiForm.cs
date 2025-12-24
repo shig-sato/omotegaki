@@ -1465,89 +1465,84 @@ namespace OmoOmotegaki.Forms
                 printInfo.Read(sr, dateRange.Max);
             }
 
-            // UNDONE 診療録データ ハードコード
-            string randaPath = Path.Combine(global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, $"RANDA{shinryoujo.Key}.900");
-
-            bool rePrint = false;
             bool expandToSyosinbi = batchSettings.DateRange.ExpandToSyosinbi;
             bool expandToLastDate = batchSettings.DateRange.ExpandToLastDate;
 
-            do
+            bool TryCreateKartePrintItemList(out KartePrintItemList kartePrintItems)
             {
-                rePrint = false;
+                using var karteFs = new KarteFileStream(shinryoujo);
+                using var shinryouFs = new ShinryouFileStream(shinryoujo);
+                var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
 
-                var items = new KartePrintItemList();
-
-                using (FileStream karteFS = KarteRepository.OpenKarteDataFile(shinryoujo))
-                using (var karteBR = new BinaryReader(karteFS))
-                using (FileStream fs = File.Open(randaPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var br = new BinaryReader(fs, Encoding.GetEncoding("Shift_JIS")))
+                kartePrintItems = new KartePrintItemList();
+                foreach (KartePrintInfoItem item in printInfo.Items
+                    .Where(p => !(p.KarteId is null)))
                 {
-                    var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
+                    var loader = shinryouFs.GetSinryouDataLoader(item.KarteId);
 
-                    foreach (KartePrintInfoItem item in printInfo.Items
-                        .Where(p => !(p.KarteId is null)))
+                    DateRange range = loader.ConvertSinryouDateRange(dateRange, expandToSyosinbi, expandToLastDate);
+                    ShinryouDataCollection sinryouData = loader.GetShinryouData(range, sinryouTougou);
+
+                    // リストが期間内に含まれるかどうか
+                    if (0 < sinryouData.Count
+                        //&& sinryouData[0].開始 <= dateRange.Max && // 先頭が最大日以下
+                        //dateRange.Min <= sinryouData[sinryouData.Count - 1].開始 // 終端が最小日以上
+                        )
                     {
-                        var loader = new SinryouDataLoader(item.KarteId, fs, br);
+                        // カルテデータ読み込み
+                        KarteData karteData = karteFs.GetKarteData(item.KarteId.KarteNumber);
 
-                        DateRange range = loader.ConvertSinryouDateRange(dateRange, expandToSyosinbi, expandToLastDate);
-                        ShinryouDataCollection sinryouData = loader.GetShinryouData(range, sinryouTougou);
-
-                        // リストが期間内に含まれるかどうか
-                        if (0 < sinryouData.Count
-                            //&& sinryouData[0].開始 <= dateRange.Max && // 先頭が最大日以下
-                            //dateRange.Min <= sinryouData[sinryouData.Count - 1].開始 // 終端が最小日以上
-                            )
+                        // 患者負担率
+                        if (!KarteRepository.GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, karteData, false))
                         {
-                            // カルテデータ読み込み
-                            long pos = (item.KarteId.KarteNumber - 1) * KanjaData.SIZE;
-                            if (0 > pos || pos >= fs.Length)
-                            {
-                                throw new Exception("患者番号が範囲外です。");
-                            }
+                            ShowMessage(hutanErrMsg, true, true);
 
-                            fs.Seek(pos, SeekOrigin.Begin);
+                            MessageBox.Show("患者負担率が異常です。カルテ番号 = " + item.KarteId.KarteNumber);
 
-                            KarteData karteData = new KarteData(karteBR);
-
-                            // 患者負担率
-                            if (!KarteRepository.GetKanjaHutanritu(out double hutanRitu, out string hutanErrMsg, karteData, false))
-                            {
-                                ShowMessage(hutanErrMsg, true, true);
-
-                                MessageBox.Show("患者負担率が異常です。カルテ番号 = " + item.KarteId.KarteNumber);
-
-                                // キャンセル
-                                return;
-                            }
-
-                            // 印刷リストに追加
-                            items.Add(
-                                new KartePrintItem(
-                                        karteId: item.KarteId,
-                                        karteName: karteData.Get氏名(kana: false),
-                                        syochiList: sinryouData.ToArray(),
-                                        hutanWariai: hutanRitu
-                                        ));
+                            // キャンセル
+                            return false;
                         }
 
-                        if (0 < limit && limit <= items.Count) break;
+                        // 印刷リストに追加
+                        kartePrintItems.Add(
+                            new KartePrintItem(
+                                    karteId: item.KarteId,
+                                    karteName: karteData.Get氏名(kana: false),
+                                    syochiList: sinryouData.ToArray(),
+                                    hutanWariai: hutanRitu
+                                    ));
                     }
+
+                    if (0 < limit && limit <= kartePrintItems.Count) break;
                 }
 
+                return true;
+            }
+
+            bool rePrint;
+
+            do
+            {
+                if (!TryCreateKartePrintItemList(out KartePrintItemList kartePrintItems))
+                {
+                    // キャンセル
+                    return;
+                }
+
+                rePrint = false;
+
                 // 印刷開始
-                if (items.Count == 0)
+                if (kartePrintItems.Count == 0)
                 {
                     MessageBox.Show("印刷できるカルテがありません。");
                 }
                 else
                 {
-                    items.Sort(batchSettings.SortSettings);
+                    kartePrintItems.Sort(batchSettings.SortSettings);
 
                     if (isPreview)
                     {
-                        _kartePrint.Preview(items, kartePrintSettings, this);
-
+                        _kartePrint.Preview(kartePrintItems, kartePrintSettings, this);
 
                         var res = MessageBox.Show("このまま全件印刷を開始しますか？", "全件印刷",
                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -1561,7 +1556,7 @@ namespace OmoOmotegaki.Forms
                     }
                     else
                     {
-                        _kartePrint.Print(items, kartePrintSettings, this);
+                        _kartePrint.Print(kartePrintItems, kartePrintSettings, this);
                     }
                 }
 
@@ -2279,23 +2274,32 @@ namespace OmoOmotegaki.Forms
 
             if (0 < printingKarteNumbers.Length)
             {
-                Shinryoujo shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
-                var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
-                HaRirekiPrintingParameter selector(int karteNumber)
+                List<HaRirekiPrintingParameter> CreateHaRirekiPrintingParameters()
                 {
-                    var karteId = new KarteId(shinryoujo, karteNumber);
-                    var loader = KarteRepository.GetShinryouDataLoader(karteId);
-                    // 最新の初診期間を指定
-                    DateRange kikan = new DateRange(loader.Get初診日リスト().Last(), DateTime.MaxValue);
-                    return new HaRirekiPrintingParameter(
-                       karteId: karteId,
-                       karteData: KarteRepository.GetKarteData(karteId),
-                       shinryouDataList: loader.GetShinryouData(kikan, sinryouTougou).GetFiltered().ToArray());
-                }
-                List<HaRirekiPrintingParameter> parameters = printingKarteNumbers
-                    .Select(selector)
-                    .ToList();
+                    var parameters = new List<HaRirekiPrintingParameter>();
+                    var shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
+                    var sinryouTougou = (SinryouDataLoader.診療統合種別)_cmbShinryouTougou.SelectedItem;
+                    using var karteStream = new KarteFileStream(shinryoujo);
+                    using var shinryouFs = new ShinryouFileStream(shinryoujo);
 
+                    foreach (int karteNumber in printingKarteNumbers)
+                    {
+                        var karteId = new KarteId(shinryoujo, karteNumber);
+                        var loader = shinryouFs.GetSinryouDataLoader(karteId);
+                        // 最新の初診期間を指定
+                        DateRange kikan = new DateRange(loader.Get初診日リスト().Last(), DateTime.MaxValue);
+                        var param = new HaRirekiPrintingParameter(
+                           karteId: karteId,
+                           karteData: karteStream.GetKarteData(karteId.KarteNumber),
+                           shinryouDataList: loader.GetShinryouData(kikan, sinryouTougou).GetFiltered().ToArray());
+
+                        parameters.Add(param);
+                    }
+
+                    return parameters;
+                }
+
+                List<HaRirekiPrintingParameter> parameters = CreateHaRirekiPrintingParameters();
                 using var design = new HaRirekiPrintDesign(parameters);
                 using var previewDialog = new PrintPreviewDialog
                 {
@@ -2952,30 +2956,32 @@ namespace OmoOmotegaki.Forms
             string dialogResult = InputDialog.Show("変換数を入力 (0で最大数) または k数値 でカルテ番号を1件入力。");
             if (string.IsNullOrWhiteSpace(dialogResult)) return;
 
-            int? karteNumber = null;
-            int limit = 0;
+            Models.Converters.YaharaConverter.ConverterOption option;
 
             if (dialogResult[0] == 'k')
             {
-                if (!int.TryParse(dialogResult.Substring(1), out int res))
+                // 個別のカルテを変換
+                if (!int.TryParse(dialogResult.Substring(1), out int karteNumber))
                 {
                     MessageBox.Show("有効なカルテ番号ではありません。");
                     return;
                 }
-                karteNumber = res;
+
+                var shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
+                option = new Models.Converters.YaharaConverter.ConverterOption(
+                    new KarteId(shinryoujo, karteNumber));
             }
             else
             {
-                if (!int.TryParse(dialogResult, out int res))
+                // 最大数を指定またはすべてを変換（本院・分院の両方とも変換）
+                if (!int.TryParse(dialogResult, out int limit))
                 {
                     MessageBox.Show("有効な数値ではありません。");
                     return;
                 }
-                limit = res;
-            }
 
-            // 診療所
-            Shinryoujo shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
+                option = new Models.Converters.YaharaConverter.ConverterOption(limit);
+            }
 
             try
             {
@@ -2986,8 +2992,7 @@ namespace OmoOmotegaki.Forms
                 {
                     errors = await Task.Run(() =>
                     {
-                        Models.Converters.YaharaConverter.Convert(
-                            shinryoujo, karteNumber, out List<string> errors, limit);
+                        Models.Converters.YaharaConverter.ConvertAll(option, out List<string> errors);
 
                         return errors;
                     });

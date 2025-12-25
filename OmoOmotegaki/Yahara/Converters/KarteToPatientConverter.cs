@@ -10,11 +10,12 @@ namespace omotegaki_xml.Libs.Yahara.Converters
 {
     public static partial class KarteToPatientConverter
     {
-        public static Patient ConvertKarteToPatient(KarteId karteId, KarteData karte)
+        public static Patient Convert(KarteId karteId, KarteData karte)
         {
             var patient = new Patient(karteNo: karteId.KarteNumber.ToString())
             {
                 Name = karte.氏名カナ?.Replace("　", " "),
+                // 名前の区切りは半角スペース
                 KanjiName = karte.氏名?.Replace("　", " "),
                 Birthday = karte.生年月日?.ToString("yyyy/MM/dd"),
                 Sex = GetSex(karte),

@@ -4,11 +4,13 @@ using OmoSeitoku;
 using OmoSeitokuEreceipt.SER;
 using omotegaki_xml.Libs.Yahara.Converters;
 using omotegaki_xml.Libs.Yahara.Entities.KarteEntities;
+using omotegaki_xml.Libs.Yahara.Entities.PatDataEntities;
 using omotegaki_xml.Libs.Yahara.Entities.PatientEntities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,6 +20,9 @@ namespace OmoOmotegaki.Yahara
 {
     internal sealed class YaharaConverter
     {
+        private const bool OUTPUT_FILE = true;
+
+
         public sealed class ConverterOption
         {
             /// <summary>
@@ -57,7 +62,7 @@ namespace OmoOmotegaki.Yahara
             /// </summary>
             public ConverterOption(DirectoryInfo outputFolderPath, KarteId oneKarte)
             {
-                this.Limit = 0;
+                this.Limit = 1;
                 this.OneKarte = oneKarte ?? throw new ArgumentNullException(nameof(oneKarte));
                 this.OutputFolderPath = outputFolderPath;
             }
@@ -74,10 +79,18 @@ namespace OmoOmotegaki.Yahara
             if (option.OutputFolderPath.Exists) option.OutputFolderPath.Delete(true);
             option.OutputFolderPath.Create();
 
+            //string zipPath = Path.Combine(option.OutputFolderPath.FullName, "kawanoshika.zip");
 
             var maxConcurrency = 4;
             using (var semaphore = new SemaphoreSlim(maxConcurrency))
+            //using (FileStream zipStream = new FileStream(zipPath, FileMode.Create))
+            //using (ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
             {
+                //var entry = archive.CreateEntry(entryPath, CompressionLevel.Fastest);
+
+                //using var writer = new StreamWriter(entry.Open(), Encoding.UTF8);
+                //writer.Write(content);
+
                 await _ConvertAll(semaphore, new Shinryoujo("Hon"), option);
                 await _ConvertAll(semaphore, new Shinryoujo("Bun"), option);
             }
@@ -102,7 +115,7 @@ namespace OmoOmotegaki.Yahara
             using var karteFS = new KarteFileStream(shinryoujo);
             using var shinryouFS = new ShinryouFileStream(shinryoujo);
 
-            int maxKarteNumber = option.OneKarte?.KarteNumber ?? karteFS.MaxKarteNumber;
+            int maxKarteNumber = karteFS.MaxKarteNumber;
             int prevProgress = 0;
             int limitCounter = 0;
 
@@ -126,7 +139,7 @@ namespace OmoOmotegaki.Yahara
                 KarteData karteData = karteFS.GetKarteData(karteId.KarteNumber);
 
                 // 患者氏名が未指定ならスキップ
-                if (karteData.氏名.StartsWith("No acc")) continue;
+                if (string.IsNullOrWhiteSpace(karteData.氏名) || karteData.氏名.StartsWith("No acc")) continue;
 
                 // 個別のカルテを変換
                 await ConvertOne(semaphore, option, karteId, karteData, shinryouData);
@@ -172,10 +185,14 @@ namespace OmoOmotegaki.Yahara
 
 
             // XMLシリアライゼーション
-            Patient patient = KarteToPatientConverter.ConvertKarteToPatient(karteId, karteData);
-            Karte karte = KarteDataToKarteConverter.ConvertKarteDataToKarte(karteId, karteData);
+            Patient patient = KarteToPatientConverter.Convert(karteId, karteData);
+            //PatData patData = KarteToPatDataConverter.Convert(karteId, karteData);
+            Karte karte = KarteDataToKarteConverter.Convert(karteId, karteData);
 
-            await OutputXmlFile(semaphore, option, karteId, patient, karte);
+            if (OUTPUT_FILE)
+            {
+                await OutputXmlFile(semaphore, option, karteId, patient, karte);
+            }
         }
 
         /// <summary>
@@ -190,18 +207,18 @@ namespace OmoOmotegaki.Yahara
             )
         {
             // 個別の患者ディレクトリーを作成
-            string kanjaDirName = $@"{karteId.Shinryoujo.Key}/{karteId.KarteNumber:D5}";
-            string kanjaDirPath = Path.Combine(option.OutputFolderPath.FullName, kanjaDirName);
+            string kanjaDirName = $@"{(karteId.Shinryoujo.Key == "Hon" ? "本院" : "分院")}/{karteId.KarteNumber:D5}";
+            var kanjaDir = new DirectoryInfo(Path.Combine(option.OutputFolderPath.FullName, kanjaDirName));
 
             try
             {
                 await semaphore.WaitAsync();
 
-                Directory.CreateDirectory(kanjaDirPath);
+                kanjaDir.Create();
 
                 // A: 患者情報-α (Patient.xml)
                 {
-                    string filePath = Path.Combine(kanjaDirPath, "Patient.xml");
+                    string filePath = Path.Combine(kanjaDir.FullName, "Patient.xml");
                     using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 65536, useAsync: true);
                     using var writer = new StreamWriter(stream, Encoding.UTF8);
                     await writer.WriteAsync(patient.ToXML());
@@ -213,7 +230,7 @@ namespace OmoOmotegaki.Yahara
 
                 // B: カルテ情報 (Karte.xml)
                 {
-                    string filePath = Path.Combine(kanjaDirPath, "Karte.xml");
+                    string filePath = Path.Combine(kanjaDir.FullName, "Karte.xml");
                     using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 65536, useAsync: true);
                     using var writer = new StreamWriter(stream, Encoding.UTF8);
                     await writer.WriteAsync(karte.ToXML());
@@ -229,7 +246,7 @@ namespace OmoOmotegaki.Yahara
                 Console.WriteLine(msg);
                 //logger.Log(msg);
 
-                Directory.Delete(kanjaDirPath, true);
+                kanjaDir.Delete(true);
             }
             finally
             {

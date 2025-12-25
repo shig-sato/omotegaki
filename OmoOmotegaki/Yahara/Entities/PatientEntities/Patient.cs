@@ -14,9 +14,15 @@ namespace omotegaki_xml.Libs.Yahara.Entities.PatientEntities
         [XmlAttribute]
         public string KarteNo { get; }
 
+        /// <summary>
+        /// 名前の区切りは半角スペース
+        /// </summary>
         [XmlAttribute]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// 名前の区切りは半角スペース
+        /// </summary>
         [XmlAttribute]
         public string? KanjiName { get; set; }
 
@@ -27,16 +33,16 @@ namespace omotegaki_xml.Libs.Yahara.Entities.PatientEntities
         public string? Sex { get; set; }
 
         [XmlAttribute]
-        public string? 郵便番号 { get; set; }
+        public string? 郵便番号  { get { return null; } set { } }
 
         [XmlAttribute]
-        public string? 住所 { get; set; }
+        public string? 住所 { get { return null; } set { } }
 
         [XmlAttribute]
-        public string? 連絡先電話番号 { get; set; }
+        public string? 連絡先電話番号  { get { return null; } set { } }
 
         [XmlAttribute]
-        public string? 自宅電話番号 { get; set; }
+        public string? 自宅電話番号 { get { return null; } set { } }
 
         [XmlIgnore]
         public Doctor? 主担当医Object { get; set; }

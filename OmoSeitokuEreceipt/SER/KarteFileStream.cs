@@ -5,7 +5,10 @@ namespace OmoSeitokuEreceipt.SER
 {
     public sealed class KarteFileStream : IDisposable
     {
-        public int MaxKarteNumber => (int)(_fs.Length / KanjaData.SIZE);
+        private const int KARTE_NUM_MAX = 32766;
+
+        public int MaxKarteNumber => maxKarteNumber ?? (maxKarteNumber = Math.Min(KARTE_NUM_MAX, (int)(_fs.Length / KanjaData.SIZE))).Value;
+        private int? maxKarteNumber;
 
         private FileStream _fs;
         private BinaryReader _br;

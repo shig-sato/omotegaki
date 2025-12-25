@@ -11,7 +11,7 @@ namespace omotegaki_xml.Libs.Yahara.Converters
 {
     public static partial class KarteDataToKarteConverter
     {
-        public static Karte ConvertKarteDataToKarte(KarteId karteId, KarteData seitokuKarte)
+        public static Karte Convert(KarteId karteId, KarteData seitokuKarte)
         {
             SinryouDataLoader sinryouDataLoader;
             using (var fs = new ShinryouFileStream(karteId.Shinryoujo))
@@ -52,10 +52,10 @@ namespace omotegaki_xml.Libs.Yahara.Converters
             return new Bui
             {
                 No = index.ToString(),
-                Teeth = sinryouData.歯式.ToString(false),
+                Teeth = TeethConverter.Convert(sinryouData.歯式),
                 Doctor = GetDoctorName(sinryouData.担当医師),
                 Diseases = sinryouData.病名.Select(p => new Disease { Name = p }).ToList(),
-                Treatments = sinryouData.処置.Select(ToTreatment).ToList(),
+                Treatments = sinryouData.処置.Where(p => !p.IsSystemSyochi).Select(ToTreatment).ToList(),
             };
         }
 
@@ -72,7 +72,8 @@ namespace omotegaki_xml.Libs.Yahara.Converters
 
         private static string? GetDoctorName(int? doctorIndex)
         {
-            return doctorIndex == null ? null : $"担当医{doctorIndex}"; // TODO 担当医
+            //return doctorIndex == null ? null : $"担当医{doctorIndex}"; // TODO 担当医
+            return doctorIndex == null ? null : $"担当医0";
         }
     }
 }

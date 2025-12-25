@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
@@ -475,6 +476,27 @@ namespace OmoEReceLib.ERObjects
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return ((IEnumerable<ER歯式単位>)this).GetEnumerator();
+        }
+
+        public IEnumerable<ER歯式単位> GetYaharaEnumerator()
+        {
+            var d = _dict;
+            foreach (var ha in d[部位.右側上顎]) yield return ha;
+            foreach (var ha in d[部位.左側上顎]) yield return ha;
+            {
+                var list = d[部位.左側下顎];
+                for (int i = list.Count - 1; i >= 0; i--)
+                {
+                    yield return list[i];
+                }
+            }
+            {
+                var list = d[部位.右側下顎];
+                for (int i = list.Count - 1; i >= 0; i--)
+                {
+                    yield return list[i];
+                }
+            }
         }
 
         #endregion IEnumerable

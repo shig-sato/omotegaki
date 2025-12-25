@@ -24,20 +24,20 @@ namespace OmoSeitokuEreceipt.SER
         {
             親番号 = VBRandomFile.ReadInt(input);
             孫番号 = VBRandomFile.ReadInt(input);
-            氏名カナ = VBRandomFile.ReadFixedLengthString(input, 14);
-            氏名 = VBRandomFile.ReadFixedLengthString(input, 24);
+            氏名カナ = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 14));
+            氏名 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 24));
             (保険種別2, 性別) = Create保険種別2And性別(VBRandomFile.ReadInt(input).ToString());
             生年月日 = TryCatchKanjaDataProp(() => VBRandomFile.ReadDate(input), null, nameof(生年月日));
             本人家族区分 = Create本人家族区分(VBRandomFile.ReadInt(input));
             身障 = VBRandomFile.ReadInt(input) == 1;
             職務上の事由 = Create職務上の事由(VBRandomFile.ReadInt(input));
             保険者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out int num) ? num : 0;
-            被保険者証_記号 = VBRandomFile.ReadFixedLengthString(input, 24);
-            被保険者証_番号 = VBRandomFile.ReadFixedLengthString(input, 24);
+            被保険者証_記号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 24));
+            被保険者証_番号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 24));
             公費負担者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
             公費受給者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
             市町村番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
-            老人受給者番号 = VBRandomFile.ReadFixedLengthString(input, 8);
+            老人受給者番号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 8));
             保険種別 = VBRandomFile.ReadInt(input);
             患者負担率 = VBRandomFile.ReadInt(input);
             保険給付率 = VBRandomFile.ReadInt(input);
@@ -55,7 +55,7 @@ namespace OmoSeitokuEreceipt.SER
             long denwa = VBRandomFile.ReadLong(input);
             電話番号 = denwa == 0 ? null : denwa.ToString();
             住所番号 = VBRandomFile.ReadLong(input);
-            住所 = VBRandomFile.ReadFixedLengthString(input, 18);
+            住所 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 18));
         }
 
         public KanjaData(KanjaData source)
@@ -293,6 +293,12 @@ namespace OmoSeitokuEreceipt.SER
                 }
             }
             return res;
+        }
+
+        private static string NormalizeString(string str)
+        {
+            var s = str.Trim('\0', ' ', '　');
+            return (s.Length == 0) || (s == "No accepted") ? null : s;
         }
 
         #endregion Helper

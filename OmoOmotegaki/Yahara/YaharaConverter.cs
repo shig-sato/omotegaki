@@ -1,10 +1,18 @@
-﻿using OmoSeitoku;
+﻿#nullable enable
+
+using OmoSeitoku;
 using OmoSeitokuEreceipt.SER;
+using omotegaki_xml.Libs.Yahara.Converters;
+using omotegaki_xml.Libs.Yahara.Entities.KarteEntities;
+using omotegaki_xml.Libs.Yahara.Entities.PatientEntities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OmoOmotegaki.Yahara
 {
@@ -20,55 +28,69 @@ namespace OmoOmotegaki.Yahara
             /// <summary>
             /// 設定されている場合、batchSettingsのlimitは無視されて対象のカルテ番号のみ出力する。
             /// </summary>
-            public readonly KarteId OneKarte;
+            public readonly KarteId? OneKarte;
+
+            public readonly DirectoryInfo OutputFolderPath;
 
             /// <summary>
             /// すべてを変換（本院・分院の両方とも変換）
             /// </summary>
-            public ConverterOption()
+            public ConverterOption(DirectoryInfo outputFolderPath)
             {
                 this.Limit = 0;
                 this.OneKarte = null;
+                this.OutputFolderPath = outputFolderPath;
             }
 
             /// <summary>
             /// 最大数を指定して変換（本院・分院の両方とも変換）
             /// </summary>
-            public ConverterOption(int limit)
+            public ConverterOption(DirectoryInfo outputFolderPath, int limit)
             {
                 this.Limit = limit;
                 this.OneKarte = null;
+                this.OutputFolderPath = outputFolderPath;
             }
 
             /// <summary>
             /// 個別のカルテを変換
             /// </summary>
-            public ConverterOption(KarteId oneKarte)
+            public ConverterOption(DirectoryInfo outputFolderPath, KarteId oneKarte)
             {
                 this.Limit = 0;
                 this.OneKarte = oneKarte ?? throw new ArgumentNullException(nameof(oneKarte));
+                this.OutputFolderPath = outputFolderPath;
             }
         }
 
         /// <summary>
         /// すべてのカルテを変換
         /// </summary>
-        public static void ConvertAll(
-                ConverterOption option,
-                out List<string> errors
-            )
+        public static async Task ConvertAll(
+            ConverterOption option
+        )
         {
-            errors = new List<string>();
+            // 出力ディレクトリーを削除して作り直し
+            if (option.OutputFolderPath.Exists) option.OutputFolderPath.Delete(true);
+            option.OutputFolderPath.Create();
 
-            ConvertAll(new Shinryoujo("Hon"), option, errors);
-            ConvertAll(new Shinryoujo("Bun"), option, errors);
+
+            var maxConcurrency = 4;
+            using (var semaphore = new SemaphoreSlim(maxConcurrency))
+            {
+                await _ConvertAll(semaphore, new Shinryoujo("Hon"), option);
+                await _ConvertAll(semaphore, new Shinryoujo("Bun"), option);
+            }
+
+            // ディレクトリーを開く
+            using var _ = Process.Start(option.OutputFolderPath.FullName);
         }
 
-        private static void ConvertAll(
-                Shinryoujo shinryoujo,
-                ConverterOption option,
-                List<string> errors
-            )
+        private static async Task _ConvertAll(
+            SemaphoreSlim semaphore,
+            Shinryoujo shinryoujo,
+            ConverterOption option
+        )
         {
             // 個別のカルテ変換
             if (option.OneKarte != null)
@@ -107,7 +129,7 @@ namespace OmoOmotegaki.Yahara
                 if (karteData.氏名.StartsWith("No acc")) continue;
 
                 // 個別のカルテを変換
-                ConvertKarte(karteId, karteData, shinryouData);
+                await ConvertOne(semaphore, option, karteId, karteData, shinryouData);
 
                 // 進捗処理
                 int currentProgress = (int)((double)karteId.KarteNumber / maxKarteNumber * 100d);
@@ -124,7 +146,9 @@ namespace OmoOmotegaki.Yahara
         /// <summary>
         /// 個別のカルテを変換
         /// </summary>
-        private static void ConvertKarte(
+        private static async Task ConvertOne(
+            SemaphoreSlim semaphore,
+            ConverterOption option,
             KarteId karteId,
             KarteData karteData,
             ShinryouDataCollection shinryouData
@@ -142,9 +166,75 @@ namespace OmoOmotegaki.Yahara
             //    return karteList;
             //}
 
-            string karteName = karteData.Get氏名(kana: false);
+            //string karteName = karteData.Get氏名(kana: false);
 
-            Console.WriteLine($"{karteId}: {karteName} ({shinryouData.Count})");
+            //Console.WriteLine($"{karteId}: {karteName} ({shinryouData.Count})");
+
+
+            // XMLシリアライゼーション
+            Patient patient = KarteToPatientConverter.ConvertKarteToPatient(karteId, karteData);
+            Karte karte = KarteDataToKarteConverter.ConvertKarteDataToKarte(karteId, karteData);
+
+            await OutputXmlFile(semaphore, option, karteId, patient, karte);
+        }
+
+        /// <summary>
+        /// 個別のカルテXMLを出力
+        /// </summary>
+        private static async Task OutputXmlFile(
+            SemaphoreSlim semaphore,
+            ConverterOption option,
+            KarteId karteId,
+            Patient patient,
+            Karte karte
+            )
+        {
+            // 個別の患者ディレクトリーを作成
+            string kanjaDirName = $@"{karteId.Shinryoujo.Key}/{karteId.KarteNumber:D5}";
+            string kanjaDirPath = Path.Combine(option.OutputFolderPath.FullName, kanjaDirName);
+
+            try
+            {
+                await semaphore.WaitAsync();
+
+                Directory.CreateDirectory(kanjaDirPath);
+
+                // A: 患者情報-α (Patient.xml)
+                {
+                    string filePath = Path.Combine(kanjaDirPath, "Patient.xml");
+                    using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 65536, useAsync: true);
+                    using var writer = new StreamWriter(stream, Encoding.UTF8);
+                    await writer.WriteAsync(patient.ToXML());
+                }
+
+                // A: 患者情報-β (PatData.csv)
+                {
+                }
+
+                // B: カルテ情報 (Karte.xml)
+                {
+                    string filePath = Path.Combine(kanjaDirPath, "Karte.xml");
+                    using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 65536, useAsync: true);
+                    using var writer = new StreamWriter(stream, Encoding.UTF8);
+                    await writer.WriteAsync(karte.ToXML());
+                }
+
+                // C: 欠損情報 (OralInformation.xml)
+                {
+                }
+            }
+            catch (Exception err)
+            {
+                var msg = $"[e37469bb-ccc7-4ab3-a0f1-47fbe81cf7cf] KarteId: {karteId}, XML出力でエラー: {err.Message}";
+                Console.WriteLine(msg);
+                //logger.Log(msg);
+
+                Directory.Delete(kanjaDirPath, true);
+            }
+            finally
+            {
+                semaphore.Release();
+            }
         }
     }
 }

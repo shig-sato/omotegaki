@@ -2958,6 +2958,9 @@ namespace OmoOmotegaki.Forms
 
             Yahara.YaharaConverter.ConverterOption option;
 
+            // 出力ディレクトリーを取得
+            var outputFolderPath = new DirectoryInfo(Path.Combine(global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, "yahara_xml"));
+
             if (dialogResult[0] == 'k')
             {
                 // 個別のカルテを変換
@@ -2969,7 +2972,7 @@ namespace OmoOmotegaki.Forms
 
                 var shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
                 option = new Yahara.YaharaConverter.ConverterOption(
-                    new KarteId(shinryoujo, karteNumber));
+                    outputFolderPath, new KarteId(shinryoujo, karteNumber));
             }
             else
             {
@@ -2980,32 +2983,29 @@ namespace OmoOmotegaki.Forms
                     return;
                 }
 
-                option = new Yahara.YaharaConverter.ConverterOption(limit);
+                option = new Yahara.YaharaConverter.ConverterOption(
+                    outputFolderPath, limit);
             }
 
             try
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                List<string> errors;
+                //List<string> errors;
                 try
                 {
-                    errors = await Task.Run(() =>
-                    {
-                        Yahara.YaharaConverter.ConvertAll(option, out List<string> errors);
-
-                        return errors;
-                    });
+                    await Yahara.YaharaConverter.ConvertAll(option);
                 }
                 catch (Exception ex)
                 {
-                    errors = new List<string> { ex.Message };
+                    //errors = new List<string> { ex.Message };
+                    Console.WriteLine(ex);
                 }
 
-                if (errors != null && errors.Count > 0)
-                {
-                    ShowMessage(string.Join(Environment.NewLine, errors), true, false);
-                }
+                //if (errors != null && errors.Count > 0)
+                //{
+                //    ShowMessage(string.Join(Environment.NewLine, errors), true, false);
+                //}
             }
             finally
             {

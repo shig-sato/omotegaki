@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace OmoOmotegaki.Models.Converters
+namespace OmoOmotegaki.Yahara
 {
     internal sealed class YaharaConverter
     {

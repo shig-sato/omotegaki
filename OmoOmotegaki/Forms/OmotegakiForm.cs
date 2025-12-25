@@ -2956,7 +2956,7 @@ namespace OmoOmotegaki.Forms
             string dialogResult = InputDialog.Show("変換数を入力 (0で最大数) または k数値 でカルテ番号を1件入力。");
             if (string.IsNullOrWhiteSpace(dialogResult)) return;
 
-            Models.Converters.YaharaConverter.ConverterOption option;
+            Yahara.YaharaConverter.ConverterOption option;
 
             if (dialogResult[0] == 'k')
             {
@@ -2968,7 +2968,7 @@ namespace OmoOmotegaki.Forms
                 }
 
                 var shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
-                option = new Models.Converters.YaharaConverter.ConverterOption(
+                option = new Yahara.YaharaConverter.ConverterOption(
                     new KarteId(shinryoujo, karteNumber));
             }
             else
@@ -2980,7 +2980,7 @@ namespace OmoOmotegaki.Forms
                     return;
                 }
 
-                option = new Models.Converters.YaharaConverter.ConverterOption(limit);
+                option = new Yahara.YaharaConverter.ConverterOption(limit);
             }
 
             try
@@ -2992,7 +2992,7 @@ namespace OmoOmotegaki.Forms
                 {
                     errors = await Task.Run(() =>
                     {
-                        Models.Converters.YaharaConverter.ConvertAll(option, out List<string> errors);
+                        Yahara.YaharaConverter.ConvertAll(option, out List<string> errors);
 
                         return errors;
                     });

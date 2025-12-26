@@ -151,7 +151,7 @@
             this._filterControlPanel = new System.Windows.Forms.Panel();
             this._shinryouCheckDisplayElementHost = new System.Windows.Forms.Integration.ElementHost();
             this._shinryouCheckDisplay = new OmoOmotegaki.Controls.ShinryouCheckDisplay();
-            this.データ変換ヤハラtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.データ変換ヤハラToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -206,18 +206,18 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabelカルテタイトル,
             this.statusLabel説明});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1316);
-            this.statusStrip1.MinimumSize = new System.Drawing.Size(0, 56);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 562);
+            this.statusStrip1.MinimumSize = new System.Drawing.Size(0, 28);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(2666, 56);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 15, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(962, 28);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusLabelカルテタイトル
             // 
             this.statusLabelカルテタイトル.Name = "statusLabelカルテタイトル";
-            this.statusLabelカルテタイトル.Size = new System.Drawing.Size(395, 46);
+            this.statusLabelカルテタイトル.Size = new System.Drawing.Size(198, 23);
             this.statusLabelカルテタイトル.Text = "statusLabelカルテタイトル";
             // 
             // statusLabel説明
@@ -225,12 +225,11 @@
             this.statusLabel説明.BackColor = System.Drawing.Color.Gold;
             this.statusLabel説明.Margin = new System.Windows.Forms.Padding(16, 0, 0, 0);
             this.statusLabel説明.Name = "statusLabel説明";
-            this.statusLabel説明.Size = new System.Drawing.Size(245, 56);
+            this.statusLabel説明.Size = new System.Drawing.Size(123, 28);
             this.statusLabel説明.Text = "statusLabel説明";
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
@@ -240,12 +239,11 @@
             this.ウィンドウToolStripMenuItem,
             this.表書きToolStripMenuItem,
             this.カルテToolStripMenuItem,
-            this.ヘルプToolStripMenuItem,
-            this.データ変換ヤハラtoolStripMenuItem});
+            this.ヘルプToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(2666, 44);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(962, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -257,33 +255,33 @@
             this.toolStripSeparator2,
             this.閉じるToolStripMenuItem});
             this.ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
-            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(128, 36);
+            this.ファイルToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.ファイルToolStripMenuItem.Text = "ファイル(&F)";
             // 
             // データフォルダーの変更ToolStripMenuItem
             // 
             this.データフォルダーの変更ToolStripMenuItem.Name = "データフォルダーの変更ToolStripMenuItem";
-            this.データフォルダーの変更ToolStripMenuItem.Size = new System.Drawing.Size(406, 44);
+            this.データフォルダーの変更ToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.データフォルダーの変更ToolStripMenuItem.Text = "データフォルダーの変更 (&D)...";
             this.データフォルダーの変更ToolStripMenuItem.Click += new System.EventHandler(this.データフォルダーの変更ToolStripMenuItem_Click);
             // 
             // 最近使ったデータフォルダーToolStripMenuItem
             // 
             this.最近使ったデータフォルダーToolStripMenuItem.Name = "最近使ったデータフォルダーToolStripMenuItem";
-            this.最近使ったデータフォルダーToolStripMenuItem.Size = new System.Drawing.Size(406, 44);
+            this.最近使ったデータフォルダーToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.最近使ったデータフォルダーToolStripMenuItem.Text = "最近使ったデータフォルダー";
             this.最近使ったデータフォルダーToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.最近使ったデータフォルダーToolStripMenuItem_DropDownItemClicked);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(403, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
             // 
             // 閉じるToolStripMenuItem
             // 
             this.閉じるToolStripMenuItem.Name = "閉じるToolStripMenuItem";
             this.閉じるToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.閉じるToolStripMenuItem.Size = new System.Drawing.Size(406, 44);
+            this.閉じるToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.閉じるToolStripMenuItem.Text = "閉じる (&C)";
             this.閉じるToolStripMenuItem.Click += new System.EventHandler(this.閉じるToolStripMenuItem_Click);
             // 
@@ -302,38 +300,38 @@
             this.歯別診療情報_印刷ToolStripMenuItem,
             this.歯別診療情報_複数カルテ印刷ToolStripMenuItem});
             this.診療情報ToolStripMenuItem.Name = "診療情報ToolStripMenuItem";
-            this.診療情報ToolStripMenuItem.Size = new System.Drawing.Size(157, 36);
+            this.診療情報ToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.診療情報ToolStripMenuItem.Text = "診療情報(&S)";
             // 
             // 新規フィルターの作成NToolStripMenuItem
             // 
             this.新規フィルターの作成NToolStripMenuItem.Name = "新規フィルターの作成NToolStripMenuItem";
             this.新規フィルターの作成NToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.新規フィルターの作成NToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.新規フィルターの作成NToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.新規フィルターの作成NToolStripMenuItem.Text = "新規フィルターの作成(&N)...";
             this.新規フィルターの作成NToolStripMenuItem.Click += new System.EventHandler(this.新規フィルターの作成ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(470, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 6);
             // 
             // 全てのフィルターを削除ToolStripMenuItem
             // 
             this.全てのフィルターを削除ToolStripMenuItem.Name = "全てのフィルターを削除ToolStripMenuItem";
-            this.全てのフィルターを削除ToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.全てのフィルターを削除ToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.全てのフィルターを削除ToolStripMenuItem.Text = "全てのフィルターを削除(&C)...";
             this.全てのフィルターを削除ToolStripMenuItem.Click += new System.EventHandler(this.全てのフィルターを削除ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(470, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(236, 6);
             // 
             // 診療情報LabelToolStripMenuItem
             // 
             this.診療情報LabelToolStripMenuItem.Name = "診療情報LabelToolStripMenuItem";
-            this.診療情報LabelToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.診療情報LabelToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.診療情報LabelToolStripMenuItem.Text = "診療情報";
             // 
             // 診療情報_印刷ToolStripMenuItem
@@ -341,7 +339,7 @@
             this.診療情報_印刷ToolStripMenuItem.Margin = new System.Windows.Forms.Padding(18, 0, 0, 0);
             this.診療情報_印刷ToolStripMenuItem.Name = "診療情報_印刷ToolStripMenuItem";
             this.診療情報_印刷ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.診療情報_印刷ToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.診療情報_印刷ToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.診療情報_印刷ToolStripMenuItem.Text = "印刷(&P)...";
             this.診療情報_印刷ToolStripMenuItem.Click += new System.EventHandler(this.診療情報_印刷ToolStripMenuItem_Click);
             // 
@@ -351,26 +349,26 @@
             this.診療情報印刷プレビューToolStripMenuItem.Name = "診療情報印刷プレビューToolStripMenuItem";
             this.診療情報印刷プレビューToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.P)));
-            this.診療情報印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.診療情報印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.診療情報印刷プレビューToolStripMenuItem.Text = "印刷プレビュー(&V)...";
             this.診療情報印刷プレビューToolStripMenuItem.Click += new System.EventHandler(this.診療情報_印刷プレビューToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(470, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(236, 6);
             // 
             // 歯別診療情報ToolStripMenuItem
             // 
             this.歯別診療情報ToolStripMenuItem.Name = "歯別診療情報ToolStripMenuItem";
-            this.歯別診療情報ToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.歯別診療情報ToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.歯別診療情報ToolStripMenuItem.Text = "歯別診療情報";
             // 
             // 歯別診療情報_印刷ToolStripMenuItem
             // 
             this.歯別診療情報_印刷ToolStripMenuItem.Margin = new System.Windows.Forms.Padding(18, 0, 0, 0);
             this.歯別診療情報_印刷ToolStripMenuItem.Name = "歯別診療情報_印刷ToolStripMenuItem";
-            this.歯別診療情報_印刷ToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.歯別診療情報_印刷ToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.歯別診療情報_印刷ToolStripMenuItem.Text = "印刷...";
             this.歯別診療情報_印刷ToolStripMenuItem.Click += new System.EventHandler(this.歯別診療情報_印刷ToolStripMenuItem_Click);
             // 
@@ -378,7 +376,7 @@
             // 
             this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Margin = new System.Windows.Forms.Padding(18, 0, 0, 0);
             this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Name = "歯別診療情報_複数カルテ印刷ToolStripMenuItem";
-            this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Size = new System.Drawing.Size(473, 44);
+            this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Text = "複数カルテ印刷...";
             this.歯別診療情報_複数カルテ印刷ToolStripMenuItem.Click += new System.EventHandler(this.歯別診療情報_複数カルテ印刷ToolStripMenuItem_Click);
             // 
@@ -389,9 +387,10 @@
             this.toolStripMenuItem2,
             this.アプリの設定ToolStripMenuItem,
             this.データフォルダ共通設定ToolStripMenuItem,
-            this.toolStripMenuItem8});
+            this.toolStripMenuItem8,
+            this.データ変換ヤハラToolStripMenuItem});
             this.ツールToolStripMenuItem.Name = "ツールToolStripMenuItem";
-            this.ツールToolStripMenuItem.Size = new System.Drawing.Size(114, 36);
+            this.ツールToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.ツールToolStripMenuItem.Text = "ツール(&T)";
             // 
             // 診療録作成ソフトのリンクを解除ToolStripMenuItem
@@ -399,39 +398,39 @@
             this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Enabled = false;
             this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Name = "診療録作成ソフトのリンクを解除ToolStripMenuItem";
             this.診療録作成ソフトのリンクを解除ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Size = new System.Drawing.Size(569, 44);
+            this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
             this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Text = "診療録作成ソフトのリンクを解除(&U)";
             this.診療録作成ソフトのリンクを解除ToolStripMenuItem.Click += new System.EventHandler(this.診療録作成ソフトのリンクを解除ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(566, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(282, 6);
             // 
             // アプリの設定ToolStripMenuItem
             // 
             this.アプリの設定ToolStripMenuItem.Name = "アプリの設定ToolStripMenuItem";
-            this.アプリの設定ToolStripMenuItem.Size = new System.Drawing.Size(569, 44);
+            this.アプリの設定ToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
             this.アプリの設定ToolStripMenuItem.Text = "アプリの設定(&O)...";
             this.アプリの設定ToolStripMenuItem.Click += new System.EventHandler(this.アプリの設定ToolStripMenuItem_Click);
             // 
             // データフォルダ共通設定ToolStripMenuItem
             // 
             this.データフォルダ共通設定ToolStripMenuItem.Name = "データフォルダ共通設定ToolStripMenuItem";
-            this.データフォルダ共通設定ToolStripMenuItem.Size = new System.Drawing.Size(569, 44);
+            this.データフォルダ共通設定ToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
             this.データフォルダ共通設定ToolStripMenuItem.Text = "データフォルダ共通設定(D)...";
             this.データフォルダ共通設定ToolStripMenuItem.Click += new System.EventHandler(this.データフォルダ共通設定ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(566, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(282, 6);
             // 
             // データフォルダーToolStripMenuItem
             // 
             this.データフォルダーToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.データフォルダーToolStripMenuItem.Name = "データフォルダーToolStripMenuItem";
-            this.データフォルダーToolStripMenuItem.Size = new System.Drawing.Size(172, 36);
+            this.データフォルダーToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.データフォルダーToolStripMenuItem.Text = "データフォルダー";
             // 
             // ウィンドウToolStripMenuItem
@@ -442,33 +441,33 @@
             this.すべてのウィンドウを閉じるToolStripMenuItem,
             this.toolStripMenuItem4});
             this.ウィンドウToolStripMenuItem.Name = "ウィンドウToolStripMenuItem";
-            this.ウィンドウToolStripMenuItem.Size = new System.Drawing.Size(155, 36);
+            this.ウィンドウToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.ウィンドウToolStripMenuItem.Text = "ウィンドウ(&W)";
             // 
             // 新規ウィンドウToolStripMenuItem
             // 
             this.新規ウィンドウToolStripMenuItem.Name = "新規ウィンドウToolStripMenuItem";
             this.新規ウィンドウToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.N)));
-            this.新規ウィンドウToolStripMenuItem.Size = new System.Drawing.Size(431, 44);
+            this.新規ウィンドウToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.新規ウィンドウToolStripMenuItem.Text = "新規ウィンドウ(&N)";
             this.新規ウィンドウToolStripMenuItem.Click += new System.EventHandler(this.新規ウィンドウToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(428, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(216, 6);
             // 
             // すべてのウィンドウを閉じるToolStripMenuItem
             // 
             this.すべてのウィンドウを閉じるToolStripMenuItem.Name = "すべてのウィンドウを閉じるToolStripMenuItem";
-            this.すべてのウィンドウを閉じるToolStripMenuItem.Size = new System.Drawing.Size(431, 44);
+            this.すべてのウィンドウを閉じるToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.すべてのウィンドウを閉じるToolStripMenuItem.Text = "すべてのウィンドウを閉じる(&A)...";
             this.すべてのウィンドウを閉じるToolStripMenuItem.Click += new System.EventHandler(this.すべてのウィンドウを閉じるToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(428, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(216, 6);
             // 
             // 表書きToolStripMenuItem
             // 
@@ -476,20 +475,20 @@
             this.表書き印刷ToolStripMenuItem,
             this.表書き印刷プレビューToolStripMenuItem});
             this.表書きToolStripMenuItem.Name = "表書きToolStripMenuItem";
-            this.表書きToolStripMenuItem.Size = new System.Drawing.Size(132, 36);
+            this.表書きToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.表書きToolStripMenuItem.Text = "表書き(&O)";
             // 
             // 表書き印刷ToolStripMenuItem
             // 
             this.表書き印刷ToolStripMenuItem.Name = "表書き印刷ToolStripMenuItem";
-            this.表書き印刷ToolStripMenuItem.Size = new System.Drawing.Size(322, 44);
+            this.表書き印刷ToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.表書き印刷ToolStripMenuItem.Text = "印刷(&P)...";
             this.表書き印刷ToolStripMenuItem.Click += new System.EventHandler(this.表書き印刷ToolStripMenuItem_Click);
             // 
             // 表書き印刷プレビューToolStripMenuItem
             // 
             this.表書き印刷プレビューToolStripMenuItem.Name = "表書き印刷プレビューToolStripMenuItem";
-            this.表書き印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(322, 44);
+            this.表書き印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.表書き印刷プレビューToolStripMenuItem.Text = "印刷プレビュー(&V)...";
             this.表書き印刷プレビューToolStripMenuItem.Click += new System.EventHandler(this.表書き印刷プレビューToolStripMenuItem_Click);
             // 
@@ -503,44 +502,44 @@
             this.toolStripMenuItem5,
             this.カルテルール管理ToolStripMenuItem});
             this.カルテToolStripMenuItem.Name = "カルテToolStripMenuItem";
-            this.カルテToolStripMenuItem.Size = new System.Drawing.Size(118, 36);
+            this.カルテToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.カルテToolStripMenuItem.Text = "カルテ(&K)";
             // 
             // カルテ印刷ToolStripMenuItem
             // 
             this.カルテ印刷ToolStripMenuItem.Name = "カルテ印刷ToolStripMenuItem";
-            this.カルテ印刷ToolStripMenuItem.Size = new System.Drawing.Size(342, 44);
+            this.カルテ印刷ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.カルテ印刷ToolStripMenuItem.Text = "印刷(&P)...";
             this.カルテ印刷ToolStripMenuItem.Click += new System.EventHandler(this.カルテ印刷ToolStripMenuItem_Click);
             // 
             // カルテ印刷プレビューToolStripMenuItem
             // 
             this.カルテ印刷プレビューToolStripMenuItem.Name = "カルテ印刷プレビューToolStripMenuItem";
-            this.カルテ印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(342, 44);
+            this.カルテ印刷プレビューToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.カルテ印刷プレビューToolStripMenuItem.Text = "印刷プレビュー(&V)...";
             this.カルテ印刷プレビューToolStripMenuItem.Click += new System.EventHandler(this.カルテ印刷プレビューToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(339, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(171, 6);
             // 
             // カルテ一括印刷ToolStripMenuItem
             // 
             this.カルテ一括印刷ToolStripMenuItem.Name = "カルテ一括印刷ToolStripMenuItem";
-            this.カルテ一括印刷ToolStripMenuItem.Size = new System.Drawing.Size(342, 44);
+            this.カルテ一括印刷ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.カルテ一括印刷ToolStripMenuItem.Text = "カルテ一括印刷(&B)...";
             this.カルテ一括印刷ToolStripMenuItem.Click += new System.EventHandler(this.カルテ一括印刷ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(339, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(171, 6);
             // 
             // カルテルール管理ToolStripMenuItem
             // 
             this.カルテルール管理ToolStripMenuItem.Name = "カルテルール管理ToolStripMenuItem";
-            this.カルテルール管理ToolStripMenuItem.Size = new System.Drawing.Size(342, 44);
+            this.カルテルール管理ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.カルテルール管理ToolStripMenuItem.Text = "ルール管理(&R)...";
             this.カルテルール管理ToolStripMenuItem.Click += new System.EventHandler(this.カルテルール管理ToolStripMenuItem_Click);
             // 
@@ -550,20 +549,20 @@
             this.操作説明ToolStripMenuItem,
             this.メッセージログToolStripMenuItem});
             this.ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
-            this.ヘルプToolStripMenuItem.Size = new System.Drawing.Size(123, 36);
+            this.ヘルプToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.ヘルプToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
             // 操作説明ToolStripMenuItem
             // 
             this.操作説明ToolStripMenuItem.Name = "操作説明ToolStripMenuItem";
-            this.操作説明ToolStripMenuItem.Size = new System.Drawing.Size(313, 44);
+            this.操作説明ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.操作説明ToolStripMenuItem.Text = "操作説明(&C)";
             this.操作説明ToolStripMenuItem.Click += new System.EventHandler(this.操作説明ToolStripMenuItem_Click);
             // 
             // メッセージログToolStripMenuItem
             // 
             this.メッセージログToolStripMenuItem.Name = "メッセージログToolStripMenuItem";
-            this.メッセージログToolStripMenuItem.Size = new System.Drawing.Size(313, 44);
+            this.メッセージログToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.メッセージログToolStripMenuItem.Text = "メッセージ ログ(&M)";
             // 
             // panel1
@@ -572,10 +571,9 @@
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.picPanelBottomDark);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 48);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6);
+            this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 1268);
+            this.panel1.Size = new System.Drawing.Size(250, 536);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -583,7 +581,6 @@
             this.splitContainer1.BackColor = System.Drawing.Color.SlateGray;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -600,9 +597,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.Controls.Add(this.tabInfo);
-            this.splitContainer1.Size = new System.Drawing.Size(500, 1264);
-            this.splitContainer1.SplitterDistance = 902;
-            this.splitContainer1.SplitterWidth = 8;
+            this.splitContainer1.Size = new System.Drawing.Size(250, 534);
+            this.splitContainer1.SplitterDistance = 381;
             this.splitContainer1.TabIndex = 0;
             // 
             // tabKikan
@@ -610,22 +606,20 @@
             this.tabKikan.Controls.Add(this.tabPage初診リスト);
             this.tabKikan.Controls.Add(this.tabPage期間指定);
             this.tabKikan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabKikan.Location = new System.Drawing.Point(0, 76);
-            this.tabKikan.Margin = new System.Windows.Forms.Padding(6);
+            this.tabKikan.Location = new System.Drawing.Point(0, 38);
             this.tabKikan.Name = "tabKikan";
             this.tabKikan.SelectedIndex = 0;
-            this.tabKikan.Size = new System.Drawing.Size(496, 826);
+            this.tabKikan.Size = new System.Drawing.Size(248, 343);
             this.tabKikan.TabIndex = 0;
             // 
             // tabPage初診リスト
             // 
             this.tabPage初診リスト.Controls.Add(this.splitContainer3);
             this.tabPage初診リスト.ForeColor = System.Drawing.Color.Black;
-            this.tabPage初診リスト.Location = new System.Drawing.Point(8, 39);
-            this.tabPage初診リスト.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage初診リスト.Location = new System.Drawing.Point(4, 22);
             this.tabPage初診リスト.Name = "tabPage初診リスト";
-            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage初診リスト.Size = new System.Drawing.Size(480, 779);
+            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage初診リスト.Size = new System.Drawing.Size(240, 317);
             this.tabPage初診リスト.TabIndex = 0;
             this.tabPage初診リスト.Text = "初診リスト";
             this.tabPage初診リスト.UseVisualStyleBackColor = true;
@@ -634,8 +628,7 @@
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer3.Location = new System.Drawing.Point(6, 6);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(6);
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -647,9 +640,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this._shoshinKikanListElementHost);
-            this.splitContainer3.Size = new System.Drawing.Size(468, 767);
+            this.splitContainer3.Size = new System.Drawing.Size(234, 311);
             this.splitContainer3.SplitterDistance = 28;
-            this.splitContainer3.SplitterWidth = 8;
             this.splitContainer3.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -658,17 +650,16 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this._btnすべての初診リストのチェックを外す, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this._btnすべての初診リストにチェック, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(273, 28);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(134, 28);
             this.tableLayoutPanel1.TabIndex = 21;
             // 
             // _btnすべての初診リストのチェックを外す
@@ -680,10 +671,10 @@
             this._btnすべての初診リストのチェックを外す.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._btnすべての初診リストのチェックを外す.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストのチェックを外す.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._btnすべての初診リストのチェックを外す.Location = new System.Drawing.Point(161, 4);
-            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(4);
+            this._btnすべての初診リストのチェックを外す.Location = new System.Drawing.Point(79, 2);
+            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._btnすべての初診リストのチェックを外す.Name = "_btnすべての初診リストのチェックを外す";
-            this._btnすべての初診リストのチェックを外す.Size = new System.Drawing.Size(68, 20);
+            this._btnすべての初診リストのチェックを外す.Size = new System.Drawing.Size(33, 24);
             this._btnすべての初診リストのチェックを外す.TabIndex = 17;
             this._btnすべての初診リストのチェックを外す.Text = "☐";
             this.toolTip1.SetToolTip(this._btnすべての初診リストのチェックを外す, "すべてのチェックを外す");
@@ -694,10 +685,9 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 2);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 24);
+            this.label4.Size = new System.Drawing.Size(34, 12);
             this.label4.TabIndex = 19;
             this.label4.Text = "すべて";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -711,10 +701,10 @@
             this._btnすべての初診リストにチェック.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._btnすべての初診リストにチェック.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストにチェック.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._btnすべての初診リストにチェック.Location = new System.Drawing.Point(85, 4);
-            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(4);
+            this._btnすべての初診リストにチェック.Location = new System.Drawing.Point(42, 2);
+            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._btnすべての初診リストにチェック.Name = "_btnすべての初診リストにチェック";
-            this._btnすべての初診リストにチェック.Size = new System.Drawing.Size(68, 20);
+            this._btnすべての初診リストにチェック.Size = new System.Drawing.Size(33, 24);
             this._btnすべての初診リストにチェック.TabIndex = 17;
             this._btnすべての初診リストにチェック.Text = "☑";
             this.toolTip1.SetToolTip(this._btnすべての初診リストにチェック, "すべてにチェックを入れる");
@@ -725,10 +715,10 @@
             // 
             this._chk最新の期間のみチェック.AutoSize = true;
             this._chk最新の期間のみチェック.Dock = System.Windows.Forms.DockStyle.Right;
-            this._chk最新の期間のみチェック.Location = new System.Drawing.Point(273, 0);
-            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(4);
+            this._chk最新の期間のみチェック.Location = new System.Drawing.Point(134, 0);
+            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._chk最新の期間のみチェック.Name = "_chk最新の期間のみチェック";
-            this._chk最新の期間のみチェック.Size = new System.Drawing.Size(195, 28);
+            this._chk最新の期間のみチェック.Size = new System.Drawing.Size(100, 28);
             this._chk最新の期間のみチェック.TabIndex = 18;
             this._chk最新の期間のみチェック.Text = "最新のみチェック";
             this._chk最新の期間のみチェック.UseVisualStyleBackColor = true;
@@ -739,9 +729,8 @@
             this._shoshinKikanListElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shoshinKikanListElementHost.Font = new System.Drawing.Font("MS UI Gothic", 12F);
             this._shoshinKikanListElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shoshinKikanListElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shoshinKikanListElementHost.Name = "_shoshinKikanListElementHost";
-            this._shoshinKikanListElementHost.Size = new System.Drawing.Size(468, 731);
+            this._shoshinKikanListElementHost.Size = new System.Drawing.Size(234, 279);
             this._shoshinKikanListElementHost.TabIndex = 0;
             this._shoshinKikanListElementHost.Text = "_shoshinKikanList";
             this._shoshinKikanListElementHost.Child = this._shoshinKikanList;
@@ -749,11 +738,10 @@
             // tabPage期間指定
             // 
             this.tabPage期間指定.Controls.Add(this.panel2);
-            this.tabPage期間指定.Location = new System.Drawing.Point(8, 39);
-            this.tabPage期間指定.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage期間指定.Location = new System.Drawing.Point(4, 22);
             this.tabPage期間指定.Name = "tabPage期間指定";
-            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage期間指定.Size = new System.Drawing.Size(480, 778);
+            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage期間指定.Size = new System.Drawing.Size(240, 387);
             this.tabPage期間指定.TabIndex = 1;
             this.tabPage期間指定.Text = "期間指定";
             this.tabPage期間指定.UseVisualStyleBackColor = true;
@@ -765,10 +753,10 @@
             this.panel2.Controls.Add(this._btnCalendarTekiyou);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel2.Location = new System.Drawing.Point(6, 6);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 766);
+            this.panel2.Size = new System.Drawing.Size(234, 381);
             this.panel2.TabIndex = 0;
             // 
             // panel8
@@ -780,19 +768,17 @@
             this.panel8.Controls.Add(this._btnKikanDay);
             this.panel8.Controls.Add(this._btnKikanMonth);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 110);
-            this.panel8.Margin = new System.Windows.Forms.Padding(6);
+            this.panel8.Location = new System.Drawing.Point(0, 55);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(468, 150);
+            this.panel8.Size = new System.Drawing.Size(234, 75);
             this.panel8.TabIndex = 14;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Location = new System.Drawing.Point(4, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 24);
+            this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 9;
             this.label6.Text = "終了日";
             // 
@@ -801,19 +787,17 @@
             this._dateKikanEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dateKikanEnd.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this._dateKikanEnd.Location = new System.Drawing.Point(56, 40);
-            this._dateKikanEnd.Margin = new System.Windows.Forms.Padding(6);
+            this._dateKikanEnd.Location = new System.Drawing.Point(28, 20);
             this._dateKikanEnd.Name = "_dateKikanEnd";
-            this._dateKikanEnd.Size = new System.Drawing.Size(408, 39);
+            this._dateKikanEnd.Size = new System.Drawing.Size(206, 23);
             this._dateKikanEnd.TabIndex = 8;
             // 
             // chkKikanEnd
             // 
             this.chkKikanEnd.AutoSize = true;
-            this.chkKikanEnd.Location = new System.Drawing.Point(12, 48);
-            this.chkKikanEnd.Margin = new System.Windows.Forms.Padding(6);
+            this.chkKikanEnd.Location = new System.Drawing.Point(6, 24);
             this.chkKikanEnd.Name = "chkKikanEnd";
-            this.chkKikanEnd.Size = new System.Drawing.Size(28, 27);
+            this.chkKikanEnd.Size = new System.Drawing.Size(15, 14);
             this.chkKikanEnd.TabIndex = 7;
             this.chkKikanEnd.UseVisualStyleBackColor = true;
             this.chkKikanEnd.CheckedChanged += new System.EventHandler(this.chkKikanEnd_CheckedChanged);
@@ -821,10 +805,9 @@
             // _btnKikanYear
             // 
             this._btnKikanYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btnKikanYear.Location = new System.Drawing.Point(314, 98);
-            this._btnKikanYear.Margin = new System.Windows.Forms.Padding(6);
+            this._btnKikanYear.Location = new System.Drawing.Point(157, 49);
             this._btnKikanYear.Name = "_btnKikanYear";
-            this._btnKikanYear.Size = new System.Drawing.Size(138, 46);
+            this._btnKikanYear.Size = new System.Drawing.Size(69, 23);
             this._btnKikanYear.TabIndex = 11;
             this._btnKikanYear.Text = "１年間";
             this._btnKikanYear.UseVisualStyleBackColor = true;
@@ -832,10 +815,9 @@
             // _btnKikanDay
             // 
             this._btnKikanDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btnKikanDay.Location = new System.Drawing.Point(54, 98);
-            this._btnKikanDay.Margin = new System.Windows.Forms.Padding(6);
+            this._btnKikanDay.Location = new System.Drawing.Point(27, 49);
             this._btnKikanDay.Name = "_btnKikanDay";
-            this._btnKikanDay.Size = new System.Drawing.Size(102, 46);
+            this._btnKikanDay.Size = new System.Drawing.Size(51, 23);
             this._btnKikanDay.TabIndex = 9;
             this._btnKikanDay.Text = "同日";
             this._btnKikanDay.UseVisualStyleBackColor = true;
@@ -843,10 +825,9 @@
             // _btnKikanMonth
             // 
             this._btnKikanMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btnKikanMonth.Location = new System.Drawing.Point(166, 98);
-            this._btnKikanMonth.Margin = new System.Windows.Forms.Padding(6);
+            this._btnKikanMonth.Location = new System.Drawing.Point(83, 49);
             this._btnKikanMonth.Name = "_btnKikanMonth";
-            this._btnKikanMonth.Size = new System.Drawing.Size(138, 46);
+            this._btnKikanMonth.Size = new System.Drawing.Size(69, 23);
             this._btnKikanMonth.TabIndex = 10;
             this._btnKikanMonth.Text = "１ヶ月間";
             this._btnKikanMonth.UseVisualStyleBackColor = true;
@@ -858,18 +839,16 @@
             this.panel3.Controls.Add(this.chkKikanStart);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(468, 110);
+            this.panel3.Size = new System.Drawing.Size(234, 55);
             this.panel3.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 6);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Location = new System.Drawing.Point(4, 3);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 24);
+            this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 2;
             this.label5.Text = "開始日";
             // 
@@ -878,19 +857,17 @@
             this._dateKikanStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dateKikanStart.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this._dateKikanStart.Location = new System.Drawing.Point(56, 40);
-            this._dateKikanStart.Margin = new System.Windows.Forms.Padding(6);
+            this._dateKikanStart.Location = new System.Drawing.Point(28, 20);
             this._dateKikanStart.Name = "_dateKikanStart";
-            this._dateKikanStart.Size = new System.Drawing.Size(408, 39);
+            this._dateKikanStart.Size = new System.Drawing.Size(206, 23);
             this._dateKikanStart.TabIndex = 1;
             // 
             // chkKikanStart
             // 
             this.chkKikanStart.AutoSize = true;
-            this.chkKikanStart.Location = new System.Drawing.Point(12, 48);
-            this.chkKikanStart.Margin = new System.Windows.Forms.Padding(6);
+            this.chkKikanStart.Location = new System.Drawing.Point(6, 24);
             this.chkKikanStart.Name = "chkKikanStart";
-            this.chkKikanStart.Size = new System.Drawing.Size(28, 27);
+            this.chkKikanStart.Size = new System.Drawing.Size(15, 14);
             this.chkKikanStart.TabIndex = 0;
             this.chkKikanStart.UseVisualStyleBackColor = true;
             this.chkKikanStart.CheckedChanged += new System.EventHandler(this.chkKikanStart_CheckedChanged);
@@ -899,10 +876,9 @@
             // 
             this._btnCalendarTekiyou.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCalendarTekiyou.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this._btnCalendarTekiyou.Location = new System.Drawing.Point(146, 326);
-            this._btnCalendarTekiyou.Margin = new System.Windows.Forms.Padding(6);
+            this._btnCalendarTekiyou.Location = new System.Drawing.Point(73, 163);
             this._btnCalendarTekiyou.Name = "_btnCalendarTekiyou";
-            this._btnCalendarTekiyou.Size = new System.Drawing.Size(178, 70);
+            this._btnCalendarTekiyou.Size = new System.Drawing.Size(89, 35);
             this._btnCalendarTekiyou.TabIndex = 12;
             this._btnCalendarTekiyou.Text = "適用";
             this._btnCalendarTekiyou.UseVisualStyleBackColor = true;
@@ -913,9 +889,8 @@
             this._pnlKarteLoaderWrap.Controls.Add(this._pnlKarteLoader);
             this._pnlKarteLoaderWrap.Dock = System.Windows.Forms.DockStyle.Top;
             this._pnlKarteLoaderWrap.Location = new System.Drawing.Point(0, 0);
-            this._pnlKarteLoaderWrap.Margin = new System.Windows.Forms.Padding(6);
             this._pnlKarteLoaderWrap.Name = "_pnlKarteLoaderWrap";
-            this._pnlKarteLoaderWrap.Size = new System.Drawing.Size(496, 76);
+            this._pnlKarteLoaderWrap.Size = new System.Drawing.Size(248, 38);
             this._pnlKarteLoaderWrap.TabIndex = 20;
             // 
             // _pnlKarteLoader
@@ -925,9 +900,8 @@
             this._pnlKarteLoader.Controls.Add(this.btnClear);
             this._pnlKarteLoader.Dock = System.Windows.Forms.DockStyle.Fill;
             this._pnlKarteLoader.Location = new System.Drawing.Point(0, 0);
-            this._pnlKarteLoader.Margin = new System.Windows.Forms.Padding(6);
             this._pnlKarteLoader.Name = "_pnlKarteLoader";
-            this._pnlKarteLoader.Size = new System.Drawing.Size(496, 76);
+            this._pnlKarteLoader.Size = new System.Drawing.Size(248, 38);
             this._pnlKarteLoader.TabIndex = 14;
             // 
             // _pnlKarteIdInput
@@ -938,19 +912,19 @@
             this._pnlKarteIdInput.Location = new System.Drawing.Point(0, 0);
             this._pnlKarteIdInput.Margin = new System.Windows.Forms.Padding(0);
             this._pnlKarteIdInput.Name = "_pnlKarteIdInput";
-            this._pnlKarteIdInput.Padding = new System.Windows.Forms.Padding(8, 8, 4, 8);
-            this._pnlKarteIdInput.Size = new System.Drawing.Size(318, 76);
+            this._pnlKarteIdInput.Padding = new System.Windows.Forms.Padding(4, 4, 2, 4);
+            this._pnlKarteIdInput.Size = new System.Drawing.Size(159, 38);
             this._pnlKarteIdInput.TabIndex = 3;
             // 
             // _pnlTxtKarteBangouWrap
             // 
             this._pnlTxtKarteBangouWrap.Controls.Add(this.txtKarteBangou);
             this._pnlTxtKarteBangouWrap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._pnlTxtKarteBangouWrap.Location = new System.Drawing.Point(140, 8);
+            this._pnlTxtKarteBangouWrap.Location = new System.Drawing.Point(72, 4);
             this._pnlTxtKarteBangouWrap.Margin = new System.Windows.Forms.Padding(0);
             this._pnlTxtKarteBangouWrap.Name = "_pnlTxtKarteBangouWrap";
-            this._pnlTxtKarteBangouWrap.Padding = new System.Windows.Forms.Padding(4, 4, 0, 0);
-            this._pnlTxtKarteBangouWrap.Size = new System.Drawing.Size(174, 60);
+            this._pnlTxtKarteBangouWrap.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this._pnlTxtKarteBangouWrap.Size = new System.Drawing.Size(85, 30);
             this._pnlTxtKarteBangouWrap.TabIndex = 2;
             // 
             // txtKarteBangou
@@ -958,10 +932,10 @@
             this.txtKarteBangou.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtKarteBangou.Font = new System.Drawing.Font("MS UI Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKarteBangou.ForeColor = System.Drawing.Color.Black;
-            this.txtKarteBangou.Location = new System.Drawing.Point(4, 4);
+            this.txtKarteBangou.Location = new System.Drawing.Point(2, 2);
             this.txtKarteBangou.Margin = new System.Windows.Forms.Padding(0);
             this.txtKarteBangou.Name = "txtKarteBangou";
-            this.txtKarteBangou.Size = new System.Drawing.Size(170, 45);
+            this.txtKarteBangou.Size = new System.Drawing.Size(83, 26);
             this.txtKarteBangou.TabIndex = 1;
             this.txtKarteBangou.Text = "123456";
             this.txtKarteBangou.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -979,20 +953,20 @@
             this.cmbSinryoujo.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cmbSinryoujo.ForeColor = System.Drawing.Color.Black;
             this.cmbSinryoujo.FormattingEnabled = true;
-            this.cmbSinryoujo.Location = new System.Drawing.Point(8, 8);
+            this.cmbSinryoujo.Location = new System.Drawing.Point(4, 4);
             this.cmbSinryoujo.Margin = new System.Windows.Forms.Padding(0);
             this.cmbSinryoujo.Name = "cmbSinryoujo";
-            this.cmbSinryoujo.Size = new System.Drawing.Size(132, 50);
+            this.cmbSinryoujo.Size = new System.Drawing.Size(68, 29);
             this.cmbSinryoujo.TabIndex = 0;
             // 
             // btnLoadKarte
             // 
             this.btnLoadKarte.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnLoadKarte.ForeColor = System.Drawing.Color.Black;
-            this.btnLoadKarte.Location = new System.Drawing.Point(318, 0);
+            this.btnLoadKarte.Location = new System.Drawing.Point(159, 0);
             this.btnLoadKarte.Margin = new System.Windows.Forms.Padding(0);
             this.btnLoadKarte.Name = "btnLoadKarte";
-            this.btnLoadKarte.Size = new System.Drawing.Size(84, 76);
+            this.btnLoadKarte.Size = new System.Drawing.Size(42, 38);
             this.btnLoadKarte.TabIndex = 2;
             this.btnLoadKarte.Text = "読込";
             this.btnLoadKarte.UseVisualStyleBackColor = true;
@@ -1002,10 +976,10 @@
             // 
             this.btnClear.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClear.ForeColor = System.Drawing.Color.Black;
-            this.btnClear.Location = new System.Drawing.Point(402, 0);
+            this.btnClear.Location = new System.Drawing.Point(201, 0);
             this.btnClear.Margin = new System.Windows.Forms.Padding(0);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(94, 76);
+            this.btnClear.Size = new System.Drawing.Size(47, 38);
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "クリア";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -1016,20 +990,18 @@
             this.panel4.AutoSize = true;
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 902);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6);
+            this.panel4.Location = new System.Drawing.Point(0, 381);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(496, 0);
+            this.panel4.Size = new System.Drawing.Size(248, 0);
             this.panel4.TabIndex = 19;
             // 
             // picPanelRightDark1
             // 
             this.picPanelRightDark1.BackColor = System.Drawing.Color.DarkGray;
             this.picPanelRightDark1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picPanelRightDark1.Location = new System.Drawing.Point(496, 0);
-            this.picPanelRightDark1.Margin = new System.Windows.Forms.Padding(6);
+            this.picPanelRightDark1.Location = new System.Drawing.Point(248, 0);
             this.picPanelRightDark1.Name = "picPanelRightDark1";
-            this.picPanelRightDark1.Size = new System.Drawing.Size(4, 902);
+            this.picPanelRightDark1.Size = new System.Drawing.Size(2, 381);
             this.picPanelRightDark1.TabIndex = 10;
             this.picPanelRightDark1.TabStop = false;
             // 
@@ -1038,11 +1010,10 @@
             this.tabInfo.Controls.Add(this.tabPage患者情報);
             this.tabInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabInfo.Location = new System.Drawing.Point(0, 0);
-            this.tabInfo.Margin = new System.Windows.Forms.Padding(6);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Drawing.Point(0, 0);
             this.tabInfo.SelectedIndex = 0;
-            this.tabInfo.Size = new System.Drawing.Size(500, 354);
+            this.tabInfo.Size = new System.Drawing.Size(250, 149);
             this.tabInfo.TabIndex = 1;
             this.tabInfo.TabStop = false;
             // 
@@ -1050,11 +1021,10 @@
             // 
             this.tabPage患者情報.AutoScroll = true;
             this.tabPage患者情報.Controls.Add(this.karteDataDisp1);
-            this.tabPage患者情報.Location = new System.Drawing.Point(8, 43);
-            this.tabPage患者情報.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage患者情報.Location = new System.Drawing.Point(4, 22);
             this.tabPage患者情報.Name = "tabPage患者情報";
-            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage患者情報.Size = new System.Drawing.Size(484, 303);
+            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage患者情報.Size = new System.Drawing.Size(242, 123);
             this.tabPage患者情報.TabIndex = 0;
             this.tabPage患者情報.Text = "患者情報";
             this.tabPage患者情報.UseVisualStyleBackColor = true;
@@ -1064,9 +1034,9 @@
             this.karteDataDisp1.BackColor = System.Drawing.Color.White;
             this.karteDataDisp1.KarteData = ((OmoSeitokuEreceipt.SER.KarteData)(resources.GetObject("karteDataDisp1.KarteData")));
             this.karteDataDisp1.Location = new System.Drawing.Point(0, 0);
-            this.karteDataDisp1.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
+            this.karteDataDisp1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.karteDataDisp1.Name = "karteDataDisp1";
-            this.karteDataDisp1.Size = new System.Drawing.Size(1382, 594);
+            this.karteDataDisp1.Size = new System.Drawing.Size(691, 297);
             this.karteDataDisp1.TabIndex = 0;
             this.karteDataDisp1.TabStop = false;
             // 
@@ -1074,10 +1044,9 @@
             // 
             this.picPanelBottomDark.BackColor = System.Drawing.Color.DarkGray;
             this.picPanelBottomDark.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.picPanelBottomDark.Location = new System.Drawing.Point(0, 1264);
-            this.picPanelBottomDark.Margin = new System.Windows.Forms.Padding(6);
+            this.picPanelBottomDark.Location = new System.Drawing.Point(0, 534);
             this.picPanelBottomDark.Name = "picPanelBottomDark";
-            this.picPanelBottomDark.Size = new System.Drawing.Size(500, 4);
+            this.picPanelBottomDark.Size = new System.Drawing.Size(250, 2);
             this.picPanelBottomDark.TabIndex = 15;
             this.picPanelBottomDark.TabStop = false;
             // 
@@ -1086,7 +1055,6 @@
             this._splitContainer上部.BackColor = System.Drawing.Color.MediumTurquoise;
             this._splitContainer上部.Dock = System.Windows.Forms.DockStyle.Fill;
             this._splitContainer上部.Location = new System.Drawing.Point(0, 0);
-            this._splitContainer上部.Margin = new System.Windows.Forms.Padding(6);
             this._splitContainer上部.Name = "_splitContainer上部";
             // 
             // _splitContainer上部.Panel1
@@ -1098,21 +1066,19 @@
             // 
             this._splitContainer上部.Panel2.BackColor = System.Drawing.Color.Black;
             this._splitContainer上部.Panel2.Controls.Add(this._shinryouDateSelectorElementHost);
-            this._splitContainer上部.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this._splitContainer上部.Size = new System.Drawing.Size(1526, 286);
-            this._splitContainer上部.SplitterDistance = 1076;
-            this._splitContainer上部.SplitterWidth = 8;
+            this._splitContainer上部.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._splitContainer上部.Size = new System.Drawing.Size(501, 116);
+            this._splitContainer上部.SplitterDistance = 353;
             this._splitContainer上部.TabIndex = 2;
             // 
             // _chkSisyuKanzen
             // 
             this._chkSisyuKanzen.AutoSize = true;
             this._chkSisyuKanzen.BackColor = System.Drawing.Color.PowderBlue;
-            this._chkSisyuKanzen.Location = new System.Drawing.Point(10, 6);
-            this._chkSisyuKanzen.Margin = new System.Windows.Forms.Padding(6);
+            this._chkSisyuKanzen.Location = new System.Drawing.Point(5, 3);
             this._chkSisyuKanzen.Name = "_chkSisyuKanzen";
-            this._chkSisyuKanzen.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this._chkSisyuKanzen.Size = new System.Drawing.Size(146, 28);
+            this._chkSisyuKanzen.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this._chkSisyuKanzen.Size = new System.Drawing.Size(76, 16);
             this._chkSisyuKanzen.TabIndex = 0;
             this._chkSisyuKanzen.Text = "完全一致";
             this._chkSisyuKanzen.UseVisualStyleBackColor = false;
@@ -1123,9 +1089,9 @@
             this._toothSelector.Dock = System.Windows.Forms.DockStyle.Fill;
             this._toothSelector.IsMultiSelect = false;
             this._toothSelector.Location = new System.Drawing.Point(0, 0);
-            this._toothSelector.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
+            this._toothSelector.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this._toothSelector.Name = "_toothSelector";
-            this._toothSelector.Size = new System.Drawing.Size(1076, 286);
+            this._toothSelector.Size = new System.Drawing.Size(353, 116);
             this._toothSelector.TabIndex = 0;
             this._toothSelector.TabStop = false;
             this.toolTip1.SetToolTip(this._toothSelector, "Ctrlキーを押しながらクリックで複数選択");
@@ -1135,9 +1101,8 @@
             this._shinryouDateSelectorElementHost.BackColor = System.Drawing.Color.LightSteelBlue;
             this._shinryouDateSelectorElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shinryouDateSelectorElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shinryouDateSelectorElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouDateSelectorElementHost.Name = "_shinryouDateSelectorElementHost";
-            this._shinryouDateSelectorElementHost.Size = new System.Drawing.Size(442, 284);
+            this._shinryouDateSelectorElementHost.Size = new System.Drawing.Size(144, 115);
             this._shinryouDateSelectorElementHost.TabIndex = 8;
             this._shinryouDateSelectorElementHost.TabStop = false;
             this._shinryouDateSelectorElementHost.Text = "_shinryouDateSelectorElementHost";
@@ -1153,10 +1118,9 @@
             this._pnlRirekiTableControlBox.Controls.Add(this.panel6);
             this._pnlRirekiTableControlBox.Controls.Add(this.panel7);
             this._pnlRirekiTableControlBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._pnlRirekiTableControlBox.Location = new System.Drawing.Point(0, 286);
-            this._pnlRirekiTableControlBox.Margin = new System.Windows.Forms.Padding(6);
+            this._pnlRirekiTableControlBox.Location = new System.Drawing.Point(0, 116);
             this._pnlRirekiTableControlBox.Name = "_pnlRirekiTableControlBox";
-            this._pnlRirekiTableControlBox.Size = new System.Drawing.Size(1526, 50);
+            this._pnlRirekiTableControlBox.Size = new System.Drawing.Size(501, 52);
             this._pnlRirekiTableControlBox.TabIndex = 3;
             // 
             // _pnlJogaiType
@@ -1170,8 +1134,8 @@
             this._pnlJogaiType.Location = new System.Drawing.Point(0, 0);
             this._pnlJogaiType.Margin = new System.Windows.Forms.Padding(0);
             this._pnlJogaiType.Name = "_pnlJogaiType";
-            this._pnlJogaiType.Padding = new System.Windows.Forms.Padding(0, 0, 8, 4);
-            this._pnlJogaiType.Size = new System.Drawing.Size(376, 50);
+            this._pnlJogaiType.Padding = new System.Windows.Forms.Padding(0, 0, 4, 2);
+            this._pnlJogaiType.Size = new System.Drawing.Size(189, 26);
             this._pnlJogaiType.TabIndex = 1;
             // 
             // _cmbJogaiType
@@ -1184,19 +1148,19 @@
             this._cmbJogaiType.Items.AddRange(new object[] {
             "除外",
             "のみ"});
-            this._cmbJogaiType.Location = new System.Drawing.Point(232, 4);
+            this._cmbJogaiType.Location = new System.Drawing.Point(116, 2);
             this._cmbJogaiType.Margin = new System.Windows.Forms.Padding(0);
             this._cmbJogaiType.Name = "_cmbJogaiType";
-            this._cmbJogaiType.Size = new System.Drawing.Size(130, 32);
+            this._cmbJogaiType.Size = new System.Drawing.Size(67, 20);
             this._cmbJogaiType.TabIndex = 3;
             // 
             // _chkGishiJogai
             // 
             this._chkGishiJogai.AutoSize = true;
-            this._chkGishiJogai.Location = new System.Drawing.Point(136, 10);
+            this._chkGishiJogai.Location = new System.Drawing.Point(68, 5);
             this._chkGishiJogai.Margin = new System.Windows.Forms.Padding(0);
             this._chkGishiJogai.Name = "_chkGishiJogai";
-            this._chkGishiJogai.Size = new System.Drawing.Size(90, 28);
+            this._chkGishiJogai.Size = new System.Drawing.Size(48, 16);
             this._chkGishiJogai.TabIndex = 2;
             this._chkGishiJogai.Text = "義歯";
             this._chkGishiJogai.UseVisualStyleBackColor = true;
@@ -1204,10 +1168,10 @@
             // _chkGJogai
             // 
             this._chkGJogai.AutoSize = true;
-            this._chkGJogai.Location = new System.Drawing.Point(72, 10);
+            this._chkGJogai.Location = new System.Drawing.Point(36, 5);
             this._chkGJogai.Margin = new System.Windows.Forms.Padding(0);
             this._chkGJogai.Name = "_chkGJogai";
-            this._chkGJogai.Size = new System.Drawing.Size(58, 28);
+            this._chkGJogai.Size = new System.Drawing.Size(32, 16);
             this._chkGJogai.TabIndex = 1;
             this._chkGJogai.Text = "G";
             this._chkGJogai.UseVisualStyleBackColor = true;
@@ -1215,10 +1179,10 @@
             // _chkPJogai
             // 
             this._chkPJogai.AutoSize = true;
-            this._chkPJogai.Location = new System.Drawing.Point(10, 10);
+            this._chkPJogai.Location = new System.Drawing.Point(5, 5);
             this._chkPJogai.Margin = new System.Windows.Forms.Padding(0);
             this._chkPJogai.Name = "_chkPJogai";
-            this._chkPJogai.Size = new System.Drawing.Size(57, 28);
+            this._chkPJogai.Size = new System.Drawing.Size(31, 16);
             this._chkPJogai.TabIndex = 0;
             this._chkPJogai.Text = "P";
             this._chkPJogai.UseVisualStyleBackColor = true;
@@ -1229,11 +1193,11 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this._cmbShinryouTougou);
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(376, 0);
+            this.panel5.Location = new System.Drawing.Point(189, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
-            this.panel5.MinimumSize = new System.Drawing.Size(2, 50);
+            this.panel5.MinimumSize = new System.Drawing.Size(2, 26);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(302, 50);
+            this.panel5.Size = new System.Drawing.Size(152, 26);
             this.panel5.TabIndex = 3;
             // 
             // _cmbShinryouTougou
@@ -1243,19 +1207,18 @@
             this._cmbShinryouTougou.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmbShinryouTougou.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._cmbShinryouTougou.FormattingEnabled = true;
-            this._cmbShinryouTougou.Location = new System.Drawing.Point(76, 6);
-            this._cmbShinryouTougou.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this._cmbShinryouTougou.Location = new System.Drawing.Point(38, 3);
+            this._cmbShinryouTougou.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this._cmbShinryouTougou.Name = "_cmbShinryouTougou";
-            this._cmbShinryouTougou.Size = new System.Drawing.Size(206, 32);
+            this._cmbShinryouTougou.Size = new System.Drawing.Size(105, 20);
             this._cmbShinryouTougou.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(6, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 24);
+            this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "統合";
             // 
@@ -1265,20 +1228,20 @@
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this._cmbSinryouOrder);
             this.panel6.Controls.Add(this.label2);
-            this.panel6.Location = new System.Drawing.Point(678, 0);
+            this.panel6.Location = new System.Drawing.Point(0, 26);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(352, 50);
+            this.panel6.Size = new System.Drawing.Size(177, 26);
             this.panel6.TabIndex = 2;
             // 
             // _cmbSinryouOrder
             // 
             this._cmbSinryouOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._cmbSinryouOrder.Location = new System.Drawing.Point(110, 0);
-            this._cmbSinryouOrder.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this._cmbSinryouOrder.Location = new System.Drawing.Point(55, 0);
+            this._cmbSinryouOrder.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this._cmbSinryouOrder.Name = "_cmbSinryouOrder";
-            this._cmbSinryouOrder.Size = new System.Drawing.Size(234, 48);
+            this._cmbSinryouOrder.Size = new System.Drawing.Size(117, 24);
             this._cmbSinryouOrder.TabIndex = 1;
             this._cmbSinryouOrder.Text = "elementHost1";
             this._cmbSinryouOrder.Child = this.shinryouOrderTypeSelector1;
@@ -1286,10 +1249,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 14);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(10, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 24);
+            this.label2.Size = new System.Drawing.Size(39, 12);
             this.label2.TabIndex = 0;
             this.label2.Text = "並び順";
             // 
@@ -1301,20 +1263,19 @@
             this.panel7.Controls.Add(this._cmbViewerSettings);
             this.panel7.Controls.Add(this.btnAddTemplate);
             this.panel7.Controls.Add(this.btnRemoveTemplate);
-            this.panel7.Location = new System.Drawing.Point(1030, 0);
+            this.panel7.Location = new System.Drawing.Point(177, 26);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
-            this.panel7.MinimumSize = new System.Drawing.Size(2, 50);
+            this.panel7.MinimumSize = new System.Drawing.Size(2, 26);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(376, 50);
+            this.panel7.Size = new System.Drawing.Size(189, 26);
             this.panel7.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 14);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Location = new System.Drawing.Point(3, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 24);
+            this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 7;
             this.label3.Text = "設定";
             // 
@@ -1328,10 +1289,10 @@
             this._cmbViewerSettings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmbViewerSettings.DropDownWidth = 500;
             this._cmbViewerSettings.FormattingEnabled = true;
-            this._cmbViewerSettings.Location = new System.Drawing.Point(68, 4);
+            this._cmbViewerSettings.Location = new System.Drawing.Point(34, 2);
             this._cmbViewerSettings.Margin = new System.Windows.Forms.Padding(0);
             this._cmbViewerSettings.Name = "_cmbViewerSettings";
-            this._cmbViewerSettings.Size = new System.Drawing.Size(138, 32);
+            this._cmbViewerSettings.Size = new System.Drawing.Size(71, 20);
             this._cmbViewerSettings.TabIndex = 4;
             this.toolTip1.SetToolTip(this._cmbViewerSettings, "表示設定を復帰");
             this._cmbViewerSettings.SelectedIndexChanged += new System.EventHandler(this._cmbViewerSettings_SelectedIndexChanged);
@@ -1340,10 +1301,10 @@
             // 
             this.btnAddTemplate.AutoSize = true;
             this.btnAddTemplate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAddTemplate.Location = new System.Drawing.Point(212, 2);
+            this.btnAddTemplate.Location = new System.Drawing.Point(106, 1);
             this.btnAddTemplate.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddTemplate.Name = "btnAddTemplate";
-            this.btnAddTemplate.Size = new System.Drawing.Size(68, 34);
+            this.btnAddTemplate.Size = new System.Drawing.Size(39, 22);
             this.btnAddTemplate.TabIndex = 5;
             this.btnAddTemplate.Text = "保存";
             this.btnAddTemplate.UseVisualStyleBackColor = true;
@@ -1354,10 +1315,10 @@
             this.btnRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveTemplate.AutoSize = true;
             this.btnRemoveTemplate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnRemoveTemplate.Location = new System.Drawing.Point(300, 2);
-            this.btnRemoveTemplate.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnRemoveTemplate.Location = new System.Drawing.Point(145, 1);
+            this.btnRemoveTemplate.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.btnRemoveTemplate.Name = "btnRemoveTemplate";
-            this.btnRemoveTemplate.Size = new System.Drawing.Size(68, 34);
+            this.btnRemoveTemplate.Size = new System.Drawing.Size(39, 22);
             this.btnRemoveTemplate.TabIndex = 6;
             this.btnRemoveTemplate.Text = "削除";
             this.btnRemoveTemplate.UseVisualStyleBackColor = true;
@@ -1366,10 +1327,9 @@
             // _syoRirekiListWrap
             // 
             this._syoRirekiListWrap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._syoRirekiListWrap.Location = new System.Drawing.Point(4, 102);
-            this._syoRirekiListWrap.Margin = new System.Windows.Forms.Padding(6);
+            this._syoRirekiListWrap.Location = new System.Drawing.Point(2, 51);
             this._syoRirekiListWrap.Name = "_syoRirekiListWrap";
-            this._syoRirekiListWrap.Size = new System.Drawing.Size(1522, 812);
+            this._syoRirekiListWrap.Size = new System.Drawing.Size(499, 308);
             this._syoRirekiListWrap.TabIndex = 0;
             this._syoRirekiListWrap.Text = "elementHost1";
             this._syoRirekiListWrap.Child = null;
@@ -1379,11 +1339,10 @@
             this._shinryouListControlPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._shinryouListControlPanel.Controls.Add(this._pnlBtnフィルター追加Wrap);
             this._shinryouListControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._shinryouListControlPanel.Location = new System.Drawing.Point(4, 0);
-            this._shinryouListControlPanel.Margin = new System.Windows.Forms.Padding(6);
+            this._shinryouListControlPanel.Location = new System.Drawing.Point(2, 0);
             this._shinryouListControlPanel.Name = "_shinryouListControlPanel";
-            this._shinryouListControlPanel.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this._shinryouListControlPanel.Size = new System.Drawing.Size(1522, 102);
+            this._shinryouListControlPanel.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this._shinryouListControlPanel.Size = new System.Drawing.Size(499, 51);
             this._shinryouListControlPanel.TabIndex = 2;
             // 
             // _pnlBtnフィルター追加Wrap
@@ -1393,11 +1352,10 @@
             this._pnlBtnフィルター追加Wrap.BackColor = System.Drawing.Color.Transparent;
             this._pnlBtnフィルター追加Wrap.Controls.Add(this._btnフィルター追加);
             this._pnlBtnフィルター追加Wrap.Dock = System.Windows.Forms.DockStyle.Left;
-            this._pnlBtnフィルター追加Wrap.Location = new System.Drawing.Point(0, 8);
-            this._pnlBtnフィルター追加Wrap.Margin = new System.Windows.Forms.Padding(6);
+            this._pnlBtnフィルター追加Wrap.Location = new System.Drawing.Point(0, 4);
             this._pnlBtnフィルター追加Wrap.Name = "_pnlBtnフィルター追加Wrap";
-            this._pnlBtnフィルター追加Wrap.Padding = new System.Windows.Forms.Padding(4, 0, 8, 4);
-            this._pnlBtnフィルター追加Wrap.Size = new System.Drawing.Size(182, 94);
+            this._pnlBtnフィルター追加Wrap.Padding = new System.Windows.Forms.Padding(2, 0, 4, 2);
+            this._pnlBtnフィルター追加Wrap.Size = new System.Drawing.Size(94, 47);
             this._pnlBtnフィルター追加Wrap.TabIndex = 1;
             // 
             // _btnフィルター追加
@@ -1408,10 +1366,9 @@
             this._btnフィルター追加.Dock = System.Windows.Forms.DockStyle.Left;
             this._btnフィルター追加.FlatAppearance.BorderSize = 0;
             this._btnフィルター追加.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnフィルター追加.Location = new System.Drawing.Point(4, 0);
-            this._btnフィルター追加.Margin = new System.Windows.Forms.Padding(6);
+            this._btnフィルター追加.Location = new System.Drawing.Point(2, 0);
             this._btnフィルター追加.Name = "_btnフィルター追加";
-            this._btnフィルター追加.Size = new System.Drawing.Size(170, 90);
+            this._btnフィルター追加.Size = new System.Drawing.Size(88, 45);
             this._btnフィルター追加.TabIndex = 0;
             this._btnフィルター追加.Text = "フィルター追加...";
             this.toolTip1.SetToolTip(this._btnフィルター追加, "新規フィルターの作成 (Ctrl + T)");
@@ -1422,10 +1379,9 @@
             // 
             this.picMenuDark.BackColor = System.Drawing.Color.DarkGray;
             this.picMenuDark.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picMenuDark.Location = new System.Drawing.Point(0, 44);
-            this.picMenuDark.Margin = new System.Windows.Forms.Padding(6);
+            this.picMenuDark.Location = new System.Drawing.Point(0, 24);
             this.picMenuDark.Name = "picMenuDark";
-            this.picMenuDark.Size = new System.Drawing.Size(2666, 4);
+            this.picMenuDark.Size = new System.Drawing.Size(962, 2);
             this.picMenuDark.TabIndex = 9;
             this.picMenuDark.TabStop = false;
             // 
@@ -1434,10 +1390,10 @@
             this._btnToggleFilterControlPanel.Cursor = System.Windows.Forms.Cursors.Hand;
             this._btnToggleFilterControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._btnToggleFilterControlPanel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._btnToggleFilterControlPanel.Location = new System.Drawing.Point(0, 336);
+            this._btnToggleFilterControlPanel.Location = new System.Drawing.Point(0, 168);
             this._btnToggleFilterControlPanel.Margin = new System.Windows.Forms.Padding(0);
             this._btnToggleFilterControlPanel.Name = "_btnToggleFilterControlPanel";
-            this._btnToggleFilterControlPanel.Size = new System.Drawing.Size(1526, 14);
+            this._btnToggleFilterControlPanel.Size = new System.Drawing.Size(501, 7);
             this._btnToggleFilterControlPanel.TabIndex = 13;
             this._btnToggleFilterControlPanel.TabStop = false;
             this.toolTip1.SetToolTip(this._btnToggleFilterControlPanel, "フィルターコントロールパネルの開閉");
@@ -1449,8 +1405,7 @@
             // 
             this.splitContainerRight.BackColor = System.Drawing.Color.MediumTurquoise;
             this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerRight.Location = new System.Drawing.Point(500, 48);
-            this.splitContainerRight.Margin = new System.Windows.Forms.Padding(6);
+            this.splitContainerRight.Location = new System.Drawing.Point(250, 26);
             this.splitContainerRight.Name = "splitContainerRight";
             // 
             // splitContainerRight.Panel1
@@ -1463,9 +1418,8 @@
             // splitContainerRight.Panel2
             // 
             this.splitContainerRight.Panel2.Controls.Add(this._shinryouCheckDisplayElementHost);
-            this.splitContainerRight.Size = new System.Drawing.Size(2166, 1268);
-            this.splitContainerRight.SplitterDistance = 1526;
-            this.splitContainerRight.SplitterWidth = 8;
+            this.splitContainerRight.Size = new System.Drawing.Size(712, 536);
+            this.splitContainerRight.SplitterDistance = 501;
             this.splitContainerRight.TabIndex = 11;
             // 
             // _shinryouListPanel
@@ -1474,11 +1428,10 @@
             this._shinryouListPanel.Controls.Add(this._syoRirekiListWrap);
             this._shinryouListPanel.Controls.Add(this._shinryouListControlPanel);
             this._shinryouListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._shinryouListPanel.Location = new System.Drawing.Point(0, 350);
-            this._shinryouListPanel.Margin = new System.Windows.Forms.Padding(6);
+            this._shinryouListPanel.Location = new System.Drawing.Point(0, 175);
             this._shinryouListPanel.Name = "_shinryouListPanel";
-            this._shinryouListPanel.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            this._shinryouListPanel.Size = new System.Drawing.Size(1526, 918);
+            this._shinryouListPanel.Padding = new System.Windows.Forms.Padding(2, 0, 0, 2);
+            this._shinryouListPanel.Size = new System.Drawing.Size(501, 361);
             this._shinryouListPanel.TabIndex = 11;
             // 
             // _filterControlPanel
@@ -1487,9 +1440,8 @@
             this._filterControlPanel.Controls.Add(this._pnlRirekiTableControlBox);
             this._filterControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._filterControlPanel.Location = new System.Drawing.Point(0, 0);
-            this._filterControlPanel.Margin = new System.Windows.Forms.Padding(6);
             this._filterControlPanel.Name = "_filterControlPanel";
-            this._filterControlPanel.Size = new System.Drawing.Size(1526, 336);
+            this._filterControlPanel.Size = new System.Drawing.Size(501, 168);
             this._filterControlPanel.TabIndex = 12;
             // 
             // _shinryouCheckDisplayElementHost
@@ -1497,27 +1449,25 @@
             this._shinryouCheckDisplayElementHost.BackColor = System.Drawing.Color.GhostWhite;
             this._shinryouCheckDisplayElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shinryouCheckDisplayElementHost.Location = new System.Drawing.Point(0, 0);
-            this._shinryouCheckDisplayElementHost.Margin = new System.Windows.Forms.Padding(6);
             this._shinryouCheckDisplayElementHost.Name = "_shinryouCheckDisplayElementHost";
-            this._shinryouCheckDisplayElementHost.Size = new System.Drawing.Size(632, 1268);
+            this._shinryouCheckDisplayElementHost.Size = new System.Drawing.Size(207, 536);
             this._shinryouCheckDisplayElementHost.TabIndex = 0;
             this._shinryouCheckDisplayElementHost.Text = "_shinryouCheckDisplay";
             this._shinryouCheckDisplayElementHost.Child = this._shinryouCheckDisplay;
             // 
-            // データ変換ヤハラtoolStripMenuItem
+            // データ変換ヤハラToolStripMenuItem
             // 
-            this.データ変換ヤハラtoolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.データ変換ヤハラtoolStripMenuItem.Name = "データ変換ヤハラtoolStripMenuItem";
-            this.データ変換ヤハラtoolStripMenuItem.Size = new System.Drawing.Size(197, 36);
-            this.データ変換ヤハラtoolStripMenuItem.Text = "データ変換 ヤハラ";
-            this.データ変換ヤハラtoolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click);
+            this.データ変換ヤハラToolStripMenuItem.Name = "データ変換ヤハラToolStripMenuItem";
+            this.データ変換ヤハラToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.データ変換ヤハラToolStripMenuItem.Text = "データ変換 ヤハラ...";
+            this.データ変換ヤハラToolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click_1);
             // 
             // OmotegakiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(2666, 1372);
+            this.ClientSize = new System.Drawing.Size(962, 590);
             this.Controls.Add(this.splitContainerRight);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -1525,8 +1475,7 @@
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(6);
-            this.MinimumSize = new System.Drawing.Size(2044, 1345);
+            this.MinimumSize = new System.Drawing.Size(904, 619);
             this.Name = "OmotegakiForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.statusStrip1.ResumeLayout(false);
@@ -1717,7 +1666,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem データフォルダ共通設定ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
-        private System.Windows.Forms.ToolStripMenuItem データ変換ヤハラtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem データ変換ヤハラToolStripMenuItem;
     }
 }
 

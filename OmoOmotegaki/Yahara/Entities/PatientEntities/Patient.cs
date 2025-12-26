@@ -12,7 +12,7 @@ namespace omotegaki_xml.Libs.Yahara.Entities.PatientEntities
     public class Patient
     {
         [XmlAttribute]
-        public string KarteNo { get; }
+        public string KarteNo { get; set; }
 
         /// <summary>
         /// 名前の区切りは半角スペース

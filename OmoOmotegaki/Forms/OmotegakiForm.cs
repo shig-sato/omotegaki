@@ -2951,9 +2951,9 @@ namespace OmoOmotegaki.Forms
             _filterControlPanel.Visible = !_filterControlPanel.Visible;
         }
 
-        private async void データ変換ヤハラToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void データ変換ヤハラToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            string dialogResult = InputDialog.Show("変換数を入力 (0で最大数) または k数値 でカルテ番号を1件入力。");
+            string dialogResult = InputDialog.Show("変換するカルテ件数を入力 (0で最大数) \n または \"kカルテ番号\" で1件出力。");
             if (string.IsNullOrWhiteSpace(dialogResult)) return;
 
             Yahara.YaharaConverter.ConverterOption option;
@@ -2961,7 +2961,7 @@ namespace OmoOmotegaki.Forms
             // 出力ディレクトリーを取得
             var outputFolderPath = new DirectoryInfo(Path.Combine(global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, "yahara_xml"));
 
-            if (dialogResult[0] == 'k')
+            if (dialogResult[0] == 'k' || dialogResult[0] == 'K')
             {
                 // 個別のカルテを変換
                 if (!int.TryParse(dialogResult.Substring(1), out int karteNumber))
@@ -3012,7 +3012,6 @@ namespace OmoOmotegaki.Forms
                 this.Cursor = Cursors.Default;
                 MessageBox.Show("Complete");
             }
-
         }
     }
 }

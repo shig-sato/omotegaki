@@ -8,6 +8,9 @@ using omotegaki_xml.Libs.Yahara.Entities.PatientEntities;
 
 namespace omotegaki_xml.Libs.Yahara.Converters
 {
+    /// <summary>
+    /// Yahara - Patient
+    /// </summary>
     public static partial class KarteToPatientConverter
     {
         public static Patient Convert(KarteId karteId, KarteData karte)

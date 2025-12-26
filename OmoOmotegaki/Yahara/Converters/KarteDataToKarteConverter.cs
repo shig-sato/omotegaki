@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OmoSeitoku;
@@ -9,6 +10,9 @@ using omotegaki_xml.Libs.Yahara.Entities.PatientEntities;
 
 namespace omotegaki_xml.Libs.Yahara.Converters
 {
+    /// <summary>
+    /// Yahara - Karte
+    /// </summary>
     public static partial class KarteDataToKarteConverter
     {
         public static Karte Convert(KarteId karteId, KarteData seitokuKarte)
@@ -21,7 +25,10 @@ namespace omotegaki_xml.Libs.Yahara.Converters
 
             ShinryouDataCollection shinryouData = sinryouDataLoader.GetShinryouData(DateRange.All, SinryouDataLoader.診療統合種別.統合なし);
 
-            List<Day> days = shinryouData.Select(ToDay).ToList();
+            List<Day> days = shinryouData
+                .GroupBy(p => p.診療日)
+                .Select(ToDays)
+                .ToList();
 
             var yaharaKarte = new Karte
             {
@@ -34,24 +41,25 @@ namespace omotegaki_xml.Libs.Yahara.Converters
             return yaharaKarte;
         }
 
-        private static Day ToDay(SinryouData sinryouData, int index)
+        private static Day ToDays(IGrouping<DateTime, SinryouData> dateGroup, int dayIndex)
         {
-            List<Bui> buis = new List<Bui>() { ToBui(sinryouData, index) };
+            var sinryouData = dateGroup.First();
+            List<Bui> buis = new List<Bui>() { ToBui(sinryouData, dayIndex) };
 
             return new Day
             {
                 Date = sinryouData.診療日.ToString("yyyy/MM/dd"),
-                DateNo = index.ToString(),
+                DateNo = dayIndex.ToString(),
                 Doctor = GetDoctorName(sinryouData.担当医師),
-                Buis = buis
+                Buis = dateGroup.Select(ToBui).ToList()
             };
         }
 
-        private static Bui ToBui(SinryouData sinryouData, int index)
+        private static Bui ToBui(SinryouData sinryouData, int buiIndex)
         {
             return new Bui
             {
-                No = index.ToString(),
+                No = buiIndex.ToString(),
                 Teeth = TeethConverter.Convert(sinryouData.歯式),
                 Doctor = GetDoctorName(sinryouData.担当医師),
                 Diseases = sinryouData.病名.Select(p => new Disease { Name = p }).ToList(),

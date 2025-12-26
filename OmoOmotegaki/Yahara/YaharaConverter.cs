@@ -82,10 +82,13 @@ namespace OmoOmotegaki.Yahara
             var maxConcurrency = 4;
             using (var semaphore = new SemaphoreSlim(maxConcurrency))
             {
-                foreach (var shinryoujo in new[] { new Shinryoujo("Hon"), new Shinryoujo("Bun") })
+                foreach (var shinryoujo in new[] {
+                    new Shinryoujo("Hon"),
+                    new Shinryoujo("Bun"),
+                })
                 {
                     using FileStream zipStream = new FileStream(
-                        Path.Combine(option.OutputFolderPath.FullName, GetDirName(shinryoujo) + ".zip"),
+                        Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujo)}.zip"),
                         FileMode.Create);
                     using ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create);
 
@@ -221,7 +224,7 @@ namespace OmoOmotegaki.Yahara
 
                 // A: 患者情報-α (Patient.xml)
                 {
-                    var entry = archive.CreateEntry(kanjaDirName + "/Patient.xml", CompressionLevel.Fastest);
+                    var entry = archive.CreateEntry($"{kanjaDirName}/Patient.xml", CompressionLevel.Fastest);
                     using var writer = new StreamWriter(entry.Open(), Encoding.UTF8);
                     await writer.WriteAsync(patient.ToXML());
                 }
@@ -232,7 +235,7 @@ namespace OmoOmotegaki.Yahara
 
                 // B: カルテ情報 (Karte.xml)
                 {
-                    var entry = archive.CreateEntry(kanjaDirName + "/Karte.xml", CompressionLevel.Fastest);
+                    var entry = archive.CreateEntry($"{kanjaDirName}/Karte.xml", CompressionLevel.Fastest);
                     using var writer = new StreamWriter(entry.Open(), Encoding.UTF8);
                     await writer.WriteAsync(karte.ToXML());
                 }

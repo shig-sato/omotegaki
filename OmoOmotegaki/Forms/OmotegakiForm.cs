@@ -4,6 +4,7 @@ using OmoOmotegaki.Data;
 using OmoOmotegaki.Models;
 using OmoOmotegaki.ViewModels;
 using OmoOmotegaki.ViewModels.Controls;
+using OmoOmotegaki.Yahara.Views;
 using OmoSeitoku;
 using OmoSeitoku.Controls;
 using OmoSeitoku.Forms;
@@ -26,6 +27,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using static OmoOmotegaki.Yahara.YaharaConverter;
 
 namespace OmoOmotegaki.Forms
 {
@@ -2953,48 +2955,40 @@ namespace OmoOmotegaki.Forms
 
         private async void データ変換ヤハラToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            string dialogResult = InputDialog.Show("変換するカルテ件数を入力 (0で最大数) \n または \"kカルテ番号\" で1件出力。");
-            if (string.IsNullOrWhiteSpace(dialogResult)) return;
+            using var dlg = new Yahara.Views.OptionDialog();
+            var dlgResult = dlg.ShowDialog(this);
+            if (dlgResult != DialogResult.OK) return;
 
-            Yahara.YaharaConverter.ConverterOption option;
-
-            // 出力ディレクトリーを取得
-            var outputFolderPath = new DirectoryInfo(Path.Combine(global::OmoSeitokuEreceipt.Properties.Settings.Default.DataFolder, "yahara_xml"));
-
-            if (dialogResult[0] == 'k' || dialogResult[0] == 'K')
+            ConverterOption option = dlg.ConverterOption;
+            using ProgressDialog prgDlg = new ProgressDialog()
             {
-                // 個別のカルテを変換
-                if (!int.TryParse(dialogResult.Substring(1), out int karteNumber))
-                {
-                    MessageBox.Show("有効なカルテ番号ではありません。");
-                    return;
-                }
-
-                var shinryoujo = new Shinryoujo(cmbSinryoujo.SelectedValue.ToString());
-                option = new Yahara.YaharaConverter.ConverterOption(
-                    outputFolderPath, new KarteId(shinryoujo, karteNumber));
-            }
-            else
-            {
-                // 最大数を指定またはすべてを変換（本院・分院の両方とも変換）
-                if (!int.TryParse(dialogResult, out int limit))
-                {
-                    MessageBox.Show("有効な数値ではありません。");
-                    return;
-                }
-
-                option = new Yahara.YaharaConverter.ConverterOption(
-                    outputFolderPath, limit);
-            }
+                StartPosition = FormStartPosition.CenterParent
+            };
+            prgDlg.Show(this);
 
             try
             {
                 this.Cursor = Cursors.WaitCursor;
 
+                option.ShinryoujoItems = new[]
+                {
+                    new ShinryoujoItem(new Shinryoujo("Hon")),
+                    new ShinryoujoItem(new Shinryoujo("Bun")),
+                };
+                option.ShinryoujoItems[0].ProgressChanged = (progress) =>
+                {
+                    prgDlg.progressBar1.Value = progress;
+                };
+                option.ShinryoujoItems[1].ProgressChanged = (progress) =>
+                {
+                    prgDlg.progressBar2.Value = progress;
+                };
+
+
                 //List<string> errors;
                 try
                 {
-                    await Yahara.YaharaConverter.ConvertAll(option);
+                    await ConvertAll(option);
                 }
                 catch (Exception ex)
                 {
@@ -3009,8 +3003,25 @@ namespace OmoOmotegaki.Forms
             }
             finally
             {
+                prgDlg.Close();
+
+                option.ShinryoujoItems[0].ProgressChanged = null;
+                option.ShinryoujoItems[1].ProgressChanged = null;
+
                 this.Cursor = Cursors.Default;
-                MessageBox.Show("Complete");
+                MessageBox.Show(
+                    "ヤハラデータ変換 完了しました。" + Environment.NewLine +
+                    Environment.NewLine +
+                    "出力先: " + option.OutputFolderPath + Environment.NewLine +
+                    Environment.NewLine +
+                    "本院: " + option.ShinryoujoItems[0].ConvertedCount + "件" + Environment.NewLine +
+                    "分院: " + option.ShinryoujoItems[1].ConvertedCount + "件");
+
+                if (option.ShinryoujoItems.Sum(p => p.ConvertedCount) > 0)
+                {
+                    // ディレクトリーを開く
+                    using var _ = Process.Start(option.OutputFolderPath.FullName);
+                }
             }
         }
     }

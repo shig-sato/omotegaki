@@ -57,6 +57,7 @@
             this.アプリの設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.データフォルダ共通設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.データ変換ヤハラToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.データフォルダーToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ウィンドウToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新規ウィンドウToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,7 +152,6 @@
             this._filterControlPanel = new System.Windows.Forms.Panel();
             this._shinryouCheckDisplayElementHost = new System.Windows.Forms.Integration.ElementHost();
             this._shinryouCheckDisplay = new OmoOmotegaki.Controls.ShinryouCheckDisplay();
-            this.データ変換ヤハラToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -426,6 +426,13 @@
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(282, 6);
             // 
+            // データ変換ヤハラToolStripMenuItem
+            // 
+            this.データ変換ヤハラToolStripMenuItem.Name = "データ変換ヤハラToolStripMenuItem";
+            this.データ変換ヤハラToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.データ変換ヤハラToolStripMenuItem.Text = "データ変換 ヤハラ...";
+            this.データ変換ヤハラToolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click_1);
+            // 
             // データフォルダーToolStripMenuItem
             // 
             this.データフォルダーToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -618,7 +625,7 @@
             this.tabPage初診リスト.ForeColor = System.Drawing.Color.Black;
             this.tabPage初診リスト.Location = new System.Drawing.Point(4, 22);
             this.tabPage初診リスト.Name = "tabPage初診リスト";
-            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage初診リスト.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage初診リスト.Size = new System.Drawing.Size(240, 317);
             this.tabPage初診リスト.TabIndex = 0;
             this.tabPage初診リスト.Text = "初診リスト";
@@ -672,7 +679,7 @@
             this._btnすべての初診リストのチェックを外す.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストのチェックを外す.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._btnすべての初診リストのチェックを外す.Location = new System.Drawing.Point(79, 2);
-            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._btnすべての初診リストのチェックを外す.Margin = new System.Windows.Forms.Padding(2);
             this._btnすべての初診リストのチェックを外す.Name = "_btnすべての初診リストのチェックを外す";
             this._btnすべての初診リストのチェックを外す.Size = new System.Drawing.Size(33, 24);
             this._btnすべての初診リストのチェックを外す.TabIndex = 17;
@@ -702,7 +709,7 @@
             this._btnすべての初診リストにチェック.BackColor = System.Drawing.Color.Azure;
             this._btnすべての初診リストにチェック.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._btnすべての初診リストにチェック.Location = new System.Drawing.Point(42, 2);
-            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._btnすべての初診リストにチェック.Margin = new System.Windows.Forms.Padding(2);
             this._btnすべての初診リストにチェック.Name = "_btnすべての初診リストにチェック";
             this._btnすべての初診リストにチェック.Size = new System.Drawing.Size(33, 24);
             this._btnすべての初診リストにチェック.TabIndex = 17;
@@ -716,7 +723,7 @@
             this._chk最新の期間のみチェック.AutoSize = true;
             this._chk最新の期間のみチェック.Dock = System.Windows.Forms.DockStyle.Right;
             this._chk最新の期間のみチェック.Location = new System.Drawing.Point(134, 0);
-            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this._chk最新の期間のみチェック.Margin = new System.Windows.Forms.Padding(2);
             this._chk最新の期間のみチェック.Name = "_chk最新の期間のみチェック";
             this._chk最新の期間のみチェック.Size = new System.Drawing.Size(100, 28);
             this._chk最新の期間のみチェック.TabIndex = 18;
@@ -740,8 +747,8 @@
             this.tabPage期間指定.Controls.Add(this.panel2);
             this.tabPage期間指定.Location = new System.Drawing.Point(4, 22);
             this.tabPage期間指定.Name = "tabPage期間指定";
-            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage期間指定.Size = new System.Drawing.Size(240, 387);
+            this.tabPage期間指定.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage期間指定.Size = new System.Drawing.Size(240, 317);
             this.tabPage期間指定.TabIndex = 1;
             this.tabPage期間指定.Text = "期間指定";
             this.tabPage期間指定.UseVisualStyleBackColor = true;
@@ -756,7 +763,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(234, 381);
+            this.panel2.Size = new System.Drawing.Size(234, 311);
             this.panel2.TabIndex = 0;
             // 
             // panel8
@@ -1023,7 +1030,7 @@
             this.tabPage患者情報.Controls.Add(this.karteDataDisp1);
             this.tabPage患者情報.Location = new System.Drawing.Point(4, 22);
             this.tabPage患者情報.Name = "tabPage患者情報";
-            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage患者情報.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage患者情報.Size = new System.Drawing.Size(242, 123);
             this.tabPage患者情報.TabIndex = 0;
             this.tabPage患者情報.Text = "患者情報";
@@ -1454,13 +1461,6 @@
             this._shinryouCheckDisplayElementHost.TabIndex = 0;
             this._shinryouCheckDisplayElementHost.Text = "_shinryouCheckDisplay";
             this._shinryouCheckDisplayElementHost.Child = this._shinryouCheckDisplay;
-            // 
-            // データ変換ヤハラToolStripMenuItem
-            // 
-            this.データ変換ヤハラToolStripMenuItem.Name = "データ変換ヤハラToolStripMenuItem";
-            this.データ変換ヤハラToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
-            this.データ変換ヤハラToolStripMenuItem.Text = "データ変換 ヤハラ...";
-            this.データ変換ヤハラToolStripMenuItem.Click += new System.EventHandler(this.データ変換ヤハラToolStripMenuItem_Click_1);
             // 
             // OmotegakiForm
             // 

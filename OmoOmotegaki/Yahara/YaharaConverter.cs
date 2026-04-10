@@ -22,48 +22,43 @@ namespace OmoOmotegaki.Yahara
     {
         private const bool OUTPUT_FILE = true;
 
+        internal class ShinryoujoItem
+        {
+            public Shinryoujo Shinryoujo;
+            public int ConvertedCount;
+            public Action<int>? ProgressChanged;
+
+            public ShinryoujoItem(Shinryoujo shinryoujo)
+            {
+                this.Shinryoujo = shinryoujo;
+            }
+        }
+
 
         public sealed class ConverterOption
         {
+            public readonly DirectoryInfo OutputFolderPath;
+
+            public ShinryoujoItem[] ShinryoujoItems = new ShinryoujoItem[0];
+
             /// <summary>
             /// 0 == Max
             /// </summary>
-            public readonly int Limit;
+            public int Limit;
 
             /// <summary>
             /// 設定されている場合、batchSettingsのlimitは無視されて対象のカルテ番号のみ出力する。
             /// </summary>
-            public readonly KarteId? OneKarte;
+            public KarteId? OneKarte;
 
-            public readonly DirectoryInfo OutputFolderPath;
+            public DateRange DateRange = DateRange.All;
 
             /// <summary>
             /// すべてを変換（本院・分院の両方とも変換）
             /// </summary>
-            public ConverterOption(DirectoryInfo outputFolderPath)
+            public ConverterOption(
+                DirectoryInfo outputFolderPath)
             {
-                this.Limit = 0;
-                this.OneKarte = null;
-                this.OutputFolderPath = outputFolderPath;
-            }
-
-            /// <summary>
-            /// 最大数を指定して変換（本院・分院の両方とも変換）
-            /// </summary>
-            public ConverterOption(DirectoryInfo outputFolderPath, int limit)
-            {
-                this.Limit = limit;
-                this.OneKarte = null;
-                this.OutputFolderPath = outputFolderPath;
-            }
-
-            /// <summary>
-            /// 個別のカルテを変換
-            /// </summary>
-            public ConverterOption(DirectoryInfo outputFolderPath, KarteId oneKarte)
-            {
-                this.Limit = 1;
-                this.OneKarte = oneKarte ?? throw new ArgumentNullException(nameof(oneKarte));
                 this.OutputFolderPath = outputFolderPath;
             }
         }
@@ -82,57 +77,58 @@ namespace OmoOmotegaki.Yahara
             var maxConcurrency = 4;
             using (var semaphore = new SemaphoreSlim(maxConcurrency))
             {
-                foreach (var shinryoujo in new[] {
-                    new Shinryoujo("Hon"),
-                    new Shinryoujo("Bun"),
-                })
+                foreach (var shinryoujo in option.ShinryoujoItems)
                 {
-                    using FileStream zipStream = new FileStream(
-                        Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujo)}.zip"),
-                        FileMode.Create);
-                    using ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create);
+                    string filePath = Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujo.Shinryoujo)}.zip");
+                    using (FileStream zipStream = new FileStream(filePath, FileMode.Create))
+                    using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
+                    {
+                        shinryoujo.ConvertedCount = await _ConvertAll(archive, semaphore, shinryoujo, option);
+                    }
 
-                    await _ConvertAll(archive, semaphore, shinryoujo, option);
+                    if (shinryoujo.ConvertedCount == 0)
+                    {
+                        File.Delete(filePath);
+                    }
                 }
             }
-
-            // ディレクトリーを開く
-            using var _ = Process.Start(option.OutputFolderPath.FullName);
         }
 
-        private static async Task _ConvertAll(
+        private static async Task<int> _ConvertAll(
             ZipArchive archive,
             SemaphoreSlim semaphore,
-            Shinryoujo shinryoujo,
+            ShinryoujoItem shinryoujo,
             ConverterOption option
         )
         {
+            int convertedCount = 0;
+
             // 個別のカルテ変換
             if (option.OneKarte != null)
             {
                 // 診療所が異なるなら中断
-                if (!option.OneKarte.Shinryoujo.Equals(shinryoujo)) return;
+                if (!option.OneKarte.Shinryoujo.Equals(shinryoujo)) return convertedCount;
             }
 
-            using var karteFS = new KarteFileStream(shinryoujo);
-            using var shinryouFS = new ShinryouFileStream(shinryoujo);
+            using var karteFS = new KarteFileStream(shinryoujo.Shinryoujo);
+            using var shinryouFS = new ShinryouFileStream(shinryoujo.Shinryoujo);
 
-            int maxKarteNumber = karteFS.MaxKarteNumber;
+            int maxKarteNumber = option.OneKarte?.KarteNumber ?? karteFS.MaxKarteNumber;
             int prevProgress = 0;
-            int limitCounter = 0;
+            int limit = (option.OneKarte != null) ? 1 : option.Limit;
 
-            Console.WriteLine($"変換開始: 診療所={shinryoujo.Key}, 最大カルテ番号={maxKarteNumber}");
+            Console.WriteLine($"変換開始: 診療所={shinryoujo.Shinryoujo.Key}, 最大カルテ番号={maxKarteNumber}");
 
             for (int currentKarteNumber = option.OneKarte?.KarteNumber ?? 1;
                 currentKarteNumber <= maxKarteNumber;
                 currentKarteNumber++)
             {
-                var karteId = new KarteId(shinryoujo, currentKarteNumber);
+                var karteId = new KarteId(shinryoujo.Shinryoujo, currentKarteNumber);
 
                 // 診療データ読み込み
                 var shinryouLoader = shinryouFS.GetSinryouDataLoader(karteId);
                 ShinryouDataCollection shinryouData =
-                    shinryouLoader.GetShinryouData(DateRange.All, SinryouDataLoader.診療統合種別.統合なし);
+                    shinryouLoader.GetShinryouData(option.DateRange, SinryouDataLoader.診療統合種別.統合なし);
 
                 // 診療データがない場合はスキップ
                 if (0 == shinryouData.Count) continue;
@@ -145,17 +141,23 @@ namespace OmoOmotegaki.Yahara
 
                 // 個別のカルテを変換
                 await ConvertOne(archive, semaphore, option, karteId, karteData, shinryouData);
+                ++convertedCount;
 
                 // 進捗処理
-                int currentProgress = (int)((double)karteId.KarteNumber / maxKarteNumber * 100d);
+                int currentProgress = (0 < limit)
+                    ? (int)((double)convertedCount / limit * 100d)
+                    : (int)((double)karteId.KarteNumber / maxKarteNumber * 100d);
                 if (prevProgress < currentProgress)
                 {
-                    Console.WriteLine($"診療所:{shinryoujo.Key}, {currentProgress} %");
+                    Console.WriteLine($"診療所:{shinryoujo.Shinryoujo.Key}, {currentProgress} %");
+                    shinryoujo.ProgressChanged?.Invoke(currentProgress);
                     prevProgress = currentProgress;
                 }
 
-                if (0 < option.Limit && option.Limit <= ++limitCounter) break;
+                if (0 < limit && limit <= convertedCount) break;
             }
+
+            return convertedCount;
         }
 
         /// <summary>

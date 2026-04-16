@@ -1016,8 +1016,10 @@ namespace OmoEReceLib
         {
             code = StringUtils.ZenToHanNum(code);
 
-            if (code.Length > 8) throw new ArgumentException("コードは8桁までです。", nameof(code));
-
+            if (code.Length > 8)
+            {
+                throw new ArgumentException("コードは8桁までです。", nameof(code));
+            }
             Code = code.PadLeft(8, '0');
         }
 
@@ -1034,6 +1036,8 @@ namespace OmoEReceLib
         {
             if (code == null) return default;
             if (code.Length <= 4 || !int.TryParse(code, out _)) return default;
+            code = code.TrimStart('0');
+            if (code.Length > 8) return default;
             return new ER_保険者番号(code);
         }
     }
@@ -1049,15 +1053,20 @@ namespace OmoEReceLib
 
         private ER_公費負担者番号(string code)
         {
-            if (code.Length > 8) throw new ArgumentException("コードは8桁までです。", nameof(code));
-
+            if (code.Length > 8)
+            {
+                throw new ArgumentException("コードは8桁までです。", nameof(code));
+            }
             Code = code.PadLeft(8, '0');
         }
 
         internal static ER_公費負担者番号? ParseOrDefault(string code)
         {
             if (code == null) return default;
+            // 法別番号が無いのは対象外
             if (code.Length <= 6 || !int.TryParse(code, out _)) return default;
+            code = code.TrimStart('0');
+            if (code.Length > 8) return default;
             return new ER_公費負担者番号(code);
         }
     }
@@ -1072,8 +1081,10 @@ namespace OmoEReceLib
 
         private ER_公費負担医療の受給者番号(string code)
         {
-            if (code.Length > 7) throw new ArgumentException("コードは7桁までです。", nameof(code));
-
+            if (code.Length > 7)
+            {
+                throw new ArgumentException("コードは7桁までです。", nameof(code));
+            }
             Code = code.PadLeft(7, '0');
         }
 
@@ -1081,6 +1092,8 @@ namespace OmoEReceLib
         {
             if (code == null) return default;
             if (!int.TryParse(code, out _)) return default;
+            code = code.TrimStart('0');
+            if (code.Length > 7) return default;
             return new ER_公費負担医療の受給者番号(code);
         }
     }

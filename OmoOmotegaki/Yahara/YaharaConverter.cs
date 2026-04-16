@@ -35,11 +35,22 @@ namespace OmoOmotegaki.Yahara
         }
 
 
-        public sealed class ConverterOption
+        public sealed class ConverterOption : IDisposable
         {
             public readonly DirectoryInfo OutputFolderPath;
 
-            public ShinryoujoItem[] ShinryoujoItems = new ShinryoujoItem[0];
+            public ShinryoujoItem? ShinryoujoHon;
+            public ShinryoujoItem? ShinryoujoBun;
+            public IEnumerable<ShinryoujoItem> ShinryoujoItems
+            {
+                get
+                {
+                    if (ShinryoujoHon != null) yield return ShinryoujoHon;
+                    if (ShinryoujoBun != null) yield return ShinryoujoBun;
+                }
+            }
+
+            public int StartKarteNumber = 1;
 
             /// <summary>
             /// 0 == Max
@@ -61,6 +72,12 @@ namespace OmoOmotegaki.Yahara
             {
                 this.OutputFolderPath = outputFolderPath;
             }
+
+            public void Dispose()
+            {
+                if (ShinryoujoHon != null) ShinryoujoHon.ProgressChanged = null;
+                if (ShinryoujoBun != null) ShinryoujoBun.ProgressChanged = null;
+            }
         }
 
         /// <summary>
@@ -70,22 +87,19 @@ namespace OmoOmotegaki.Yahara
             ConverterOption option
         )
         {
-            // 出力ディレクトリーを削除して作り直し
-            if (option.OutputFolderPath.Exists) option.OutputFolderPath.Delete(true);
+            // 出力ディレクトリーを作成
             option.OutputFolderPath.Create();
 
             var maxConcurrency = 4;
             using var semaphore = new SemaphoreSlim(maxConcurrency);
+            string filePath = Path.Combine(option.OutputFolderPath.FullName, $"{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.zip");
+            using FileStream zipStream = new FileStream(filePath, FileMode.Create);
+            using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create);
             foreach (var shinryoujoItem in option.ShinryoujoItems)
             {
-                string filePath = Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujoItem.Shinryoujo)}.zip");
-                using (FileStream zipStream = new FileStream(filePath, FileMode.Create))
-                using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
-                {
-                    shinryoujoItem.ConvertedCount = await _ConvertAll(
-                        archive, semaphore, shinryoujoItem.Shinryoujo,
-                        shinryoujoItem.ProgressChanged, option);
-                }
+                shinryoujoItem.ConvertedCount = await _ConvertAll(
+                    archive, semaphore, shinryoujoItem.Shinryoujo,
+                    shinryoujoItem.ProgressChanged, option);
 
                 if (shinryoujoItem.ConvertedCount == 0)
                 {
@@ -120,7 +134,7 @@ namespace OmoOmotegaki.Yahara
 
             Console.WriteLine($"変換開始: 診療所={shinryoujo.Key}, 最大カルテ番号={maxKarteNumber}");
 
-            for (int currentKarteNumber = option.OneKarte?.KarteNumber ?? 1;
+            for (int currentKarteNumber = option.OneKarte?.KarteNumber ?? option.StartKarteNumber;
                 currentKarteNumber <= maxKarteNumber;
                 currentKarteNumber++)
             {
@@ -197,7 +211,7 @@ namespace OmoOmotegaki.Yahara
 
             if (OUTPUT_FILE)
             {
-                await OutputXmlFile(archive, semaphore, option, karteId, patient, karte);
+                await OutputXmlFile(archive, semaphore, karteId, patient, karte);
             }
         }
 
@@ -212,7 +226,6 @@ namespace OmoOmotegaki.Yahara
         private static async Task OutputXmlFile(
             ZipArchive archive,
             SemaphoreSlim semaphore,
-            ConverterOption option,
             KarteId karteId,
             Patient patient,
             Karte karte
@@ -247,12 +260,12 @@ namespace OmoOmotegaki.Yahara
                 {
                 }
             }
-            catch (Exception err)
-            {
-                var msg = $"[e37469bb-ccc7-4ab3-a0f1-47fbe81cf7cf] KarteId: {karteId}, XML出力でエラー: {err.Message}";
-                Console.WriteLine(msg);
-                //logger.Log(msg);
-            }
+            //catch (Exception err)
+            //{
+            //    var msg = $"[e37469bb-ccc7-4ab3-a0f1-47fbe81cf7cf] KarteId: {karteId}, XML出力でエラー: {err.Message}";
+            //    Console.WriteLine(msg);
+            //    //logger.Log(msg);
+            //}
             finally
             {
                 semaphore.Release();

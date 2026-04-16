@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,9 +46,15 @@
             this.chkZenKikan = new System.Windows.Forms.CheckBox();
             this.radKarteAll = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.radKarteLimit = new System.Windows.Forms.RadioButton();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.chkShinryoujoBun = new System.Windows.Forms.CheckBox();
+            this.chkShinryoujoHon = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numStartKarteNumber = new System.Windows.Forms.NumericUpDown();
             this.radKarteOne = new System.Windows.Forms.RadioButton();
-            this.cmbSinryoujo = new System.Windows.Forms.ComboBox();
+            this.radKarteLimit = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,8 +66,11 @@
             this.txtInputFolder = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numOneKarte)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLimit)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numStartKarteNumber)).BeginInit();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +78,7 @@
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnStart.Location = new System.Drawing.Point(415, 450);
+            this.btnStart.Location = new System.Drawing.Point(400, 449);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(169, 62);
             this.btnStart.TabIndex = 0;
@@ -79,7 +89,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(325, 489);
+            this.btnCancel.Location = new System.Drawing.Point(310, 488);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -89,7 +99,7 @@
             // 
             // numOneKarte
             // 
-            this.numOneKarte.Location = new System.Drawing.Point(118, 94);
+            this.numOneKarte.Location = new System.Drawing.Point(118, 119);
             this.numOneKarte.Maximum = new decimal(new int[] {
             40000,
             0,
@@ -143,10 +153,19 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.Controls.Add(this.panel7);
             this.panel1.Location = new System.Drawing.Point(114, 13);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1, 239);
             this.panel1.TabIndex = 9;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.DarkGray;
+            this.panel7.Location = new System.Drawing.Point(17, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1, 239);
+            this.panel7.TabIndex = 10;
             // 
             // panel2
             // 
@@ -155,7 +174,7 @@
             this.panel2.BackColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(12, 87);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(490, 2);
+            this.panel2.Size = new System.Drawing.Size(475, 2);
             this.panel2.TabIndex = 10;
             // 
             // panel4
@@ -165,7 +184,7 @@
             this.panel4.BackColor = System.Drawing.Color.Black;
             this.panel4.Location = new System.Drawing.Point(12, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(490, 2);
+            this.panel4.Size = new System.Drawing.Size(475, 2);
             this.panel4.TabIndex = 11;
             // 
             // label5
@@ -179,7 +198,12 @@
             // 
             // numLimit
             // 
-            this.numLimit.Location = new System.Drawing.Point(68, 45);
+            this.numLimit.Location = new System.Drawing.Point(262, 78);
+            this.numLimit.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
             this.numLimit.Name = "numLimit";
             this.numLimit.Size = new System.Drawing.Size(81, 19);
             this.numLimit.TabIndex = 12;
@@ -191,7 +215,7 @@
             this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.Location = new System.Drawing.Point(12, 251);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(490, 2);
+            this.panel5.Size = new System.Drawing.Size(475, 2);
             this.panel5.TabIndex = 14;
             // 
             // chkZenKikan
@@ -208,7 +232,7 @@
             // radKarteAll
             // 
             this.radKarteAll.AutoSize = true;
-            this.radKarteAll.Location = new System.Drawing.Point(3, 3);
+            this.radKarteAll.Location = new System.Drawing.Point(3, 40);
             this.radKarteAll.Name = "radKarteAll";
             this.radKarteAll.Size = new System.Drawing.Size(52, 16);
             this.radKarteAll.TabIndex = 18;
@@ -218,34 +242,109 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.panel8);
+            this.panel3.Controls.Add(this.chkShinryoujoBun);
+            this.panel3.Controls.Add(this.chkShinryoujoHon);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.numStartKarteNumber);
             this.panel3.Controls.Add(this.radKarteOne);
             this.panel3.Controls.Add(this.radKarteLimit);
-            this.panel3.Controls.Add(this.cmbSinryoujo);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.radKarteAll);
             this.panel3.Controls.Add(this.numLimit);
             this.panel3.Controls.Add(this.numOneKarte);
             this.panel3.Location = new System.Drawing.Point(124, 103);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(378, 142);
+            this.panel3.Size = new System.Drawing.Size(356, 142);
             this.panel3.TabIndex = 19;
             // 
-            // radKarteLimit
+            // panel8
             // 
-            this.radKarteLimit.AutoSize = true;
-            this.radKarteLimit.Location = new System.Drawing.Point(3, 45);
-            this.radKarteLimit.Name = "radKarteLimit";
-            this.radKarteLimit.Size = new System.Drawing.Size(59, 16);
-            this.radKarteLimit.TabIndex = 19;
-            this.radKarteLimit.TabStop = true;
-            this.radKarteLimit.Text = "最大数";
-            this.radKarteLimit.UseVisualStyleBackColor = true;
-            this.radKarteLimit.CheckedChanged += new System.EventHandler(this.radKarteLimit_CheckedChanged);
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.BackColor = System.Drawing.Color.DarkGray;
+            this.panel8.Controls.Add(this.panel9);
+            this.panel8.Location = new System.Drawing.Point(0, 26);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(356, 1);
+            this.panel8.TabIndex = 28;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.DarkGray;
+            this.panel9.Location = new System.Drawing.Point(17, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1, 239);
+            this.panel9.TabIndex = 10;
+            // 
+            // chkShinryoujoBun
+            // 
+            this.chkShinryoujoBun.AutoSize = true;
+            this.chkShinryoujoBun.Checked = true;
+            this.chkShinryoujoBun.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShinryoujoBun.Location = new System.Drawing.Point(117, 0);
+            this.chkShinryoujoBun.Name = "chkShinryoujoBun";
+            this.chkShinryoujoBun.Size = new System.Drawing.Size(48, 16);
+            this.chkShinryoujoBun.TabIndex = 27;
+            this.chkShinryoujoBun.Text = "分院";
+            this.chkShinryoujoBun.UseVisualStyleBackColor = true;
+            this.chkShinryoujoBun.CheckedChanged += new System.EventHandler(this.chkShinryoujoBun_CheckedChanged);
+            // 
+            // chkShinryoujoHon
+            // 
+            this.chkShinryoujoHon.AutoSize = true;
+            this.chkShinryoujoHon.Checked = true;
+            this.chkShinryoujoHon.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShinryoujoHon.Location = new System.Drawing.Point(58, 0);
+            this.chkShinryoujoHon.Name = "chkShinryoujoHon";
+            this.chkShinryoujoHon.Size = new System.Drawing.Size(48, 16);
+            this.chkShinryoujoHon.TabIndex = 26;
+            this.chkShinryoujoHon.Text = "本院";
+            this.chkShinryoujoHon.UseVisualStyleBackColor = true;
+            this.chkShinryoujoHon.CheckedChanged += new System.EventHandler(this.chkShinryoujoHon_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(222, 99);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "（ 0 で無限）";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(215, 80);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 12);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "出力数";
+            // 
+            // numStartKarteNumber
+            // 
+            this.numStartKarteNumber.Location = new System.Drawing.Point(108, 78);
+            this.numStartKarteNumber.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numStartKarteNumber.Name = "numStartKarteNumber";
+            this.numStartKarteNumber.Size = new System.Drawing.Size(81, 19);
+            this.numStartKarteNumber.TabIndex = 23;
+            this.numStartKarteNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // radKarteOne
             // 
             this.radKarteOne.AutoSize = true;
-            this.radKarteOne.Location = new System.Drawing.Point(3, 94);
+            this.radKarteOne.Location = new System.Drawing.Point(3, 119);
             this.radKarteOne.Name = "radKarteOne";
             this.radKarteOne.Size = new System.Drawing.Size(109, 16);
             this.radKarteOne.TabIndex = 20;
@@ -254,18 +353,22 @@
             this.radKarteOne.UseVisualStyleBackColor = true;
             this.radKarteOne.CheckedChanged += new System.EventHandler(this.radKarteOne_CheckedChanged);
             // 
-            // cmbSinryoujo
+            // radKarteLimit
             // 
-            this.cmbSinryoujo.FormattingEnabled = true;
-            this.cmbSinryoujo.Location = new System.Drawing.Point(262, 93);
-            this.cmbSinryoujo.Name = "cmbSinryoujo";
-            this.cmbSinryoujo.Size = new System.Drawing.Size(92, 20);
-            this.cmbSinryoujo.TabIndex = 21;
+            this.radKarteLimit.AutoSize = true;
+            this.radKarteLimit.Location = new System.Drawing.Point(3, 78);
+            this.radKarteLimit.Name = "radKarteLimit";
+            this.radKarteLimit.Size = new System.Drawing.Size(99, 16);
+            this.radKarteLimit.TabIndex = 19;
+            this.radKarteLimit.TabStop = true;
+            this.radKarteLimit.Text = "開始カルテ番号";
+            this.radKarteLimit.UseVisualStyleBackColor = true;
+            this.radKarteLimit.CheckedChanged += new System.EventHandler(this.radKarteLimit_CheckedChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(215, 96);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 22;
@@ -290,7 +393,7 @@
             this.panel6.Controls.Add(this.panel2);
             this.panel6.Location = new System.Drawing.Point(71, 159);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(513, 272);
+            this.panel6.Size = new System.Drawing.Size(498, 271);
             this.panel6.TabIndex = 23;
             // 
             // label6
@@ -317,7 +420,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOutputFolder.Location = new System.Drawing.Point(71, 104);
             this.txtOutputFolder.Name = "txtOutputFolder";
-            this.txtOutputFolder.Size = new System.Drawing.Size(513, 19);
+            this.txtOutputFolder.Size = new System.Drawing.Size(498, 19);
             this.txtOutputFolder.TabIndex = 26;
             // 
             // btnSelectOutputFolder
@@ -346,7 +449,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInputFolder.Location = new System.Drawing.Point(71, 35);
             this.txtInputFolder.Name = "txtInputFolder";
-            this.txtInputFolder.Size = new System.Drawing.Size(513, 19);
+            this.txtInputFolder.Size = new System.Drawing.Size(498, 19);
             this.txtInputFolder.TabIndex = 29;
             // 
             // label8
@@ -362,7 +465,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 524);
+            this.ClientSize = new System.Drawing.Size(589, 523);
             this.Controls.Add(this.btnSelectInputFolder);
             this.Controls.Add(this.txtInputFolder);
             this.Controls.Add(this.label8);
@@ -377,9 +480,12 @@
             this.Text = "ヤハラ変換オプション";
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.OptionDialog_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.numOneKarte)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numLimit)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numStartKarteNumber)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
@@ -408,7 +514,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton radKarteOne;
         private System.Windows.Forms.RadioButton radKarteLimit;
-        private System.Windows.Forms.ComboBox cmbSinryoujo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label6;
@@ -419,5 +524,13 @@
         private System.Windows.Forms.Button btnSelectInputFolder;
         private System.Windows.Forms.TextBox txtInputFolder;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown numStartKarteNumber;
+        private System.Windows.Forms.CheckBox chkShinryoujoBun;
+        private System.Windows.Forms.CheckBox chkShinryoujoHon;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
     }
 }

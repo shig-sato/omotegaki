@@ -2959,7 +2959,7 @@ namespace OmoOmotegaki.Forms
             var dlgResult = dlg.ShowDialog(this);
             if (dlgResult != DialogResult.OK) return;
 
-            ConverterOption option = dlg.ConverterOption;
+            using ConverterOption option = dlg.ConverterOption;
             using ProgressDialog prgDlg = new ProgressDialog()
             {
                 StartPosition = FormStartPosition.CenterParent
@@ -2970,43 +2970,27 @@ namespace OmoOmotegaki.Forms
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                option.ShinryoujoItems = new[]
+                if (option.ShinryoujoHon != null)
                 {
-                    new ShinryoujoItem(new Shinryoujo("Hon")),
-                    new ShinryoujoItem(new Shinryoujo("Bun")),
-                };
-                option.ShinryoujoItems[0].ProgressChanged = (progress) =>
-                {
-                    prgDlg.progressBar1.Value = progress;
-                };
-                option.ShinryoujoItems[1].ProgressChanged = (progress) =>
-                {
-                    prgDlg.progressBar2.Value = progress;
-                };
-
-
-                //List<string> errors;
-                try
-                {
-                    await ConvertAll(option);
-                }
-                catch (Exception ex)
-                {
-                    //errors = new List<string> { ex.Message };
-                    Console.WriteLine(ex);
+                    option.ShinryoujoHon.ProgressChanged = (progress) =>
+                    {
+                        prgDlg.progressBar1.Value = progress;
+                    };
                 }
 
-                //if (errors != null && errors.Count > 0)
-                //{
-                //    ShowMessage(string.Join(Environment.NewLine, errors), true, false);
-                //}
+                if (option.ShinryoujoBun != null)
+                {
+                    option.ShinryoujoBun.ProgressChanged = (progress) =>
+                    {
+                        prgDlg.progressBar2.Value = progress;
+                    };
+                }
+
+                await ConvertAll(option);
             }
             finally
             {
                 prgDlg.Close();
-
-                option.ShinryoujoItems[0].ProgressChanged = null;
-                option.ShinryoujoItems[1].ProgressChanged = null;
 
                 this.Cursor = Cursors.Default;
                 MessageBox.Show(
@@ -3014,8 +2998,8 @@ namespace OmoOmotegaki.Forms
                     Environment.NewLine +
                     "出力先: " + option.OutputFolderPath + Environment.NewLine +
                     Environment.NewLine +
-                    "本院: " + option.ShinryoujoItems[0].ConvertedCount + "件" + Environment.NewLine +
-                    "分院: " + option.ShinryoujoItems[1].ConvertedCount + "件");
+                    "本院: " + (option.ShinryoujoHon?.ConvertedCount ?? 0) + "件" + Environment.NewLine +
+                    "分院: " + (option.ShinryoujoBun?.ConvertedCount ?? 0) + "件");
 
                 if (option.ShinryoujoItems.Sum(p => p.ConvertedCount) > 0)
                 {

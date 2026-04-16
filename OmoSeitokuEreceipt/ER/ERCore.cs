@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmoSeitoku;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -1002,17 +1003,85 @@ namespace OmoEReceLib
 
     public struct ER_保険者番号
     {
-        public int 法別番号;
-        public int 都道府県番号;
-        public int 保険者別番号;
-        public int 検証番号;
+        /// <summary>
+        /// 8桁固定。左側0埋め。
+        /// </summary>
+        public readonly string Code;
+
+        public string 都道府県番号 => Code.Substring(2, 2);
+        public string 保険者別番号 => Code.Substring(4, 3);
+        public string 検証番号 => Code.Substring(7, 1);
+
+        private ER_保険者番号(string code)
+        {
+            code = StringUtils.ZenToHanNum(code);
+
+            if (code.Length > 8) throw new ArgumentException("コードは8桁までです。", nameof(code));
+
+            Code = code.PadLeft(8, '0');
+        }
+
+        /// <summary>
+        /// 国民健康保険（退職者医療を除く。）の場合は無し。
+        /// </summary>
+        public bool TryGet法別番号(out string v)
+        {
+            v = Code.Substring(0, 2);
+            return v != "00";
+        }
+
+        internal static ER_保険者番号? ParseOrDefault(string code)
+        {
+            if (code == null) return default;
+            if (code.Length <= 4 || !int.TryParse(code, out _)) return default;
+            return new ER_保険者番号(code);
+        }
     }
 
     public struct ER_公費負担者番号
     {
-        public int 法別番号;
-        public int 都道府県番号;
-        public int 実施機関番号;
-        public int 検証番号;
+        public readonly string Code;
+
+        public string 法別番号 => Code.Substring(0, 2);
+        public string 都道府県番号 => Code.Substring(2, 2);
+        public string 実施機関番号 => Code.Substring(4, 3);
+        public string 検証番号 => Code.Substring(7, 1);
+
+        private ER_公費負担者番号(string code)
+        {
+            if (code.Length > 8) throw new ArgumentException("コードは8桁までです。", nameof(code));
+
+            Code = code.PadLeft(8, '0');
+        }
+
+        internal static ER_公費負担者番号? ParseOrDefault(string code)
+        {
+            if (code == null) return default;
+            if (code.Length <= 6 || !int.TryParse(code, out _)) return default;
+            return new ER_公費負担者番号(code);
+        }
+    }
+
+    // 公費受給者番号
+    public struct ER_公費負担医療の受給者番号
+    {
+        public readonly string Code;
+
+        public string 受給者区分 => Code.Substring(0, 6);
+        public string 検証番号 => Code.Substring(6, 1);
+
+        private ER_公費負担医療の受給者番号(string code)
+        {
+            if (code.Length > 7) throw new ArgumentException("コードは7桁までです。", nameof(code));
+
+            Code = code.PadLeft(7, '0');
+        }
+
+        internal static ER_公費負担医療の受給者番号? ParseOrDefault(string code)
+        {
+            if (code == null) return default;
+            if (!int.TryParse(code, out _)) return default;
+            return new ER_公費負担医療の受給者番号(code);
+        }
     }
 }

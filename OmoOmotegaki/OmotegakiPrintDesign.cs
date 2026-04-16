@@ -87,16 +87,16 @@ namespace OmoOmotegaki
                 g.DrawRectangle(boldPen, 63.2f, 19f, 19.5f, 10f);
                 g.DrawLine(dashPen, 70f, 19.5f, 70f, 29f);
                 g.DrawLine(dashPen, 76.5f, 19.5f, 76.5f, 29f);
-                if (0 < data.公費負担者番号)
+
                 {
-                    using (Font font = new Font(FONT_FAMILY, 18f))
+                    var s = data.公費負担者番号?.Code ?? string.Empty;
+                    if (0 < s.Length)
                     {
-                        string s = data.公費負担者番号.ToString().PadLeft(8, '0');
+                        using Font font = new Font(FONT_FAMILY, 18f);
                         Utility.DrawJapaneseString(
                             g, s, font, writeColor, new Rectangle(38, 21, 49, 10), kintou);
                     }
                 }
-
 
                 g.DrawLine(linePen, 9f, 29f, 74f, 29f);
 
@@ -112,11 +112,12 @@ namespace OmoOmotegaki
                 g.DrawLine(dashPen, 63.2f, 29.5f, 63.2f, 39f);
                 g.DrawLine(dashPen, 70f, 29.5f, 70f, 39f);
                 g.DrawLine(boldPen, 76.5f, 29f, 76.5f, 39f);
-                if (0 < data.公費受給者番号)
+
                 {
-                    using (Font font = new Font(FONT_FAMILY, 18f))
+                    var s = data.公費受給者番号?.Code ?? string.Empty;
+                    if (0 < s.Length)
                     {
-                        string s = data.公費受給者番号.ToString().PadLeft(7, '0');
+                        using Font font = new Font(FONT_FAMILY, 18f);
                         Utility.DrawJapaneseString(
                             g, s, font, writeColor, new Rectangle(38, 31, 42, 10), kintou);
                     }
@@ -132,11 +133,12 @@ namespace OmoOmotegaki
                 g.DrawRectangle(boldPen, 146.5f, 19f, 19.5f, 10f);
                 g.DrawLine(dashPen, 152.9f, 19.5f, 152.9f, 29f);
                 g.DrawLine(dashPen, 159f, 19.5f, 159f, 29f);
-                if (0 < data.保険者番号)
+
                 {
-                    using (Font font = new Font(FONT_FAMILY, 18f))
+                    var s = data.保険者番号?.Code ?? string.Empty;
+                    if (0 < s.Length)
                     {
-                        string s = data.保険者番号.ToString().PadLeft(8, '0');
+                        using Font font = new Font(FONT_FAMILY, 18f);
                         Utility.DrawJapaneseString(
                             g, s, font, writeColor, new Rectangle(121, 21, 49, 10), kintou);
                     }

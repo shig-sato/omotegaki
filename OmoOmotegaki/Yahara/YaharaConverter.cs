@@ -75,21 +75,21 @@ namespace OmoOmotegaki.Yahara
             option.OutputFolderPath.Create();
 
             var maxConcurrency = 4;
-            using (var semaphore = new SemaphoreSlim(maxConcurrency))
+            using var semaphore = new SemaphoreSlim(maxConcurrency);
+            foreach (var shinryoujoItem in option.ShinryoujoItems)
             {
-                foreach (var shinryoujo in option.ShinryoujoItems)
+                string filePath = Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujoItem.Shinryoujo)}.zip");
+                using (FileStream zipStream = new FileStream(filePath, FileMode.Create))
+                using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
                 {
-                    string filePath = Path.Combine(option.OutputFolderPath.FullName, $"{GetDirName(shinryoujo.Shinryoujo)}.zip");
-                    using (FileStream zipStream = new FileStream(filePath, FileMode.Create))
-                    using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
-                    {
-                        shinryoujo.ConvertedCount = await _ConvertAll(archive, semaphore, shinryoujo, option);
-                    }
+                    shinryoujoItem.ConvertedCount = await _ConvertAll(
+                        archive, semaphore, shinryoujoItem.Shinryoujo,
+                        shinryoujoItem.ProgressChanged, option);
+                }
 
-                    if (shinryoujo.ConvertedCount == 0)
-                    {
-                        File.Delete(filePath);
-                    }
+                if (shinryoujoItem.ConvertedCount == 0)
+                {
+                    File.Delete(filePath);
                 }
             }
         }
@@ -97,7 +97,8 @@ namespace OmoOmotegaki.Yahara
         private static async Task<int> _ConvertAll(
             ZipArchive archive,
             SemaphoreSlim semaphore,
-            ShinryoujoItem shinryoujo,
+            Shinryoujo shinryoujo,
+            Action<int>? onProgressChanged,
             ConverterOption option
         )
         {
@@ -107,23 +108,23 @@ namespace OmoOmotegaki.Yahara
             if (option.OneKarte != null)
             {
                 // 診療所が異なるなら中断
-                if (!option.OneKarte.Shinryoujo.Equals(shinryoujo)) return convertedCount;
+                if (option.OneKarte.Shinryoujo != shinryoujo) return convertedCount;
             }
 
-            using var karteFS = new KarteFileStream(shinryoujo.Shinryoujo);
-            using var shinryouFS = new ShinryouFileStream(shinryoujo.Shinryoujo);
+            using var karteFS = new KarteFileStream(shinryoujo);
+            using var shinryouFS = new ShinryouFileStream(shinryoujo);
 
             int maxKarteNumber = option.OneKarte?.KarteNumber ?? karteFS.MaxKarteNumber;
             int prevProgress = 0;
             int limit = (option.OneKarte != null) ? 1 : option.Limit;
 
-            Console.WriteLine($"変換開始: 診療所={shinryoujo.Shinryoujo.Key}, 最大カルテ番号={maxKarteNumber}");
+            Console.WriteLine($"変換開始: 診療所={shinryoujo.Key}, 最大カルテ番号={maxKarteNumber}");
 
             for (int currentKarteNumber = option.OneKarte?.KarteNumber ?? 1;
                 currentKarteNumber <= maxKarteNumber;
                 currentKarteNumber++)
             {
-                var karteId = new KarteId(shinryoujo.Shinryoujo, currentKarteNumber);
+                var karteId = new KarteId(shinryoujo, currentKarteNumber);
 
                 // 診療データ読み込み
                 var shinryouLoader = shinryouFS.GetSinryouDataLoader(karteId);
@@ -149,8 +150,8 @@ namespace OmoOmotegaki.Yahara
                     : (int)((double)karteId.KarteNumber / maxKarteNumber * 100d);
                 if (prevProgress < currentProgress)
                 {
-                    Console.WriteLine($"診療所:{shinryoujo.Shinryoujo.Key}, {currentProgress} %");
-                    shinryoujo.ProgressChanged?.Invoke(currentProgress);
+                    Console.WriteLine($"診療所:{shinryoujo.Key}, {currentProgress} %");
+                    onProgressChanged?.Invoke(currentProgress);
                     prevProgress = currentProgress;
                 }
 

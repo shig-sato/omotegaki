@@ -95,6 +95,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StringUtils.cs" />
     <Compile Include="ClassUtils.cs" />
     <Compile Include="Controls\DataListView.cs">
       <SubType>Component</SubType>

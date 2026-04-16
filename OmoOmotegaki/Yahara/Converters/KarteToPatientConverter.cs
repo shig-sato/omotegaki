@@ -68,7 +68,7 @@ namespace omotegaki_xml.Libs.Yahara.Converters
             {
                 new Hokensha
                 {
-                    保険者番号 = Get保険者番号(karte.保険者番号),
+                    保険者番号 = karte.保険者番号?.Code,
                     被保険者記号 = karte.被保険者証_記号,
                     被保険者番号 = spl == null ? null : spl[0],
                     被保険者氏名 = karte.氏名?.Replace("　", " "),
@@ -153,11 +153,6 @@ namespace omotegaki_xml.Libs.Yahara.Converters
 "後期高齢者 一般 低II"
 "後期高齢者 一定以上"
              */
-        }
-
-        private static string? Get保険者番号(int? value)
-        {
-            return ((value ?? 0) == 0) ? null : value.ToString();
         }
     }
 }

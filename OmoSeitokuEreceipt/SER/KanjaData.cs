@@ -31,12 +31,12 @@ namespace OmoSeitokuEreceipt.SER
             本人家族区分 = Create本人家族区分(VBRandomFile.ReadInt(input));
             身障 = VBRandomFile.ReadInt(input) == 1;
             職務上の事由 = Create職務上の事由(VBRandomFile.ReadInt(input));
-            保険者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out int num) ? num : 0;
+            保険者番号 = ER_保険者番号.ParseOrDefault(NormalizeString(VBRandomFile.ReadFixedLengthString(input, 8)));
             被保険者証_記号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 24));
             被保険者証_番号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 24));
-            公費負担者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
-            公費受給者番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
-            市町村番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out num) ? num : 0;
+            公費負担者番号 = ER_公費負担者番号.ParseOrDefault(NormalizeString(VBRandomFile.ReadFixedLengthString(input, 8)));
+            公費受給者番号 = ER_公費負担医療の受給者番号.ParseOrDefault(NormalizeString(VBRandomFile.ReadFixedLengthString(input, 8)));
+            市町村番号 = int.TryParse(VBRandomFile.ReadFixedLengthString(input, 8), out var num) ? num : 0;
             老人受給者番号 = NormalizeString(VBRandomFile.ReadFixedLengthString(input, 8));
             保険種別 = VBRandomFile.ReadInt(input);
             患者負担率 = VBRandomFile.ReadInt(input);
@@ -113,11 +113,11 @@ namespace OmoSeitokuEreceipt.SER
         public ER_レセプト種別_本人家族入院区分? 本人家族区分 { get; }
         public bool? 身障 { get; }
         public ER_職務上の事由? 職務上の事由 { get; }
-        public int? 保険者番号 { get; }
+        public ER_保険者番号? 保険者番号 { get; }
         public string 被保険者証_記号 { get; }
         public string 被保険者証_番号 { get; }
-        public int? 公費負担者番号 { get; }
-        public int? 公費受給者番号 { get; }
+        public ER_公費負担者番号? 公費負担者番号 { get; }
+        public ER_公費負担医療の受給者番号? 公費受給者番号 { get; }
         public int? 市町村番号 { get; }
         public string 老人受給者番号 { get; }
         public int? 保険種別 { get; }

@@ -112,34 +112,8 @@ namespace OmoOmotegaki.ViewModels.Controls
 
                     InputNumbers = matches
                                     .Cast<Match>()
-                                    .Select(m => ParseInt(m.Value))
+                                    .Select(m => int.Parse(StringUtils.ZenToHanNum(m.Value)))
                                     .ToArray();
-
-
-                    static int ParseInt(string value)
-                    {
-                        char[] ar = value.ToCharArray();
-                        for (int i = ar.Length - 1; i >= 0; i--)
-                        {
-                            char c = ar[i];
-
-                            switch (c)
-                            {
-                                case '０': ar[i] = '0'; break;
-                                case '１': ar[i] = '1'; break;
-                                case '２': ar[i] = '2'; break;
-                                case '３': ar[i] = '3'; break;
-                                case '４': ar[i] = '4'; break;
-                                case '５': ar[i] = '5'; break;
-                                case '６': ar[i] = '6'; break;
-                                case '７': ar[i] = '7'; break;
-                                case '８': ar[i] = '8'; break;
-                                case '９': ar[i] = '9'; break;
-                            }
-                        }
-
-                        return int.Parse(new string(ar));
-                    }
                 }
 
                 // 変更されたかどうかにかかわらず更新
@@ -201,7 +175,7 @@ namespace OmoOmotegaki.ViewModels.Controls
                 }
             }
 
-            IEnumerable<SinryouData> notFilteredShinryouDataCollection = 
+            IEnumerable<SinryouData> notFilteredShinryouDataCollection =
                 shinryouDataCollectionSource.ShinryouDataCollection?.GetNonFiltered();
 
             if (notFilteredShinryouDataCollection is null)

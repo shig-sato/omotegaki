@@ -28,8 +28,8 @@ namespace OmoOmotegaki.Controls
             }
         }
 
-        public int? 公費負担者番号 => _karteData.公費負担者番号;
-        public int? 公費受給者番号 => _karteData.公費受給者番号;
+        public ER_公費負担者番号? 公費負担者番号 => _karteData.公費負担者番号;
+        public ER_公費負担医療の受給者番号? 公費受給者番号 => _karteData.公費受給者番号;
         public string 受診者_氏名 => _karteData.氏名;
         public DateTime? 受診者_生年月日 => _karteData.生年月日;
         public ER_男女区分? 受診者_性別 => _karteData.性別;
@@ -38,7 +38,7 @@ namespace OmoOmotegaki.Controls
         public string 電話番号 => _karteData.電話番号;
         public string 職業 => _karteData.職業;
         public string 世帯主との続柄 => _karteData.世帯主との続柄;
-        public int? 保険者番号 => _karteData.保険者番号;
+        public ER_保険者番号? 保険者番号 => _karteData.保険者番号;
         public string 被保険者証_記号 => _karteData.被保険者証_記号;
         public string 被保険者証_番号 => _karteData.被保険者証_番号;
         public DateTime? 被保険者証_有効期限 => _karteData.保険有効期限;
@@ -97,10 +97,10 @@ namespace OmoOmotegaki.Controls
             KarteData karteData = _karteData;
 
             // 公費負担者番号
-            txtKouhihutan.Text = Create番号String(karteData.公費負担者番号, 8, new[] { 4, 6, 8 });
+            txtKouhihutan.Text = karteData.公費負担者番号?.Code ?? string.Empty;
 
             // 公費受給者番号
-            txtKouhiJukyuu.Text = Create番号String(karteData.公費受給者番号, 7, 7);
+            txtKouhiJukyuu.Text = karteData.公費受給者番号?.Code ?? string.Empty;
 
             // 氏名
             txtSimei.Text = karteData.氏名?.Trim() ?? string.Empty;
@@ -139,7 +139,7 @@ namespace OmoOmotegaki.Controls
             txtZokugara.Text = karteData.世帯主との続柄?.Trim() ?? string.Empty;
 
             // 保険者番号
-            txtHokensya.Text = Create番号String(karteData.保険者番号, 8, new[] { 4, 6, 8 });
+            txtHokensya.Text = karteData.保険者番号?.Code ?? string.Empty;
 
             // 被保険者証_記号
             lblKigou.Text = karteData.被保険者証_記号?.Trim() ?? string.Empty;
@@ -167,25 +167,6 @@ namespace OmoOmotegaki.Controls
 
             // 国民健康保険組合名
             txtKokuminkenkou.Text = karteData.国民健康保険組合名?.Trim() ?? string.Empty;
-
-            return;
-
-
-            // value の桁数が allowLengths のいずれかの長さに合致する場合は paddingLength の長さにして文字列化する。
-            static string Create番号String(int? value, int paddingLength, params int[] allowLengths)
-            {
-                if (value.HasValue && value.Value > 0)
-                {
-                    string numStr = value.Value.ToString();
-                    int length = numStr.Length;
-                    if (allowLengths.Any(p => p == length))
-                    {
-                        return numStr.PadLeft(paddingLength);
-                    }
-                }
-
-                return string.Empty;
-            }
         }
     }
 }
